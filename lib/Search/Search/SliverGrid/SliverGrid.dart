@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:serpay/MainPage/MainPagee/ProductMainPage/ProductMainPage.dart';
 import 'package:serpay/Search/Filter.dart';
-import 'package:serpay/Search/Search/ProductList/ProductList.dart';
-import 'package:serpay/Search/Search/SliverGrid/ProductGrid.dart';
+
+
+import 'package:serpay/Ui/MainPage/SkidkaProduct/NewProduct/NewProductList.dart';
 import 'package:serpay/Ui/MainPage/search/SearchMode.dart';
 import 'package:serpay/darkMode/theme_services.dart';
 
@@ -287,12 +289,8 @@ class _ProductGridState extends State<ProductGrid> {
             ),
           ])),
           check != false
-              ? ProductList(
-                  pro: prod, url: url,
-                )
-              : GridProduct(
-                  searchProdut: prod, url: url,
-                )
+              ? NewProductList(newProduct: prod, url: url,)
+              :ProductMainPage( randomPro: prod,)
         ],
       ),
     );

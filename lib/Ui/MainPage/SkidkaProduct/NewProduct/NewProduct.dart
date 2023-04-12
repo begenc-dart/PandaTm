@@ -17,10 +17,11 @@ import 'package:http/http.dart' as http;
 import 'package:serpay/Ui/MainPage/SkidkaProduct/NewProduct/NewProductList.dart';
 
 import '../../../../Language/Language.dart';
+import '../../../../MainPage/MainPagee/ProductMainPage/ProductMainPage.dart';
 import '../../../../Search/Filter.dart';
 import '../../../../darkMode/theme_services.dart';
 import '../../../../language.dart';
-import 'NewProductGrid.dart';
+
 
 class NewProductModel extends StatefulWidget {
   String sort;
@@ -322,7 +323,7 @@ b=a;
                           ])),
                       widget.checkpage == true
                           ? NewProductList(newProduct: prod, url: url,)
-                          :NewProductGrid(newProduct: prod, url: url,)
+                          :ProductMainPage( randomPro: prod,)
                     ],
                   )));}else{
       return CircularProgressIndicator();}

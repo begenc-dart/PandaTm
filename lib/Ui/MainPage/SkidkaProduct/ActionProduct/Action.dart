@@ -18,11 +18,11 @@ import '../../../../IpAdress.dart';
 import '../../../../Language/Language.dart';
 import '../../../../LogIn/LogIn/Model/checkSignUp.dart';
 import '../../../../LogIn/LogIn/Model/token.dart';
+import '../../../../MainPage/MainPagee/ProductMainPage/ProductMainPage.dart';
 import '../../../../Search/Filter.dart';
 import '../../../../darkMode/theme_services.dart';
 import '../../../../language.dart';
-import 'ActionGrid.dart';
-import 'ActionList.dart';
+import '../NewProduct/NewProductList.dart';
 
 class ActionProduct extends StatefulWidget {
   String sort;
@@ -356,14 +356,8 @@ class _ActionProductState extends State<ActionProduct> {
                           )
                         ])),
                         widget.checkpage == true
-                            ? ActionList(
-                                actionProduct: prod,
-                                url: url,
-                              )
-                            : ActionGrid(
-                                actionProduct: prod,
-                                url: url,
-                              )
+                            ? NewProductList(newProduct: prod, url: url,)
+                            :ProductMainPage( randomPro: prod,)
                       ],
                     )));
           } else {

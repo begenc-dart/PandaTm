@@ -17,7 +17,7 @@ import '../../Model/Colors.dart';
 import '../SearchRelated.dart';
 import '../SearchRelatedModel.dart';
 import '../Suggestion.dart';
-import 'ProductList/ProductList.dart';
+
 
 class CustomSearchDelegate extends SearchDelegate {
   String text;

@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:serpay/Categorya/SubCategor/SubCategorGrid.dart';
-import 'package:serpay/Categorya/SubCategor/SubCategorList.dart';
+
 import 'package:serpay/LogIn/LogIn/Model/checkSignUp.dart';
 import 'package:serpay/LogIn/LogIn/Model/token.dart';
+import 'package:serpay/MainPage/MainPagee/ProductMainPage/ProductMainPage.dart';
 
 import 'package:serpay/Model/TextColor.dart';
 import 'package:http/http.dart' as http;
+import 'package:serpay/Ui/MainPage/SkidkaProduct/NewProduct/NewProductList.dart';
 import '../../../../../IpAdress.dart';
 import '../../../../../Search/Filter.dart';
 import '../../../../../darkMode/theme_services.dart';
@@ -317,8 +318,8 @@ class _CateProductState extends State<CateProduct> {
                   )
                 ])),
                 widget.checkpage == true
-                    ? SubCategorList(brend: prod, url: widget.url,)
-                    : SubCategorGrid(brend: prod, url: widget.url,)
+                    ? NewProductList(newProduct: prod, url: widget.url,)
+                    :ProductMainPage( randomPro: prod,)
               ],
             )));
   }

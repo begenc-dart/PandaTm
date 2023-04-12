@@ -41,14 +41,14 @@ class AddOrder {
         }));
     debugPrint(sellerId.toString());
     debugPrint(response.body);
-    Fluttertoast.showToast(
+        Fluttertoast.showToast(
 
-        msg: url=="tm"?"Sargydyňyz kabul edildi":"Ваш заказ принят",
+            msg: url=="tm"?"Sargydyňyz kabul edildi":"Ваш заказ принят",
 
-        // toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.red,
+            // toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
         textColor: Colors.white,
         fontSize: 16.0
     );

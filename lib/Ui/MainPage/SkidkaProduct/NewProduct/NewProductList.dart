@@ -12,7 +12,7 @@ import '../../../../Model/TextColor.dart';
 import '../../../../darkMode/theme_services.dart';
 
 class NewProductList extends StatefulWidget {
-  List<NewProduct> newProduct;
+  List newProduct;
   String url;
   NewProductList({required this.newProduct,required this.url});
 
@@ -24,9 +24,12 @@ class _NewProductListState extends State<NewProductList> {
   @override
   int a=0;
   Widget build(BuildContext context) {
+
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-              (context, index) => InkWell(
+              (context, index) {
+                List one=widget.newProduct[index].images;
+                return InkWell(
                 onTap: () {
                   HistoryProduct().history(widget.newProduct[index].productId);
                   Navigator.of(context).push(MaterialPageRoute(
@@ -135,10 +138,9 @@ class _NewProductListState extends State<NewProductList> {
                               left: 0,right: 0,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: widget.newProduct[index]
-                                    .images.map((url) {
-                                  int indexx = widget.newProduct[index]
-                                      .images.indexOf(url);
+                                children: one.map((url) {
+                                  int indexx = one
+                                      .indexOf(url);
                                   return Container(
                                     width: 3.0,
                                     height: 3.0,
@@ -321,8 +323,8 @@ class _NewProductListState extends State<NewProductList> {
                       : Container(),
                 ]),
             ),
-          ),
-              ),
+          )
+              );},
           childCount: widget.newProduct.length),
     );
   }

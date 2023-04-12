@@ -1,31 +1,24 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:serpay/LogIn/LogIn/Model/checkSignUp.dart';
 import 'package:serpay/LogIn/LogIn/Model/token.dart';
-import 'package:serpay/MainPage/Model/Action.dart';
-import 'package:serpay/MainPage/Model/BannerProdcutModel.dart';
 
-import 'package:serpay/MainPage/PhotoIndex.dart';
 import 'package:serpay/Model/TextColor.dart';
 
 import 'package:http/http.dart' as http;
 
 import '../../../../IpAdress.dart';
 import '../../../../Language/Language.dart';
+import '../../../../MainPage/MainPagee/ProductMainPage/ProductMainPage.dart';
 import '../../../../MainPage/Model/SellerProduct.dart';
 import '../../../../Search/Filter.dart';
 import '../../../../darkMode/theme_services.dart';
 
-import '../ActionProduct/Action.dart';
-import 'BrendGrid.dart';
-import 'BrendList.dart';
+import '../NewProduct/NewProductList.dart';
+
 
 class BannerProduct extends StatefulWidget {
   String sort;
@@ -325,8 +318,8 @@ ScrollController? controller;
                       )
                 ])),
                 widget.checkpage == true
-                    ? BrendList(brend: prod,url: widget.url,)
-                    : BrendGrid(brend: prod,url: widget.url,)
+                    ? NewProductList(newProduct: prod, url: widget.url,)
+                    :ProductMainPage( randomPro: prod,)
               ],
             )));
   }

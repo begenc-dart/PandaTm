@@ -8,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:serpay/LogIn/LogIn/Model/checkSignUp.dart';
 import 'package:serpay/LogIn/LogIn/Model/token.dart';
+import 'package:serpay/MainPage/MainPagee/ProductMainPage/ProductMainPage.dart';
 
 import 'package:serpay/MainPage/PhotoIndex.dart';
 import 'package:serpay/Model/TextColor.dart';
@@ -18,13 +19,12 @@ import '../../../../IpAdress.dart';
 import '../../../../MainPage/Model/DiscountModel.dart';
 import '../../../../Search/Filter.dart';
 import '../../../../darkMode/theme_services.dart';
-import '../Search/Search/ProductList/ProductList.dart';
-import '../Search/Search/SliverGrid/ProductGrid.dart';
+
 
 // import 'DiscountGrid.dart';
 // import 'DiscountList.dart';
-import 'MainPage/SkidkaProduct/Discount/DiscountGrid.dart';
-import 'MainPage/SkidkaProduct/Discount/DiscountList.dart';
+
+import 'MainPage/SkidkaProduct/NewProduct/NewProductList.dart';
 import 'MainPage/search/SearchMode.dart';
 
 class MyHttpOverrids extends HttpOverrides {
@@ -302,13 +302,8 @@ class _BarCodeProductState extends State<BarCodeProduct> {
                   )
                 ])),
                 widget.checkpage == true
-                    ? ProductList(
-                        pro: prod, url: "ru",
-                      )
-                    : GridProduct(
-                        searchProdut: prod,
-                  url: "ru",
-                      )
+                    ? NewProductList(newProduct: prod, url: "tm",)
+                    :ProductMainPage( randomPro: prod,)
               ],
             )));
   }

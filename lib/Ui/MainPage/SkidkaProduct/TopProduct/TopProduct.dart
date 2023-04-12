@@ -5,11 +5,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:serpay/LogIn/LogIn/Model/checkSignUp.dart';
 import 'package:serpay/LogIn/LogIn/Model/token.dart';
+import 'package:serpay/MainPage/MainPagee/ProductMainPage/ProductMainPage.dart';
 
 import 'package:serpay/MainPage/PhotoIndex.dart';
 import 'package:serpay/Model/TextColor.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:serpay/Ui/MainPage/SkidkaProduct/NewProduct/NewProductList.dart';
 
 import '../../../../IpAdress.dart';
 import '../../../../Language/Language.dart';
@@ -19,8 +21,7 @@ import '../../../../darkMode/theme_services.dart';
 
 import '../../../../language.dart';
 import '../ActionProduct/Action.dart';
-import 'TopGrid.dart';
-import 'TopList.dart';
+
 import 'TopProductModel.dart';
 
 class TopProduct extends StatefulWidget {
@@ -337,8 +338,8 @@ class _TopProductState extends State<TopProduct> {
                           )
                         ])),
                     widget.checkpage == true
-                        ? TopList(brend: prod, url: url,)
-                        : TopGrid(brend: prod, url: url,)
+                        ? NewProductList(newProduct: prod, url: url,)
+                        :ProductMainPage( randomPro: prod,)
                   ],
                 )));
       }
