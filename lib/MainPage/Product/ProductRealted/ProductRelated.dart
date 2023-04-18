@@ -65,12 +65,7 @@ String url;
                                         recommenendations[index].images[itemIndex].image,
                                     placeholder: (context, url) =>
                                         Container(
-                                            alignment:
-                                            Alignment.center,
-                                            child:
-                                            CircularProgressIndicator(
-                                              color: Colors.red,
-                                            )),
+                                          ),
                                     errorWidget:
                                         (context, url, error) =>
                                         Image.asset(
@@ -130,6 +125,7 @@ String url;
                     ),
                   ),
                   Expanded(
+                    flex: 1,
                     child: Container(
                       margin: EdgeInsets.only(top: 5, left: 10, bottom: 5),
                       child: Row(
@@ -139,7 +135,7 @@ String url;
                           Row(
                             children: [
                               Text(
-                      recommenendations[index].price!=null? recommenendations[index].price!
+                      recommenendations[index].price!=null? recommenendations[index].price
                                     .toStringAsFixed(1):"0",
                                 style: CustomTextStyle.priceColor(context),
                               ),

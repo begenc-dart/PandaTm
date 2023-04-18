@@ -240,7 +240,7 @@ class _ProfileState extends State<Profile> {
                                         )));
                               },
                               child: profile(
-                                  lan.data!.profileDetails.halanlarym + "\n",
+                                  lan.data!.profileDetails.halanlarym ,
                                   "asset/profile/heart1.png"),
                             ),
                           ),
@@ -255,7 +255,7 @@ class _ProfileState extends State<Profile> {
                                           )));
                                 });
                               },
-                              child: profile(url=="tm"?"Admin \n":"Админ \n",
+                              child: profile(url=="tm"?"Admin":"Админ ",
                                   "asset/profile/support.png"),
                             ),
                           ),
@@ -294,7 +294,7 @@ class _ProfileState extends State<Profile> {
                                       bottom: 10,
                                     ),
                                     child: Text(
-                                      lan.data!.profileDetails.salgy+"\n",
+                                      lan.data!.profileDetails.salgy,
                                       style: TextStyle(
                                           color: ThemeServices().theme ==
                                                   ThemeMode.dark
@@ -320,7 +320,7 @@ class _ProfileState extends State<Profile> {
                                           )));
                                 },
                                 child: profile(
-                                    lan.data!.profileDetails.setting + "\n",
+                                    lan.data!.profileDetails.setting ,
                                     "asset/profile/settings 1.png")),
                           ),
                         ],

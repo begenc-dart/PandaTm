@@ -13,7 +13,7 @@ import 'package:http/http.dart' as http;
 import '../MainPage/Model/RandomProduct.dart';
 
 CheckSignUp checkSignUp = new CheckSignUp();
-int current_page = 0;
+int current_page = 10;
 hiveMethod(List<RandomProduct> a){
  var box=Hive.box("tasks");
  box.clear();

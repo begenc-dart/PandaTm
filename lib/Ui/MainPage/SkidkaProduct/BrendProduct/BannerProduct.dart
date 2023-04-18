@@ -123,12 +123,7 @@ ScrollController? controller;
     print(controller!.position.extentAfter);
     if (controller!.position.extentAfter < 500&&controller!.position.extentAfter !=0) {
 
-        final result = await fetchAlbum(max: maxfil,min: minfil,a: b);
-        if (result) {
-          refreshController.loadComplete();
-        } else {
-          refreshController.loadFailed();
-        }
+
       };
 
   }
@@ -160,7 +155,12 @@ ScrollController? controller;
               }
             },
             onLoading: () async {
-              debugPrint("loading");
+              final result = await fetchAlbum(max: maxfil,min: minfil,a: b);
+              if (result) {
+                refreshController.loadComplete();
+              } else {
+                refreshController.loadFailed();
+              }
 
             },
             child: CustomScrollView(

@@ -115,7 +115,7 @@ class _TopProductState extends State<TopProduct> {
       } else {
         prod.addAll(bannerProductProduct.rows);
       }
-      ("new");
+
       current_page = current_page + 10;
 
       setState(() {});
@@ -132,14 +132,10 @@ class _TopProductState extends State<TopProduct> {
   }
   void _scrollListener() async{
     print(controller!.position.extentAfter);
-    if (controller!.position.extentAfter < 500&&controller!.position.extentAfter !=0) {
 
-      final result = await fetchAlbum(max: maxfil,min: minfil,a: b);
-      if (result) {
-        refreshController.loadComplete();
-      } else {
-        refreshController.loadFailed();
-      }
+    if (controller!.position.extentAfter < 500&&refreshController.isLoading) {
+
+
     };
 
   }
@@ -173,8 +169,15 @@ class _TopProductState extends State<TopProduct> {
                     refreshController.refreshFailed();
                   }
                 },
-                onLoading: () async {
 
+                onLoading: () async {
+                  final result = await fetchAlbum(max: maxfil,min: minfil,a: b);
+                  debugPrint(result.toString()+"Begenc");
+                  if (result) {
+                    refreshController.loadComplete();
+                  } else {
+                    refreshController.loadFailed();
+                  }
                 },
                 child: CustomScrollView(
                   controller: controller,

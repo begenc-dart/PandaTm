@@ -81,7 +81,9 @@ class _ServersState extends State<Servers> {
                             blurRadius: 30.0,
                             spreadRadius: -20.0,
                           ),
+                          
                         ],
+                        borderRadius: BorderRadius.circular(10),
                         image: DecorationImage(
                             image: AssetImage(
                               "asset/ProfileIcon/boldy indi.png",

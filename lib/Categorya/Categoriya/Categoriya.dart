@@ -124,12 +124,7 @@ class _CateProductState extends State<CateProduct> {
     print(controller!.position.extentAfter);
     if (controller!.position.extentAfter < 500&&controller!.position.extentAfter !=0) {
 
-      final result = await fetchAlbum(max: maxfil,min: minfil,a: b);
-      if (result) {
-        refreshController.loadComplete();
-      } else {
-        refreshController.loadFailed();
-      }
+
     };
 
   }
@@ -158,7 +153,12 @@ class _CateProductState extends State<CateProduct> {
               }
             },
             onLoading: () async {
-
+              final result = await fetchAlbum(max: maxfil,min: minfil,a: b);
+              if (result) {
+                refreshController.loadComplete();
+              } else {
+                refreshController.loadFailed();
+              }
             },
             child: CustomScrollView(
               controller: controller,

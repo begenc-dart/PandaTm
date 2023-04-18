@@ -29,8 +29,8 @@ class MessagesNot extends StatefulWidget {
   String userid;
   LanguageModel languageModel;
   String url;
-
-  MessagesNot({required this.userid, required this.nickname,required this.languageModel,required this.url,});
+String? link;
+  MessagesNot({required this.userid, required this.nickname,required this.languageModel,required this.url,this.link});
 
   State<MessagesNot> createState() => _MessagesNotState();
 }
@@ -65,6 +65,7 @@ class _MessagesNotState extends State<MessagesNot> {
               id: widget.userid,
               message: snapshot.data!,
               nickname: widget.nickname, languageModel: widget.languageModel,url: widget.url,
+              link: widget.link==null?"":widget.link,
             );
           } else {
             return Scaffold(body: Center(child: Container()));
@@ -82,8 +83,9 @@ class MessageCenter extends StatefulWidget {
   String nickname;
   LanguageModel languageModel;
   String url;
+  String? link;
   MessageCenter(
-      {required this.id, required this.message, required this.nickname,required this.languageModel,required this.url,});
+      {required this.id, required this.message, required this.nickname,required this.languageModel,required this.url,this.link});
 
   @override
   _MessageCenterState createState() => _MessageCenterState();
@@ -128,6 +130,7 @@ class _MessageCenterState extends State<MessageCenter> {
 
   @override
   void initState() {
+    message = TextEditingController(text: widget.link);
     socket = IO.io(
         '${IpAddress().ipAddress}',
         IO.OptionBuilder().setTransports(["websocket"]).setQuery(

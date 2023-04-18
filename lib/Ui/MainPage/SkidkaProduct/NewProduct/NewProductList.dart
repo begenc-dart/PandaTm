@@ -83,13 +83,8 @@ class _NewProductListState extends State<NewProductList> {
                                         placeholder: (context,
                                             url) =>
                                             Container(
-                                                alignment: Alignment
-                                                    .center,
-                                                child:
-                                                CircularProgressIndicator(
-                                                  color:
-                                                  Colors.red,
-                                                )),
+
+                                               ),
                                         errorWidget: (context,
                                             url,
                                             error) =>

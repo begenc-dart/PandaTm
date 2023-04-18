@@ -59,6 +59,7 @@ class _AksiyaState extends State<Aksiya> {
               margin: EdgeInsets.only(left: 15, right: 15, top: 5),
               padding: EdgeInsets.only(left: 10,right: 10),
               decoration: BoxDecoration(
+
                   gradient: LinearGradient(colors: [
                     Color.fromRGBO(255, 255, 255, 0.35),
                     Color.fromRGBO(255, 20, 29, 0.15),
@@ -69,7 +70,7 @@ class _AksiyaState extends State<Aksiya> {
                   //     ? Color.fromRGBO(55, 55, 55, 1)
                   //     : Color.fromRGBO(255, 20, 29, 0.15),
                   border:
-                      Border.all(color: Color.fromRGBO(255, 255, 255, 0.35)),
+                      Border.all(color: Colors.red,width: 0.5),
                   borderRadius: BorderRadius.circular(10)),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -98,27 +99,26 @@ class _AksiyaState extends State<Aksiya> {
                                                 .images.length ==
                                             0
                                         ? Image.asset(widget.img)
-                                        : CachedNetworkImage(
-                                            height: 50,
-                                            imageUrl:
-                                                "${IpAddress().ipAddress}/" +
-                                                    snapshot
-                                                        .data!
-                                                        .actionProducts.rows[index-1]
-                                                        .images[0]
-                                                        .image,
-                                            placeholder: (context, url) =>
-                                                Container(
-                                                    alignment: Alignment.center,
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      color: Colors.red,
-                                                    )),
-                                            errorWidget: (context, url, error) =>
-                                                Image.asset(
-                                                    "asset/Img/banner-img.jpg"),
-                                            fit: BoxFit.fill,
-                                          ),
+                                        : ClipRRect(
+                                      borderRadius: BorderRadius.circular(5),
+                                          child: CachedNetworkImage(
+                                              height: 50,
+                                              imageUrl:
+                                                  "${IpAddress().ipAddress}/" +
+                                                      snapshot
+                                                          .data!
+                                                          .actionProducts.rows[index-1]
+                                                          .images[0]
+                                                          .image,
+                                              placeholder: (context, url) =>
+                                                  Container(
+                                                     ),
+                                              errorWidget: (context, url, error) =>
+                                                  Image.asset(
+                                                      "asset/Img/banner-img.jpg"),
+                                              fit: BoxFit.fill,
+                                            ),
+                                        ),
                                   ),
                                   Text(
                                     url=="ru"?snapshot.data!.actionProducts.rows[index-1].nameRu:snapshot.data!.actionProducts.rows[index-1].nameTm,
@@ -146,8 +146,8 @@ class _AksiyaState extends State<Aksiya> {
                             height: 75,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
-                              border: Border.all(
-                                  color: select.mainColo, width: 0.5),
+                              // border: Border.all(
+                              //     color: select.mainColo, width: 0.5),
                               gradient: LinearGradient(
                                   colors: [
                                     Color.fromRGBO(255, 211, 213, 1),
@@ -219,140 +219,139 @@ String url="";
 //ThemeServices().theme==ThemeMode.dark?Colors.red:Colors.green,
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: take,
-        builder: ((context, AsyncSnapshot<NewAndProduct> snapshot) {
-          debugPrint(snapshot.toString());
-          if (snapshot.hasData) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 80,
+      padding: EdgeInsets.only(left: 10,right: 10),
+      margin: EdgeInsets.only(left: 15, right: 15, top: 5),
+      decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+            Color.fromRGBO(255, 255, 255, 0.35),
+            Color.fromRGBO(255, 20, 29, 0.15),
 
-            return Container(
-              width: MediaQuery.of(context).size.width,
-              height: 80,
-              padding: EdgeInsets.only(left: 10,right: 10),
-              margin: EdgeInsets.only(left: 15, right: 15, top: 5),
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                    Color.fromRGBO(255, 255, 255, 0.35),
-                    Color.fromRGBO(255, 20, 29, 0.15),
+          ],),
 
-                  ],),
-
-                  // color: ThemeServices().theme == ThemeMode.dark
-                  //     ? Color.fromRGBO(55, 55, 55, 1)
-                  //     : Color.fromRGBO(255, 20, 29, 0.15),
-                  border:
-                  Border.all(color: Color.fromRGBO(255, 255, 255, 0.35)),
-                  borderRadius: BorderRadius.circular(10)),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: List.generate(
-                  snapshot.data!.newProducts.length,
-                      (int index) {
-                    return index !=0
-                        ? InkWell(
-                      onTap: (){
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                ProductDetails(
-                                  productId: snapshot.data!.newProducts[index-1].productId, image: snapshot.data!.newProducts[index-1].images,
-                                )));
-                      },
-                      child: Container(
-                        width: 70,
-                        height: 80,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 7),
-                              child: snapshot.data!.newProducts[index-1]
-                                  .images.length ==
-                                  0
-                                  ? Image.asset(widget.img)
-                                  : CachedNetworkImage(
-                                height: 50,
-                                imageUrl:
-                                "${IpAddress().ipAddress}/" +
-                                    snapshot
-                                        .data!.
-                                newProducts[index-1]
-                                        .images[0]
-                                        .image,
-                                placeholder: (context, url) =>
-                                    Container(
-                                        alignment: Alignment.center,
-                                        child:
-                                        CircularProgressIndicator(
-                                          color: Colors.red,
-                                        )),
-                                errorWidget: (context, url, error) =>
-                                    Image.asset(
-                                        "asset/Img/banner-img.jpg"),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            Text(
-                              url=="ru"?snapshot.data!.newProducts[index-1].nameRu:snapshot.data!.newProducts[index-1].nameTm,
-                              maxLines: 1,
-                              textAlign: TextAlign.center,
-                              style: CustomTextStyle.Skidkapro(context),
-                            )
-                          ],
+          // color: ThemeServices().theme == ThemeMode.dark
+          //     ? Color.fromRGBO(55, 55, 55, 1)
+          //     : Color.fromRGBO(255, 20, 29, 0.15),
+          border:
+          Border.all(color: Colors.red, width: 0.5),
+          borderRadius: BorderRadius.circular(10)),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children:[GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => NewProductModel(
+                          sort: "2",
+                          page: 0,
+                          checkpage: false,
+                        )));
+              },
+              child: Container(
+                width: 70,
+                height: 75,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  // border: Border.all(
+                  //     color: select.mainColo, width: 0.5),
+                  gradient: LinearGradient(
+                      colors: [
+                        Color.fromRGBO(255, 211, 213, 1),
+                        Color.fromRGBO(255, 246, 222, 1)
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight),
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 7),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(5),
+                        child: Image.asset(widget.img,
+                          height: 50,
                         ),
                       ),
+                    ),
+                    Text(
+                      widget.namepro,
+                      style: CustomTextStyle.newSty(context),
                     )
-                        : GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => NewProductModel(
-                                  sort: "2",
-                                  page: 0,
-                                  checkpage: false,
-                                )));
-                      },
-                      child: Container(
-                        width: 70,
-                        height: 75,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          border: Border.all(
-                              color: select.mainColo, width: 0.5),
-                          gradient: LinearGradient(
-                              colors: [
-                                Color.fromRGBO(255, 211, 213, 1),
-                                Color.fromRGBO(255, 246, 222, 1)
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight),
-                        ),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 7),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(5),
-                                child: Image.asset(widget.img,
-                                  height: 50,
-                                ),
-                              ),
-                            ),
-                            Text(
-                              widget.namepro,
-                              style: CustomTextStyle.newSty(context),
-                            )
-                          ],
-                        ),
-                      ),
-                    );
-                  },
+                  ],
                 ),
               ),
-            );
-          } else {
-            return Container();
-          }
-        }));
+
+        ),
+    FutureBuilder(
+    future: take,
+    builder: ((context, AsyncSnapshot<NewAndProduct> snapshot) {
+    debugPrint(snapshot.toString());
+    if (snapshot.hasData) {
+
+    return    Row(
+    children: List.generate(snapshot.data!.newProducts.length, (index) =>InkWell(
+    onTap: (){
+    Navigator.of(context).push(MaterialPageRoute(
+    builder: (context) =>
+    ProductDetails(
+    productId: snapshot.data!.newProducts[index-1].productId, image: snapshot.data!.newProducts[index-1].images,
+    )));
+    },
+    child: Container(
+    width: 70,
+    height: 80,
+    child: Column(
+    children: [
+    Padding(
+    padding: const EdgeInsets.only(top: 7),
+    child: snapshot.data!.newProducts[index-1]
+        .images.length ==
+    0
+    ? Image.asset(widget.img)
+        : ClipRRect(
+    borderRadius: BorderRadius.circular(5),
+    child: CachedNetworkImage(
+    height: 50,
+    imageUrl:
+    "${IpAddress().ipAddress}/" +
+    snapshot
+        .data!.
+    newProducts[index-1]
+        .images[0]
+        .image,
+    placeholder: (context, url) =>
+    Container(
+    ),
+    errorWidget: (context, url, error) =>
+    Image.asset(
+    "asset/Img/banner-img.jpg"),
+    fit: BoxFit.fill,
+    ),
+    ),
+    ),
+    Text(
+    url=="ru"?snapshot.data!.newProducts[index-1].nameRu:snapshot.data!.newProducts[index-1].nameTm,
+    maxLines: 1,
+    textAlign: TextAlign.center,
+    style: CustomTextStyle.Skidkapro(context),
+    )
+    ],
+    ),
+    ),
+    )
+    ));
+    } else {
+    return Container();
+    }
+    }))
+
+    ]));
+
+
+
   }
 }

@@ -39,9 +39,9 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     // TODO: implement initState
-    method();
+
     scrollController = ScrollController();
-    scrollController = ScrollController()..addListener(_scrollListener);
+    // scrollController = ScrollController()..addListener(_scrollListener);
     languageModel=Language().fetchAlbum(context);
     super.initState();
   }
@@ -55,34 +55,8 @@ class _MainPageState extends State<MainPage> {
   late List<RandomProduct> random;
   List<RandomProduct> randomProduct = [];
   String ip = IpAddress().ipAddress;
-  List bodyTm = [];
-  List bodyRu = [];
-  List nameTm = [];
-  List nameRu = [];
-  List Price = [];
-  List images = [];
-  List priceOld = [];
-  List discount = [];
-  List caar = [];
-  var box = Hive.box("tasks");
-  var car = Hive.box("carusel");
 
-  method() {
-    for (int i = 0; i < 6; i++) {
-      debugPrint(box.get("bodytm$i"));
-      bodyTm.add(box.get("bodytm$i"));
-      bodyRu.add(box.get("bodyRu$i"));
-      nameTm.add(box.get("nameTm$i"));
-      nameRu.add(box.get("nameRu$i"));
-      Price.add(box.get("price$i"));
-      images.add(box.get("images$i"));
-      priceOld.add(box.get("priceold$i"));
-      discount.add(box.get("discount$i"));
-    }
-    for (int i = 0; i < car.length; i++) {
-      caar.add(car.get("carusel${i}"));
-    }
-  }
+
 late Future<LanguageModel> languageModel;
   Future<bool> bannerAlbum({bool isrefest = false}) async {
     await Token().tokenDosyaOku().then((value) {
@@ -113,11 +87,11 @@ late Future<LanguageModel> languageModel;
 
       if (isrefest) {
         randomProduct = random;
-        hiveMethod(randomProduct);
+
       } else {
         randomProduct.addAll(random);
       }
-      current_page = current_page + 10;
+      current_page = current_page + 20;
       return true;
     } else {
       throw false;
@@ -125,28 +99,21 @@ late Future<LanguageModel> languageModel;
   }
 
 
-  void dispose() {
-    scrollController.removeListener(_scrollListener);
-    super.dispose();
-  }
-  void _scrollListener() async{
-    print(scrollController.position.extentAfter);
-    if (scrollController.position.extentAfter < 500) {
-
-      final result = await bannerAlbum();
-
-      setState(() {});
-      if (result) {
-        refreshController.loadComplete();
-      } else {
-        refreshController.loadFailed();
-      }
-    };
-
-  }
+  // void dispose() {
+  //   scrollController.removeListener(_scrollListener);
+  //   super.dispose();
+  // }
+  // void _scrollListener() async{
+  //   print(scrollController.position.extentAfter);
+  //   if (scrollController.position.extentAfter < scrollController.position.maxScrollExtent) {
+  //
+  //
+  //   };
+  //
+  // }
 RefreshController controller=RefreshController();
   Widget build(BuildContext context) {
-    method();
+
     return Scaffold(
         floatingActionButton: FloatingActionButton.small(
           backgroundColor: Colors.white60,
@@ -181,7 +148,14 @@ RefreshController controller=RefreshController();
                       }
                     },
                     onLoading: () async {
+                      final result = await bannerAlbum();
 
+                      setState(() {});
+                      if (result) {
+                        refreshController.loadComplete();
+                      } else {
+                        refreshController.loadFailed();
+                      }
                     },
                     child: CustomScrollView(
                       controller: scrollController,
@@ -235,12 +209,12 @@ floating: true,
                               ),
                               Stack(
                                 children: [
-                                  ThemeServices().theme == ThemeMode.light
-                                      ? Positioned(
-                                          left: -50,
-                                          child: Image.asset(
-                                              "asset/MainPagePhoto/bag-dynamic-color.png"))
-                                      : Container(),
+                                  // ThemeServices().theme == ThemeMode.light
+                                  //     ? Positioned(
+                                  //         left: -50,
+                                  //         child: Image.asset(
+                                  //             "asset/MainPagePhoto/bag-dynamic-color.png"))
+                                  //     : Container(),
                                   Column(
                                     children: [
                                       Aksiya(
@@ -248,13 +222,13 @@ floating: true,
                                           namepro: snapshot.data!.asksiya),
                                       Stack(
                                         children: [
-                                          ThemeServices().theme ==
-                                                  ThemeMode.light
-                                              ? Positioned(
-                                                  right: -50,
-                                                  child: Image.asset(
-                                                      "asset/MainPagePhoto/headphone-dynamic-color.png"))
-                                              : Container(),
+                                          // ThemeServices().theme ==
+                                          //         ThemeMode.light
+                                          //     ? Positioned(
+                                          //         right: -50,
+                                          //         child: Image.asset(
+                                          //             "asset/MainPagePhoto/headphone-dynamic-color.png"))
+                                          //     : Container(),
                                           Column(
                                             children: [
                                               NewProduct(

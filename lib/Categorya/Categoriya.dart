@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -14,6 +15,8 @@ import '../Language/Language.dart';
 import '../MainPage/PhotoIndex.dart';
 import '../Providers.dart';
 import '../Search/Search/Search.dart';
+import '../Servers/OneProduct.dart';
+import '../Ui/BarCode.dart';
 import '../language.dart';
 import 'Dukanlar/Dukanlar.dart';
 import 'SubCategor/SubCategoriya.dart';
@@ -47,14 +50,37 @@ class _CategoriyaState extends ConsumerState<Categoriya>
   void initState() {
     // TODO: implement initState
     // categoriya = caregoriyaAlbum();
+    ref.read(CategoriyaPro.catPor.notifier).add();
     language();
     languageModel=Language().fetchAlbum(context);
     tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
-
+  String data="";
   int san = 1;
   late Future<LanguageModel> languageModel;
+  _scan()async{
+    await FlutterBarcodeScanner.scanBarcode("#000000", "Yzy çyk", true, ScanMode.DEFAULT).then((value) => setState((){data=value;}));
+    debugPrint(data);
+    await fetchAlbum(data).then((value) {
+
+      data!="-1"?
+      {debugPrint(value.toString()),
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => BarCodeProduct(
+                  checkpage: false,
+                  sort: 0,
+                  page: 0,
+                  productId: value == null
+                      ? "^"
+                      : value.product.oneProduct.nameTm,
+                )))
+      }
+          :"";
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +119,9 @@ class _CategoriyaState extends ConsumerState<Categoriya>
                               fontSize: 12,
                               fontWeight: FontWeight.w400),
                         ),
-                        SvgPicture.asset("asset/icon/qr.svg")
+                        InkWell(child: SvgPicture.asset("asset/icon/qr.svg"),onTap: ()async{
+                          await _scan();
+                        },)
                       ],
                     ),
                   ),
@@ -148,85 +176,81 @@ class _CategoriyaState extends ConsumerState<Categoriya>
                   children: [
                     Row(
                       children: [
-                        Row(
-                          children: [
-                            Container(
-                              height: MediaQuery.of(context).size.height *0.77,
-                              width: MediaQuery.of(context).size.width*0.25,
-                              color: ThemeServices().theme == ThemeMode.dark
-                                  ? Color.fromRGBO(55, 55, 55, 1)
-                                  : select.searh,
-                              child: ListView.builder(
-                                  itemCount: themeProvider.state.length,
-                                  itemBuilder: (BuildContext context, int index) {
-                                    return InkWell(
-                                        onTap: () {
-                                          setState(() {
-                                            a = index;
-                                          });
-                                        },
-                                        child: index == a
-                                            ? Container(
-                                            height: 50,
-                                            color: ThemeServices().theme ==
-                                                ThemeMode.dark
-                                                ? Color.fromRGBO(97, 97, 97, 1)
-                                                : select.scaf,
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                  margin: EdgeInsets.only(
-                                                      right: 15),
-                                                  width: 5,
-                                                  height: 40,
-                                                  color: select.mainColo,
-                                                ),
-                                                Expanded(
-                                                  child: Align(
-                                                    alignment:
-                                                    Alignment.centerLeft,
-                                                    child: Text(
-                                                      url=="ru"? themeProvider
-                                                          .state[index]
-                                                          .nameRu: themeProvider
-                                                            .state[index]
-                                                            .nameTm,
-                                                        maxLines: 2,
-                                                        overflow: TextOverflow.ellipsis,
-                                                        style: CustomTextStyle
-                                                            .cateStyle(
-                                                            context)),
-                                                  ),
-                                                ),
-                                              ],
-                                            ))
-                                            : Container(
-                                            margin: EdgeInsets.only(
-                                                left: 10, right: 5),
-                                            height: 50,
-                                            child: Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: Text(
-                                              url=="ru"? themeProvider
-                                                  .state[index].nameRu: themeProvider
-                                                    .state[index].nameTm,
-                                                maxLines: 2,
-                                                overflow: TextOverflow.ellipsis,
-                                                style:
-                                                CustomTextStyle.cateStyle(
-                                                    context),
+                        Container(
+                          height: MediaQuery.of(context).size.height *0.77,
+                          width: MediaQuery.of(context).size.width*0.25,
+                          color: ThemeServices().theme == ThemeMode.dark
+                              ? Color.fromRGBO(55, 55, 55, 1)
+                              : select.searh,
+                          child: ListView.builder(
+                              itemCount: themeProvider.state.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        a = index;
+                                      });
+                                    },
+                                    child: index == a
+                                        ? Container(
+                                        height: 50,
+                                        color: ThemeServices().theme ==
+                                            ThemeMode.dark
+                                            ? Color.fromRGBO(97, 97, 97, 1)
+                                            : select.scaf,
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              margin: EdgeInsets.only(
+                                                  right: 15),
+                                              width: 5,
+                                              height: 40,
+                                              color: select.mainColo,
+                                            ),
+                                            Expanded(
+                                              child: Align(
+                                                alignment:
+                                                Alignment.centerLeft,
+                                                child: Text(
+                                                  url=="ru"? themeProvider
+                                                      .state[index]
+                                                      .nameRu: themeProvider
+                                                        .state[index]
+                                                        .nameTm,
+                                                    maxLines: 2,
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: CustomTextStyle
+                                                        .cateStyle(
+                                                        context)),
                                               ),
-                                            )));
-                                  }),
-                            ),
-                            themeProvider.state.length != 0
-                                ? Subcategoriya(
-                              subCate: themeProvider.state[a].subcategories!,
-                              cate: themeProvider.state[a], url: url,lan: snapshot.data!,
-                            )
-                                : Container()
-                          ],
+                                            ),
+                                          ],
+                                        ))
+                                        : Container(
+                                        margin: EdgeInsets.only(
+                                            left: 10, right: 5),
+                                        height: 50,
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                          url=="ru"? themeProvider
+                                              .state[index].nameRu: themeProvider
+                                                .state[index].nameTm,
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                            style:
+                                            CustomTextStyle.cateStyle(
+                                                context),
+                                          ),
+                                        )));
+                              }),
+                        ),
+                        themeProvider.state.length != 0
+                            ? Subcategoriya(
+                          subCate: themeProvider.state[a].subcategories!,
+                          cate: themeProvider.state[a], url: url,lan: snapshot.data!,
                         )
+                            : Container()
                       ],
                     ),
                   ],

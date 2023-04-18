@@ -296,7 +296,7 @@ PandaTm создана для того, чтобы ваши желания и м
           ),
           InkWell(
             onTap: () {
-              Share.share('check out my website https://example.com');
+              Share.share('https://play.google.com/store/apps/details?id=panda.com');
             },
             child:
                 setin(context, "asset/Setting/share.svg", widget.profi.paylas),

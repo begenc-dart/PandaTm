@@ -119,14 +119,9 @@ b=a;
   }
   void _scrollListener() async{
     print(controller!.position.extentAfter);
-    if (controller!.position.extentAfter < 500&&controller!.position.extentAfter !=0) {
+    if (controller!.position.extentAfter < 500&&refreshController.isLoading) {
 
-      final result = await fetchAlbum(max: maxfil,min: minfil,a: b);
-      if (result) {
-        refreshController.loadComplete();
-      } else {
-        refreshController.loadFailed();
-      }
+
     };
 
   }
@@ -168,7 +163,12 @@ b=a;
                     }
                   },
                   onLoading: () async {
-
+                    final result = await fetchAlbum(max: maxfil,min: minfil,a: b);
+                    if (result) {
+                      refreshController.loadComplete();
+                    } else {
+                      refreshController.loadFailed();
+                    }
                   },
                   child: CustomScrollView(
                     controller: controller,

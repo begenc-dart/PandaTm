@@ -36,7 +36,7 @@ class _DukanlarState extends State<Dukanlar> {
     }
 
     final response = await http.get(
-      Uri.parse("$ip/public/seller?keyword=&limit=1000000"),
+      Uri.parse("$ip/public/seller?limit=1000000&offset=$current_page"),
       headers: {},
     );
     debugPrint(response.statusCode.toString());
@@ -51,7 +51,7 @@ class _DukanlarState extends State<Dukanlar> {
         prod.addAll(_seller!.sellers);
       }
 
-      current_page = current_page + 10;
+      current_page = current_page + 10000000000;
 
       setState(() {});
       return true;
@@ -82,75 +82,72 @@ class _DukanlarState extends State<Dukanlar> {
           refreshController.loadFailed();
         }
       },
-      child: Container(
-        margin: EdgeInsets.only(left: 15, right: 15, top: 20),
-        width: double.infinity,
-        height: MediaQuery.of(context).size.height *0.74,
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 150,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-              childAspectRatio: 0.8),
-          itemBuilder: (BuildContext context, int index) {
-            debugPrint(prod.toString());
-            return InkWell(
-              onTap: () {
-                debugPrint(prod[index].sellerId.toString());
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => BannerProduct(
-                              sort: "2",
-                              page: 0,
-                              checkpage: false,
-                              brend: prod[index].sellerId!,
-                              nameBrenad: prod[index].nameTm!, lan: widget.lan,url: widget.url,
-                            )));
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Color.fromRGBO(174, 174, 174, 1), width: 0.5),
-                    borderRadius: BorderRadius.circular(8)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    prod[index].image != null
-                        ? ClipRRect(
-                            borderRadius: BorderRadius.circular(5),
-                            child: CachedNetworkImage(
-                                width: double.infinity,
-                                height: 100,
-                                fit: BoxFit.fill,
-                                imageUrl: "$ip/" + prod[index].image!),
-                          )
-                        : Image.asset(
-                            "asset/Setting/No_Image_Available.jpg",
-                            width: double.infinity,
-                            height: 100,
-                            fit: BoxFit.fill,
-                          ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4, bottom: 4),
-                      child: Text(
-                       widget.url=="ru"?prod[index].nameRu.toString(): prod[index].nameTm.toString(),
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: ThemeServices().theme == ThemeMode.dark
-                                ? Colors.white
-                                : Colors.black),
-                        textAlign: TextAlign.center,
-                      ),
+      child: GridView.builder(
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 150, childAspectRatio: 0.8),
+        itemBuilder: (BuildContext context, int index) {
+          debugPrint(prod.toString());
+          return InkWell(
+            onTap: () {
+              debugPrint(prod[index].sellerId.toString());
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => BannerProduct(
+                            sort: "2",
+                            page: 0,
+                            checkpage: false,
+                            brend: prod[index].sellerId!,
+                            nameBrenad: prod[index].nameTm!,
+                            lan: widget.lan,
+                            url: widget.url,
+                          )));
+            },
+            child: Container(
+              margin: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Color.fromRGBO(174, 174, 174, 1), width: 0.5),
+                  borderRadius: BorderRadius.circular(8)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  prod[index].image != null
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: CachedNetworkImage(
+                              width: double.infinity,
+                              height: 100,
+                              fit: BoxFit.fill,
+                              imageUrl: "$ip/" + prod[index].image!),
+                        )
+                      : Image.asset(
+                          "asset/Setting/No_Image_Available.png",
+                          width: double.infinity,
+                          height: 100,
+                          fit: BoxFit.fill,
+                        ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4, bottom: 4),
+                    child: Text(
+                      widget.url == "ru"
+                          ? prod[index].nameRu.toString()
+                          : prod[index].nameTm.toString(),
+                      style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: ThemeServices().theme == ThemeMode.dark
+                              ? Colors.white
+                              : Colors.black),
+                      textAlign: TextAlign.center,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            );
-          },
-          itemCount: prod.length,
-        ),
+            ),
+          );
+        },
+        itemCount: prod.length,
       ),
     );
   }

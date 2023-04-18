@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,7 +5,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:serpay/MainPage/MainPagee/ProductMainPage/ProductMainPage.dart';
 import 'package:serpay/Search/Filter.dart';
-
 
 import 'package:serpay/Ui/MainPage/SkidkaProduct/NewProduct/NewProductList.dart';
 import 'package:serpay/Ui/MainPage/search/SearchMode.dart';
@@ -29,7 +27,8 @@ class ProductGrid extends StatefulWidget {
   int sort;
   String keys;
   LanguageModel data;
-  ProductGrid({required this.sort, required this.keys,required this.data});
+
+  ProductGrid({required this.sort, required this.keys, required this.data});
 
   @override
   State<ProductGrid> createState() => _ProductGridState();
@@ -44,26 +43,27 @@ class _ProductGridState extends State<ProductGrid> {
   String checkLike = "";
   List<Data> prod = [];
   String countPro = "";
-  String url="";
-  language()async{
+  String url = "";
 
+  language() async {
     await LanguageFileRead().then((value) {
-      url=value.toString();
+      url = value.toString();
     });
-
   }
+
   @override
   void initState() {
     language();
     // TODO: implement initState
     super.initState();
   }
+
   late SearchModel _searchModel;
   final RefreshController refreshController =
       RefreshController(initialRefresh: true);
-  int b = 0;
+  int b = 55;
 
-  Future<bool> fetchAlbum({bool isrefest = false, int a = 0}) async {
+  Future<bool> fetchAlbum({bool isrefest = false, int a = 55}) async {
     await Token().tokenDosyaOku().then((value) {
       token = value;
     });
@@ -74,9 +74,11 @@ class _ProductGridState extends State<ProductGrid> {
       current_page = 0;
     }
 
-    debugPrint(token.toString()+"dffsf");
+    debugPrint(token.toString() + "dffsf");
     final response = await http.get(
-      Uri.parse( checkLike.toString().length == 4 ?"$ip/users/products/search?offset=$current_page&keyword=${widget.keys}&sort=$a":"$ip/users/products/search?offset=$current_page&keyword=${widget.keys}&sort=$a"),
+      Uri.parse(checkLike.toString().length == 4
+          ? "$ip/users/products/search?offset=$current_page&keyword=${widget.keys}&sort=$a"
+          : "$ip/public/products/search?offset=$current_page&keyword=${widget.keys}&sort=$a"),
       headers: checkLike.toString().length.toInt() == 4
           ? <String, String>{
               "Content-Type": "application/json",
@@ -85,7 +87,7 @@ class _ProductGridState extends State<ProductGrid> {
           : {},
     );
     b = a;
-    debugPrint(response.body.toString() + 'dfsdf');
+    debugPrint(a.toString() + 'dfsdf');
     debugPrint(current_page.toString() + "dsf");
     if (response.statusCode == 200) {
       _searchModel = searchModelFromJson(response.body);
@@ -114,7 +116,6 @@ class _ProductGridState extends State<ProductGrid> {
   List maglumat = [];
 
   Widget build(BuildContext context) {
-
     return SmartRefresher(
       controller: refreshController,
       enablePullUp: true,
@@ -137,7 +138,6 @@ class _ProductGridState extends State<ProductGrid> {
       },
       child: CustomScrollView(
         slivers: [
-
           SliverList(
               delegate: SliverChildListDelegate([
             Padding(
@@ -244,19 +244,17 @@ class _ProductGridState extends State<ProductGrid> {
                   ),
                   GestureDetector(
                     onTap: () async {
-
-
                       Navigator.of(context)
                           .push(MaterialPageRoute(
                               builder: (context) => Filter(
                                     maglumat: filterinfo,
                                   )))
                           .then((value) {
-                        filterinfo=value!=null?value:["","","2","Defult"];
-                        widget.sort=value!=null?value[2]:"";
+                        filterinfo =
+                            value != null ? value : ["", "", "2", "Defult"];
+                        widget.sort = value != null ? value[2] : "";
                         refreshController.requestRefresh();
-
-                      } );
+                      });
 
                       debugPrint(maglumat.toString());
                       setState(() {});
@@ -289,8 +287,13 @@ class _ProductGridState extends State<ProductGrid> {
             ),
           ])),
           check != false
-              ? NewProductList(newProduct: prod, url: url,)
-              :ProductMainPage( randomPro: prod,)
+              ? NewProductList(
+                  newProduct: prod,
+                  url: url,
+                )
+              : ProductMainPage(
+                  randomPro: prod,
+                )
         ],
       ),
     );

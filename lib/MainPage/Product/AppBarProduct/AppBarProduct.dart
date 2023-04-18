@@ -49,7 +49,7 @@ int a=0;
       actions: [
         InkWell(
           onTap: () {
-            Share.share('${IpAddress().ipAddress}/public/products/${widget.oneProduct.productId}');
+            Share.share('http://panda.com.tm/product/${widget.oneProduct.productId}');
           },
           child: Container(
               margin:

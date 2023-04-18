@@ -63,7 +63,7 @@ class CustomTextStyle {
   static TextStyle cateprostyle(BuildContext context) {
     return Theme.of(context).textTheme.headline1!.copyWith(
         fontWeight: FontWeight.w500,
-        fontSize: 10,
+        fontSize: MediaQuery.of(context).size.width*0.027,
         color: ThemeServices().theme == ThemeMode.dark
             ? select.scaf
             : select.cateproCol);
@@ -71,7 +71,7 @@ class CustomTextStyle {
 
   static TextStyle cateStyle(BuildContext context) {
     return Theme.of(context).textTheme.headline1!.copyWith(
-        fontSize: 12,
+        fontSize: MediaQuery.of(context).size.width*0.03,
         fontWeight: FontWeight.w700,
         color: ThemeServices().theme == ThemeMode.dark
             ? Color.fromRGBO(250, 250, 250, 1)

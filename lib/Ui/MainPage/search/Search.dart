@@ -108,7 +108,8 @@ method() async{
             },
             child: Padding(
               padding: const EdgeInsets.only(left: 15,right: 15),
-              child: SvgPicture.asset("asset/icon/Subtract (2).svg"),
+              child: ThemeServices().theme == ThemeMode.light
+                  ? SvgPicture.asset("asset/icon/Subtract (2).svg"):SvgPicture.asset("asset/Setting/light.svg"),
             )),
 
         Expanded(

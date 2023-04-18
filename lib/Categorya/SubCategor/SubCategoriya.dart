@@ -104,8 +104,8 @@ class _SubcategoriyaState extends State<Subcategoriya> {
                                borderRadius: BorderRadius.circular(10), child: CachedNetworkImage(
                                   imageUrl: "${IpAddress().ipAddress}/" +
                                       widget.subCate[index ].image!,
-                                  width: 60,
-                                  height: 60,
+                                  width: MediaQuery.of(context).size.width*0.15,
+                                  height: MediaQuery.of(context).size.width*0.15,
                                   placeholder: (context, url) => Container(
                                       alignment: Alignment.center,
                                       child: Container()),

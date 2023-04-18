@@ -29,7 +29,7 @@ class _AddAdressState extends State<AddAdress> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: true,
+          // automaticallyImplyLeading: true,
           backgroundColor: ThemeServices().theme == ThemeMode.dark
               ? Color.fromRGBO(39, 39, 39, 1)
               : Color.fromRGBO(250, 250, 250, 1),
@@ -103,6 +103,7 @@ class _AddAdressState extends State<AddAdress> {
                   top: 15,
                 ),
                 child: TextFormField(
+                  minLines: 3,
                   maxLines: 5,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(

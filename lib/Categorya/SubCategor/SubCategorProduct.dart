@@ -117,12 +117,7 @@ debugPrint(response.statusCode.toString());
     print(controller!.position.extentAfter.toString()+"dsfsdfdf");
     if (controller!.position.extentAfter < 500&&controller!.position.extentAfter !=0) {
 
-      final result = await fetchAlbum(max: maxfil,min: minfil,a: b);
-      if (result) {
-        refreshController.loadComplete();
-      } else {
-        refreshController.loadFailed();
-      }
+
     };
 
   }
@@ -152,7 +147,12 @@ debugPrint(response.statusCode.toString());
               }
             },
             onLoading: () async {
-
+              final result = await fetchAlbum(max: maxfil,min: minfil,a: b);
+              if (result) {
+                refreshController.loadComplete();
+              } else {
+                refreshController.loadFailed();
+              }
             },
             child: CustomScrollView(
               controller: controller,

@@ -131,14 +131,9 @@ class _ArzanladysProductState extends State<ArzanladysProduct> {
   }
   void _scrollListener() async{
     print(controller!.position.extentAfter);
-    if (controller!.position.extentAfter < 500) {
+    if (controller!.position.extentAfter < 500&&refreshController.isLoading) {
 
-      final result = await fetchAlbum(max: maxfil,min: minfil,a: b);
-      if (result) {
-        refreshController.loadComplete();
-      } else {
-        refreshController.loadFailed();
-      }
+
     };
 
   }
@@ -172,7 +167,12 @@ class _ArzanladysProductState extends State<ArzanladysProduct> {
                   }
                 },
                 onLoading: () async {
-
+                  final result = await fetchAlbum(max: maxfil,min: minfil,a: b);
+                  if (result) {
+                    refreshController.loadComplete();
+                  } else {
+                    refreshController.loadFailed();
+                  }
                 },
                 child: CustomScrollView(
                   controller: controller,

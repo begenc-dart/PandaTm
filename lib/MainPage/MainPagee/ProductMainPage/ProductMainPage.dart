@@ -109,12 +109,7 @@ language();
                                                     .image,
                                             placeholder: (context, url) =>
                                                 Container(
-                                                    alignment:
-                                                    Alignment.center,
-                                                    child:
-                                                    CircularProgressIndicator(
-                                                      color: Colors.red,
-                                                    )),
+                                                  ),
                                             errorWidget:
                                                 (context, url, error) =>
                                                 Image.asset(

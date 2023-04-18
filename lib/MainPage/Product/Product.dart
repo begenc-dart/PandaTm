@@ -118,7 +118,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                           },
                                               childCount: snapshot
                                                   .data!
-                                                  .product!
+                                                  .product
                                                   .recommenendations
                                                   .length)),
                                     ],

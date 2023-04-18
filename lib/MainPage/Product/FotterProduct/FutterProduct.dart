@@ -129,7 +129,7 @@ fToast=FToast();
                   .length == 4){
               await  PostGetMe().fetchAlbum().then((value) {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => MessagesNot(userid: value.userId!, nickname: value.nickname!, languageModel: widget.lan,url: widget.url, )));
+                      MaterialPageRoute(builder: (context) => MessagesNot(userid: value.userId!, nickname: value.nickname!, languageModel: widget.lan,url: widget.url,link: 'http://panda.com.tm/product/${widget.oneProductElement.productId}', )));
                 });
               }
               else{

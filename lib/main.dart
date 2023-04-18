@@ -70,14 +70,15 @@ void main() async {
   );
 }
 
-class MaterialPageMain extends StatefulWidget {
+class MaterialPageMain extends ConsumerStatefulWidget {
   @override
-  State<MaterialPageMain> createState() => _MaterialPageMainState();
+  ConsumerState<MaterialPageMain> createState() => _MaterialPageMainState();
 }
 
-class _MaterialPageMainState extends State<MaterialPageMain> {
+class _MaterialPageMainState extends ConsumerState<MaterialPageMain> {
   @override
   void initState() {
+
 
     // TODO: implement initState
     super.initState();
@@ -97,8 +98,7 @@ class _MaterialPageMainState extends State<MaterialPageMain> {
       //themeMode: ThemeMode.system,
 
       home: MyApp(
-        channel: IOWebSocketChannel.connect(
-            "ws://216.250.9.29:5003/socket.io/socket.io.js"),
+
       ),
     );
   }
@@ -250,33 +250,35 @@ Future<LanguageModel> languageModel;
   void initState() {
 
     languageModel=Language().fetchAlbum(context);
-    setState(() {});
+    ref.read(CategoriyaPro.catPor.notifier).add();
     language();
     super.initState();
     _initURIHandler();
     _incomingLinkHandler();
     // _initialURI=null;
-    ref.read(CategoriyaPro.catPor.notifier).add();
-    ref.read(CounterState.provider.notifier).add();
-    ref.read(PriceState.pricepro.notifier).add();
-    Profile profile = Profile(widget.channel);
-    MainPage sayfa1 = MainPage();
-    Servers servers =  const Servers();
-    Categoriya categoriya = const Categoriya();
-    Cart sebet =  const Cart();
-    LogIn logIn = const LogIn();
-    hemmeSah = [sayfa1, servers, categoriya, sebet, logIn];
-    CheckSignUp().dosyaOku().then((value) {
-      if (value.toString().length == 4) {
-        debugPrint(value.toString());
-        hemmeSah = [sayfa1, servers, categoriya, sebet, profile];
-      } else {
-        debugPrint(value.toString());
-        hemmeSah = [sayfa1, servers, categoriya, logIn, logIn];
-      }
-    });
-  }
 
+    checekpage();
+
+
+  }
+checekpage()async{
+  Profile profile = Profile(widget.channel);
+  MainPage sayfa1 = MainPage();
+  Servers servers =  const Servers();
+  Categoriya categoriya = const Categoriya();
+  Cart sebet =  const Cart();
+  LogIn logIn = const LogIn();
+  hemmeSah = [sayfa1, servers, categoriya, sebet, logIn];
+ await CheckSignUp().dosyaOku().then((value) {
+    if (value.toString().length == 4) {
+      debugPrint(value.toString());
+      hemmeSah = [sayfa1, servers, categoriya, sebet, profile];
+    } else {
+      debugPrint(value.toString());
+      hemmeSah = [sayfa1, servers, categoriya, logIn, logIn];
+    }
+  });
+}
   int saylanan = 0;
   bool check = false;
 

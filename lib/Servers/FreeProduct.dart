@@ -43,8 +43,8 @@ String paylas="";
 
  
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: FutureBuilder(
+    return Scaffold(
+      body: FutureBuilder(
           future: OneFreeProductServer().fetchAlbum(widget.ipAddress),
           builder: (BuildContext context,
               AsyncSnapshot<OneFreeProduct> snapshot) {
@@ -64,7 +64,7 @@ String paylas="";
             return Container();
             }
           }),
-      );
+    );
 
   }
 
