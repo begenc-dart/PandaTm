@@ -86,6 +86,7 @@ class _SettingState extends State<Setting> {
                             RadioListTile(
                               controlAffinity:
                                   ListTileControlAffinity.trailing,
+                              activeColor: Colors.red,
                               groupValue: radioItem,
                               title: Text(
                                url=="tm"? 'Aşgabat':"Ашгабат",
@@ -103,7 +104,7 @@ class _SettingState extends State<Setting> {
                                 });
                               },
                             ),
-                            RadioListTile(
+                            RadioListTile(activeColor: Colors.red,
                                 controlAffinity:
                                     ListTileControlAffinity.trailing,
                                 groupValue: radioItem,
@@ -118,7 +119,7 @@ class _SettingState extends State<Setting> {
                                 ),
                                 value: 'Item 2',
                                 onChanged: null),
-                            RadioListTile(
+                            RadioListTile(activeColor: Colors.red,
                                 controlAffinity:
                                     ListTileControlAffinity.trailing,
                                 groupValue: radioItem,
@@ -133,7 +134,7 @@ class _SettingState extends State<Setting> {
                                 ),
                                 value: 'Item 3',
                                 onChanged: null),
-                            RadioListTile(
+                            RadioListTile(activeColor: Colors.red,
                                 controlAffinity:
                                     ListTileControlAffinity.trailing,
                                 groupValue: radioItem,
@@ -148,7 +149,7 @@ class _SettingState extends State<Setting> {
                                 ),
                                 value: 'Item 4',
                                 onChanged: null),
-                            RadioListTile(
+                            RadioListTile(activeColor: Colors.red,
                                 controlAffinity:
                                     ListTileControlAffinity.trailing,
                                 groupValue: radioItem,
@@ -163,7 +164,7 @@ class _SettingState extends State<Setting> {
                                 ),
                                 value: 'Item 5',
                                 onChanged: null),
-                            RadioListTile(
+                            RadioListTile(activeColor: Colors.red,
                                 controlAffinity:
                                     ListTileControlAffinity.trailing,
                                 groupValue: radioItem,
@@ -279,7 +280,7 @@ Hormatly Müşderi biziň PandaTm online platformamyzy saýlanyňyz üçin SAG B
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => Help(
                       appbartitle: widget.profi.barad,
-                      contexttitle: url=="tm"?""""Sizi PandaTm online platformasynda hoş gördük!!! 
+                      contexttitle: url=="tm"?"""Sizi PandaTm online platformasynda hoş gördük!!! 
 Biz size uzakda bolan dükanlary eliňiziň aýasynda ýaly duýmaklyga kömek  bereris, ýagny islendik islän, halan harytlaryňyzy sargyt edip, islän wagtyňyzda öz gapyňyza çenli getirdip bilersiňiz. Şeýle-de bizde tölegleriň islendik görnüşinden peýdalanmak mümkinçiligiňiz bolar. Biziň esasy aladamyz siziň gymmatly wagtyňyzy tygşytlap, ony öz maşgalaňyz bilen geçirmegiňizdir. 
 Siz PandaTm online platformasyny Google play marketda, IOS story-da we internet torunda (panda.com.tm) tapyp bilersiňiz. 
 PandaTm siziň islegleriňizi we arzuwlaryňyzy gysga wagtda amala aşyrmak üçin döredilendir!!! 
@@ -294,13 +295,13 @@ PandaTm создана для того, чтобы ваши желания и м
             child:
                 setin(context, "asset/Setting/about.svg", widget.profi.barad),
           ),
-          InkWell(
-            onTap: () {
-              Share.share('https://play.google.com/store/apps/details?id=panda.com');
-            },
-            child:
-                setin(context, "asset/Setting/share.svg", widget.profi.paylas),
-          )
+          // InkWell(
+          //   onTap: () {
+          //     Share.share('https://play.google.com/store/apps/details?id=panda.com');
+          //   },
+          //   child:
+          //       setin(context, "asset/Setting/share.svg", widget.profi.paylas),
+          // )
         ],
       ),
     );

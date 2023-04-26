@@ -3,6 +3,7 @@ import 'package:serpay/LogIn/ForgetPassword/Model/ChangePassword.dart';
 import 'package:serpay/LogIn/ForgetPassword/Model/Model/PatchModel.dart';
 import 'package:serpay/Model/TextColor.dart';
 
+import '../../../darkMode/theme_services.dart';
 import 'Model/patchForget.dart';
 
 class ForgetPassword extends StatefulWidget {
@@ -54,6 +55,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         child: TextFormField(
                           textAlignVertical: TextAlignVertical.top,
                           controller: logInpassword,
+                          style: TextStyle(color:ThemeServices().theme == ThemeMode.dark
+                              ? Colors.white:Colors.black,),
                           // cursorColor: Color.fromRGBO(104, 109, 118, 1),
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(

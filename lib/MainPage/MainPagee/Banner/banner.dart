@@ -11,7 +11,7 @@ import '../../../Model/TextColor.dart';
 import '../../MainChangeNoti.dart';
 import '../../Model/BannerProductModel.dart';
 import 'package:http/http.dart' as http;
-
+// import 'dart:js' as js;
 class BannerMainPage extends StatefulWidget {
   @override
   State<BannerMainPage> createState() => _BannerMainPageState();
@@ -30,15 +30,19 @@ class _BannerMainPageState extends State<BannerMainPage> {
     super.initState();
   }
 int a=0;
-  _launchURL(String url) async {
-
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
+  Future<void> launchLink(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+        headers: <String, String>{'my_header_key': 'my_header_value'},
+      );
     } else {
-      throw 'Could not launch $uri';
+      throw 'Could not launch $url';
     }
   }
+
   @override
   Widget build(BuildContext context) {
 
@@ -58,7 +62,8 @@ int a=0;
                           child: (snapshot.data!.banners.rows[itemIndex].image != null)
                               ? InkWell(
                                   onTap: () {
-                                    _launchURL(snapshot.data!.banners.rows[itemIndex].link!);
+                                    // js.context.callMethod('open', [snapshot.data!.banners.rows[itemIndex].link!]);
+                                    launchLink(snapshot.data!.banners.rows[itemIndex].link!);
                                     // Navigator.of(context).push(
                                     //     MaterialPageRoute(
                                     //         builder: (context) =>

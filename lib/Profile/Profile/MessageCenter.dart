@@ -294,9 +294,12 @@ class _MessageCenterState extends State<MessageCenter> {
                           controller: message,
                           minLines: null,
                           maxLength: null,
+                          style: TextStyle(color:ThemeServices().theme == ThemeMode.dark
+                              ? Colors.white:Colors.black,),
                           // cursorColor: Color.fromRGBO(104, 109, 118, 1),
                           // keyboardType: TextInputType.number,
                           decoration: InputDecoration(
+
                             // hintStyle:CustomTextStyle.fieldmax(context),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
@@ -309,12 +312,14 @@ class _MessageCenterState extends State<MessageCenter> {
                                   color: Color.fromRGBO(229, 229, 229, 1)),
                               borderRadius: BorderRadius.circular(20),
                             ),
+
                             focusedBorder: OutlineInputBorder(
                               borderSide: const BorderSide(
                                   width: 1, color: Colors.blue),
                               borderRadius: BorderRadius.circular(20),
                             ),
                             filled: true,
+
                             fillColor: ThemeServices().theme == ThemeMode.dark
                                 ? Color.fromRGBO(45, 45, 45, 1)
                                 : Color.fromRGBO(255, 255, 255, 1),

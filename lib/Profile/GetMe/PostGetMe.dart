@@ -112,6 +112,45 @@ debugPrint(username);
     }
   }
 }
+class FreePro {
+  String checkLike = "";
+  String? token;
+  String ip = IpAddress().ipAddress;
+  late ModelGetMe modelGetMe;
+  CheckSignUp checkSignUp = new CheckSignUp();
+
+  Future fetchAlbum(String freeProductId,BuildContext context) async {
+    await Token().tokenDosyaOku().then((value) {
+      token = value;
+    });
+    await checkSignUp.dosyaOku().then((value) {
+      checkLike = value;
+    });
+    debugPrint(freeProductId);
+    final response = await http.post(Uri.parse("${ip}/users/competition/add-one/from-link"),
+        headers: <String, String>{
+          'Authorization': 'Bearer ${token}',
+        },
+        body: {
+          "sharinguser_id":freeProductId
+        });
+
+    debugPrint(response.statusCode.toString());
+
+    // createDynamicLink(response.body);
+    if(response.statusCode==200){
+      Navigator.pop(context);
+      // Share.share(json.decode(response.body)["sharing_user"]["link"]);
+      return response.body;
+    }
+    else if(response.statusCode==402){
+      Toast().showToastDelet(context, "Siz eyyam gatnasdynyz");
+      Navigator.pop(context);
+
+      return response.body;
+    }
+  }
+}
 //
 //
 // initDynamicLinks() async {

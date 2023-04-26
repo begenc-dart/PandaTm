@@ -183,7 +183,7 @@ class _BarCodeProductState extends State<BarCodeProduct> {
                                     : Border.all(color: select.mainColo),
                                 borderRadius: BorderRadius.circular(5)),
                             child: Text(
-                              "Arzanladyşlar",
+                              "Tötänleýin",
                               style: CustomTextStyle.discount(context),
                             ),
                           ),

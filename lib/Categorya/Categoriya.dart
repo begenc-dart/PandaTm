@@ -172,87 +172,83 @@ class _CategoriyaState extends ConsumerState<Categoriya>
                 ),
               ),
               body: TabBarView(controller: tabController, children: [
-                Column(
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        Container(
-                          height: MediaQuery.of(context).size.height *0.77,
-                          width: MediaQuery.of(context).size.width*0.25,
-                          color: ThemeServices().theme == ThemeMode.dark
-                              ? Color.fromRGBO(55, 55, 55, 1)
-                              : select.searh,
-                          child: ListView.builder(
-                              itemCount: themeProvider.state.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        a = index;
-                                      });
-                                    },
-                                    child: index == a
-                                        ? Container(
-                                        height: 50,
-                                        color: ThemeServices().theme ==
-                                            ThemeMode.dark
-                                            ? Color.fromRGBO(97, 97, 97, 1)
-                                            : select.scaf,
-                                        child: Row(
-                                          children: [
-                                            Container(
-                                              margin: EdgeInsets.only(
-                                                  right: 15),
-                                              width: 5,
-                                              height: 40,
-                                              color: select.mainColo,
-                                            ),
-                                            Expanded(
-                                              child: Align(
-                                                alignment:
-                                                Alignment.centerLeft,
-                                                child: Text(
-                                                  url=="ru"? themeProvider
-                                                      .state[index]
-                                                      .nameRu: themeProvider
-                                                        .state[index]
-                                                        .nameTm,
-                                                    maxLines: 2,
-                                                    overflow: TextOverflow.ellipsis,
-                                                    style: CustomTextStyle
-                                                        .cateStyle(
-                                                        context)),
-                                              ),
-                                            ),
-                                          ],
-                                        ))
-                                        : Container(
-                                        margin: EdgeInsets.only(
-                                            left: 10, right: 5),
-                                        height: 50,
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                          url=="ru"? themeProvider
-                                              .state[index].nameRu: themeProvider
-                                                .state[index].nameTm,
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                            style:
-                                            CustomTextStyle.cateStyle(
-                                                context),
+                    Container(
+                      height: MediaQuery.of(context).size.height *0.77,
+                      width: MediaQuery.of(context).size.width*0.25,
+                      color: ThemeServices().theme == ThemeMode.dark
+                          ? Color.fromRGBO(55, 55, 55, 1)
+                          : select.searh,
+                      child: ListView.builder(
+                          itemCount: themeProvider.state.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    a = index;
+                                  });
+                                },
+                                child: index == a
+                                    ? Container(
+                                    height: MediaQuery.of(context).size.height *0.06,
+                                    color: ThemeServices().theme ==
+                                        ThemeMode.dark
+                                        ? Color.fromRGBO(97, 97, 97, 1)
+                                        : select.scaf,
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(
+                                              right: 15),
+                                          width: 5,
+                                          height: 40,
+                                          color: select.mainColo,
+                                        ),
+                                        Expanded(
+                                          child: Align(
+                                            alignment:
+                                            Alignment.centerLeft,
+                                            child: Text(
+                                              url=="ru"? themeProvider
+                                                  .state[index]
+                                                  .nameRu: themeProvider
+                                                    .state[index]
+                                                    .nameTm,
+                                                maxLines: 2,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: CustomTextStyle
+                                                    .cateStyle(
+                                                    context)),
                                           ),
-                                        )));
-                              }),
-                        ),
-                        themeProvider.state.length != 0
-                            ? Subcategoriya(
-                          subCate: themeProvider.state[a].subcategories!,
-                          cate: themeProvider.state[a], url: url,lan: snapshot.data!,
-                        )
-                            : Container()
-                      ],
+                                        ),
+                                      ],
+                                    ))
+                                    : Container(
+                                    margin: EdgeInsets.only(
+                                        left: 10, right: 5),
+                                    height: MediaQuery.of(context).size.height *0.06,
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                      url=="ru"? themeProvider
+                                          .state[index].nameRu: themeProvider
+                                            .state[index].nameTm,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style:
+                                        CustomTextStyle.cateStyle(
+                                            context),
+                                      ),
+                                    )));
+                          }),
                     ),
+                    themeProvider.state.length != 0
+                        ? Subcategoriya(
+                      subCate: themeProvider.state[a].subcategories!,
+                      cate: themeProvider.state[a], url: url,lan: snapshot.data!,
+                    )
+                        : Container()
                   ],
                 ),
                 Dukanlar(lan: snapshot.data!,url: url,)

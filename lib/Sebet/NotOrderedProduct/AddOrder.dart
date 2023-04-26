@@ -12,12 +12,13 @@ import 'package:http/http.dart' as http;
 
 import '../../Ui/toast.dart';
 import '../../main.dart';
+import '../OnlinePay.dart';
 
 class AddOrder {
   String? token;
 
   Future<IsSelectdModel> createUser(
-      String address, String payment_type, String deliver_time,BuildContext context,String phone,String note,String name,String sellerId,String url) async {
+      String address, String payment_type, String deliver_time,BuildContext context,String phone,String note,String name,String sellerId,String url,double pay) async {
     await Token().tokenDosyaOku().then((value) {
       token = value;
     });
@@ -53,11 +54,11 @@ class AddOrder {
         fontSize: 16.0
     );
     if (response.statusCode == 200) {
-      Navigator.pushAndRemoveUntil(
+    payment_type!="Online"?  Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => MyApp()),
               (Route<dynamic> route) => false
-      );
+      ): Navigator.push(context, MaterialPageRoute(builder: (context)=>OnlinePay(id: jsonDecode(response.body)["data"]["orders_array"][0]["order_id"], payment: pay,)));
 
       return IsSelectdModel.fromJson(jsonDecode(response.body));
     } else {

@@ -62,6 +62,7 @@ class _DukanlarState extends State<Dukanlar> {
 
   @override
   Widget build(BuildContext context) {
+    final size=MediaQuery.of(context).size;
     return SmartRefresher(
       controller: refreshController,
       footer: const ClassicFooter(loadStyle: LoadStyle.HideAlways),
@@ -84,7 +85,7 @@ class _DukanlarState extends State<Dukanlar> {
       },
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 150, childAspectRatio: 0.8),
+            maxCrossAxisExtent: 150, childAspectRatio: size.height/size.width*0.4),
         itemBuilder: (BuildContext context, int index) {
           debugPrint(prod.toString());
           return InkWell(

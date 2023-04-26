@@ -352,7 +352,8 @@ class _ActionProductState extends State<ActionProduct> {
 
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(snapshot.data!.haryt + actionCount),
+                            child: Text(snapshot.data!.haryt + actionCount,style: TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                                ? Colors.white:Colors.black),),
                           )
                         ])),
                         widget.checkpage == true

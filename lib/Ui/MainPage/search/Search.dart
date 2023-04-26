@@ -1,10 +1,6 @@
-
-
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/svg.dart';
-
-
 
 import 'package:serpay/darkMode/theme_provider.dart';
 import 'package:serpay/darkMode/theme_services.dart';
@@ -21,10 +17,13 @@ import '../../../language.dart';
 import '../../../main.dart';
 import '../../BarCode.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+
 class Search extends StatefulWidget {
   String search;
   LanguageModel data;
-  Search({required this.search,required this.data});
+
+  Search({required this.search, required this.data});
+
   @override
   State<Search> createState() => _SearchState();
 }
@@ -36,21 +35,25 @@ class _SearchState extends State<Search> {
 
   // Barcode? result;
 
-  String url="";
-  language()async{
+  String url = "";
 
+  language() async {
     await LanguageFileRead().then((value) {
       url = value;
     });
   }
 
-  _scan()async{
-     await FlutterBarcodeScanner.scanBarcode("#000000", "Yzy çyk", true, ScanMode.DEFAULT).then((value) => setState((){data=value;}));
-     debugPrint(data);
+  _scan() async {
+    await FlutterBarcodeScanner.scanBarcode(
+            "#000000", "Yzy çyk", true, ScanMode.DEFAULT)
+        .then((value) => setState(() {
+              data = value;
+            }));
+    debugPrint(data);
     await fetchAlbum(data).then((value) {
-
-       data!="-1"?
-       {debugPrint(value.toString()),
+      data != "-1"
+          ? {
+              debugPrint(value.toString()),
               Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -63,11 +66,12 @@ class _SearchState extends State<Search> {
                                 : value.product.oneProduct.nameTm,
                           )))
             }
-          :"";
-     });
+          : "";
+    });
   }
 
-String data="";
+  String data = "";
+
   @override
   void initState() {
     // TODO: implement initState
@@ -79,11 +83,13 @@ String data="";
 
     super.initState();
   }
-method() async{
-  await checkSignUp.dosyaOku().then((value) {
-    checkLike = value;
-  });
-}
+
+  method() async {
+    await checkSignUp.dosyaOku().then((value) {
+      checkLike = value;
+    });
+  }
+
   @override
   void dispose() {
     // controller?.dispose();
@@ -97,19 +103,17 @@ method() async{
         InkWell(
             onTap: () {
               ThemeServices().switchTheme();
-              setState(() {
-
-              });
+              setState(() {});
               Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => MaterialPageMain()),(Route<dynamic> route) => false);
-
+                  MaterialPageRoute(builder: (context) => MaterialPageMain()),
+                  (Route<dynamic> route) => false);
             },
             child: Padding(
-              padding: const EdgeInsets.only(left: 15,right: 15),
+              padding: const EdgeInsets.all(15),
               child: ThemeServices().theme == ThemeMode.light
-                  ? SvgPicture.asset("asset/icon/Subtract (2).svg"):SvgPicture.asset("asset/Setting/light.svg"),
+                  ? SvgPicture.asset("asset/icon/Subtract (2).svg")
+                  : SvgPicture.asset("asset/Setting/light.svg"),
             )),
 
         Expanded(
@@ -118,7 +122,11 @@ method() async{
               showSearch(
                   context: context,
                   // delegate to customize the search bar
-                  delegate: CustomSearchDelegate(checkBarcode: false, text: ' ', contexpro: context, data: widget.data));
+                  delegate: CustomSearchDelegate(
+                      checkBarcode: false,
+                      text: ' ',
+                      contexpro: context,
+                      data: widget.data));
             },
             child: Container(
               // margin: const EdgeInsets.only(left: 20, right: 20),
@@ -137,15 +145,11 @@ method() async{
                     style: CustomTextStyle.searchStyle(context),
                   ),
                   InkWell(
-                    child: SvgPicture.asset("asset/icon/qr.svg"),
-                    onTap: () async {await _scan();
-                      debugPrint(data.toString());
-
-
-
-
-
-    })
+                      child: SvgPicture.asset("asset/icon/qr.svg"),
+                      onTap: () async {
+                        await _scan();
+                        debugPrint(data.toString());
+                      })
                 ],
               ),
             ),
@@ -154,24 +158,23 @@ method() async{
         InkWell(
             onTap: () async {
               debugPrint(checkLike.toString());
-              if(checkLike
-                  .toString()
-                  .length == 4){
+              if (checkLike.toString().length == 4) {
                 await PostGetMe().fetchAlbum().then((value) {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => MessagesNot(userid: value.userId!, nickname: value.nickname!, languageModel: widget.data, url: url, )));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => MessagesNot(
+                            userid: value.userId!,
+                            nickname: value.nickname!,
+                            languageModel: widget.data,
+                            url: url,
+                          )));
                 });
-
-
-              }
-              else{
+              } else {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) => LogIn()));
-
               }
             },
             child: Padding(
-              padding: const EdgeInsets.only(left: 15,right: 15),
+              padding: const EdgeInsets.all(15),
               child: SvgPicture.asset(
                 "asset/icon/Group 59 (1).svg",
               ),
@@ -180,9 +183,8 @@ method() async{
       ],
     );
   }
-  fun(){
-    setState(() {
 
-    });
+  fun() {
+    setState(() {});
   }
 }

@@ -314,7 +314,8 @@ ScrollController? controller;
 
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(widget.lan.haryt+count),
+                        child: Text(widget.lan.haryt+count,style: TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                            ? Colors.white:Colors.black),),
                       )
                 ])),
                 widget.checkpage == true

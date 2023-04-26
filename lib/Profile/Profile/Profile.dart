@@ -285,7 +285,8 @@ class _ProfileState extends State<Profile> {
                                     child: SvgPicture.asset(
                                       "asset/Setting/Address.svg",
                                       width: 20,
-                                      height: 20,
+                                      height: 20,color: ThemeServices().theme == ThemeMode.dark
+                                        ? Colors.white:Colors.black,
                                     ),
                                   ),
                                   Padding(
@@ -361,6 +362,8 @@ class _ProfileState extends State<Profile> {
                 width: 20,
                 height: 20,
                 fit: BoxFit.fill,
+                color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,
               ),
             ),
           ),

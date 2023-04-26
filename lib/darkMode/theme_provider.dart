@@ -40,6 +40,7 @@ class MyThemes {
         ),
         filled: true,
         fillColor: Color.fromRGBO(250, 250, 250, 1)),
+
     // toggleableActiveColor: Colors.red,
     textTheme: TextTheme(),
     checkboxTheme: CheckboxThemeData(
@@ -67,8 +68,9 @@ class MyThemes {
 
   ///dark
   static final darkTheme = ThemeData(
-    scaffoldBackgroundColor: Color.fromRGBO(39, 39, 39, 1),
 
+    scaffoldBackgroundColor: Color.fromRGBO(39, 39, 39, 1),
+    primaryColor: Colors.red,
         unselectedWidgetColor: Colors.red,
         disabledColor: Colors.blue,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -78,6 +80,16 @@ class MyThemes {
       selectedIconTheme: IconThemeData(color: Color.fromRGBO(174, 174, 174, 1)),
       selectedLabelStyle: TextStyle(color: Color.fromRGBO(174, 174, 174, 1)),
     ),
+    checkboxTheme: CheckboxThemeData(
+        fillColor: MaterialStateProperty.all(Colors.red),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        side: BorderSide(
+          width: 1.5,
+          // color: unselectedWidgetColor
+        ),
+        splashRadius: 0),
     inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(
@@ -97,16 +109,8 @@ class MyThemes {
         fillColor: Color.fromRGBO(97, 97, 97, 1)),
     toggleableActiveColor: Colors.red,
     // textTheme: TextTheme(),
-    checkboxTheme: CheckboxThemeData(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        side: BorderSide(
-          width: 1.5,
-          // color: unselectedWidgetColor
-        ),
-        splashRadius: 0),
-    primaryColor: Colors.red,
+
+
 
     appBarTheme: AppBarTheme(
         titleTextStyle: TextStyle(

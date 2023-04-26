@@ -6,6 +6,7 @@ import 'package:serpay/LogIn/ForgetPassword/Model/ChangePassword.dart';
 import 'package:serpay/LogIn/ForgetPassword/Model/Model/PatchModel.dart';
 
 import '../../../../IpAdress.dart';
+import '../../../../darkMode/theme_services.dart';
 import '../../../LogIn/Model/token.dart';
 import '../../../../Profile/MyAddress/AddressModel/ModelAddress.dart';
 
@@ -65,7 +66,8 @@ class PacthForgetPassword{
                       width: MediaQuery.of(context).size.width,
                       height: 40,
                       alignment: Alignment.center,
-                      child: TextField(
+                      child: TextField(style: TextStyle(color:ThemeServices().theme == ThemeMode.dark
+                          ? Colors.white:Colors.black,),
                         controller: _controller,
                         keyboardType: TextInputType.number,
                         cursorColor: Color.fromRGBO(104, 109, 118, 1),

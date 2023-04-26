@@ -73,7 +73,7 @@ class Language{
     var giveJson = await DefaultAssetBundle.of(context).loadString(
         url == "ru" ? "asset/language/ru.json" : "asset/language/tm.json");
     var decodedJson = json.decode(giveJson);
-    debugPrint(decodedJson.toString());
+    // debugPrint(decodedJson.toString());
     languageModel = LanguageModel.fromJson(decodedJson);
 
     return languageModel;

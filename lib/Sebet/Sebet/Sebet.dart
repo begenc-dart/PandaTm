@@ -94,7 +94,7 @@ class _CartState extends ConsumerState<Cart> {
                 (BuildContext context, AsyncSnapshot<NotOrderedProduct> snapshot) {
               debugPrint(snapshot.toString());
               if (snapshot.hasData) {
-                return ListView.builder(
+                return snapshot.data!.notOrderedProducts.length!=0?ListView.builder(
                   itemBuilder: (context, index) => Container(
                       width: double.infinity,
                       // height: 100,
@@ -114,13 +114,13 @@ class _CartState extends ConsumerState<Cart> {
                                 .toString():snapshot.data!.notOrderedProducts[index].seller!
                               .nameTm
                               .toString(),
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 15,decoration: TextDecoration.underline),
+                            style: TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                    ? Colors.white:Colors.black,fontWeight: FontWeight.w500, fontSize: 15,decoration: TextDecoration.underline),
                           )
-                              : const Text(
+                              :  Text(
                             "Serpay",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 16),
+                            style: TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                    ? Colors.white:Colors.black,fontWeight: FontWeight.w500, fontSize: 16)
                           ),
                           // Divider(
                           //   indent: 0,
@@ -216,9 +216,25 @@ class _CartState extends ConsumerState<Cart> {
                         ],
                       )),
                   itemCount: snapshot.data!.notOrderedProducts.length,
+                ):Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset("asset/Setting/1.png"),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Text("Sebede haryt goşulmady!",style: TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                            ? Colors.white:Colors.black),),
+                      )
+                    ],
+                  ),
                 );
-              } else {
-                return const Center(
+              }
+
+              else {
+                return  Center(
                     child: CircularProgressIndicator(
                       color: Colors.red,
                     ));

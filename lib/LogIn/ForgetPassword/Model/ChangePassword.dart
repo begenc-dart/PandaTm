@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:serpay/LogIn/ForgetPassword/Model/Model/ChangePasswordModel.dart';
 import 'package:serpay/Model/TextColor.dart';
 
+import '../../../darkMode/theme_services.dart';
 import 'Model/passwordModel.dart';
 
 class ChangePassword extends StatefulWidget {
@@ -51,7 +52,8 @@ bool otomatik=false;
                       ),
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: TextFormField(
+                        child: TextFormField(style: TextStyle(color:ThemeServices().theme == ThemeMode.dark
+                            ? Colors.white:Colors.black,),
                           textAlignVertical: TextAlignVertical.top,
 
                           // cursorColor: Color.fromRGBO(104, 109, 118, 1),
@@ -95,7 +97,8 @@ bool otomatik=false;
                       ),
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: TextFormField(
+                        child: TextFormField(style: TextStyle(color:ThemeServices().theme == ThemeMode.dark
+                            ? Colors.white:Colors.black,),
                           textAlignVertical: TextAlignVertical.top,
 
                           // cursorColor: Color.fromRGBO(104, 109, 118, 1),

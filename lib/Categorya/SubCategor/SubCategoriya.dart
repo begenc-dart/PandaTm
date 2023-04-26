@@ -76,7 +76,7 @@ class _SubcategoriyaState extends State<Subcategoriya> {
             maxCrossAxisExtent: 100,
             crossAxisSpacing: 10.0,
             mainAxisSpacing: 10.0,
-            childAspectRatio: 0.88,
+            childAspectRatio: size.height/size.width*0.42,
             children: List.generate(
               widget.subCate.length ,
               (index) {

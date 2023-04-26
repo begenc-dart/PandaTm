@@ -573,19 +573,17 @@ class _OrderProState extends ConsumerState<OrderPro> {
                             Text(
                               ref
                                   .watch(PriceState.pricepro)[widget.index]
-                                  .toString(),
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black87),
+                                  .toString(), style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                    ? Colors.white:Colors.black,fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    )
                             ),
                             Text(
                               " TMT",
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black87),
-                            ),
+                            style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+              ? Colors.white:Colors.black,fontSize: 12,
+              fontWeight: FontWeight.w500,
+              ))
                           ],
                         )),
                     InkWell(

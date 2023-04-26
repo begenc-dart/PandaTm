@@ -110,7 +110,9 @@ languageModel=Language().fetchAlbum(context);
                                   Container(
                                     width: 80,
                                     height: 30,
-                                    child: TextFormField(
+                                    child: TextFormField(style: TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                                        ? Colors.white
+                                        : Color.fromRGBO(41, 41, 41, 1)),
                                       textAlign: TextAlign.left,
                                       textAlignVertical: TextAlignVertical.bottom,
                                       controller: min,
@@ -143,7 +145,9 @@ languageModel=Language().fetchAlbum(context);
                                     child: TextFormField(
                                       textAlign: TextAlign.left,
                                       textAlignVertical: TextAlignVertical.bottom,
-
+style: TextStyle(color: ThemeServices().theme == ThemeMode.dark
+    ? Colors.white
+    : Color.fromRGBO(41, 41, 41, 1)),
                                       controller: max,
                                       // cursorColor: Color.fromRGBO(104, 109, 118, 1),
                                       keyboardType: TextInputType.number,

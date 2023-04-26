@@ -337,7 +337,8 @@ class _TopProductState extends State<TopProduct> {
 
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(snapshot.data!.haryt + count),
+                            child: Text(snapshot.data!.haryt + count,style: TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                                ? Colors.white:Colors.black),),
                           )
                         ])),
                     widget.checkpage == true

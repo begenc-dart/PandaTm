@@ -18,6 +18,7 @@ import 'package:serpay/LogIn/LogIn/Model/checkSignUp.dart';
 
 
 import 'package:serpay/Model/Colors.dart';
+import 'package:serpay/Profile/GetMe/PostGetMe.dart';
 import 'package:serpay/Profile/Profile/Profile.dart';
 import 'package:serpay/Providers.dart';
 
@@ -154,7 +155,7 @@ String url="";
                   TextButton(
                     // color: select.mainColo,
                     onPressed: () {
-                      Navigator.pop(context);
+                      FreePro().fetchAlbum(free, context);
                       // FreeProductOwn().fetchAlbum(free,context);
                     },
                     child: Text("Hawa",style: TextStyle(color: Colors.red),),
@@ -187,7 +188,7 @@ String url="";
           debugPrint("Initial URI received $initialURI");
         await  CheckSignUp().dosyaOku().then((value) {
             if (value.toString().length == 4) {
-              quit("free", context);
+              quit(initialURI.toString().split("sharinguser_id=")[1], context);
             }
           else{
             Navigator.push(context, MaterialPageRoute(builder: (context)=>LogIn()));
@@ -311,6 +312,7 @@ debugPrint('${_currentURI?.host}'+"dsfdsfsdf");
                   resizeToAvoidBottomInset: true,
                   body: hemmeSah[saylanan],
                   bottomNavigationBar: BottomNavigationBar(
+
                     selectedLabelStyle: TextStyle(
                         fontWeight: FontWeight.w800, fontSize: 12, color: Colors.black),
                     // showSelectedLabels: saylanan != 0 ? true : false,

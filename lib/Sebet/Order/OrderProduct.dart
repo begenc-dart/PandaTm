@@ -13,6 +13,7 @@ import '../../Profile/Profile/Help.dart';
 import '../../Providers.dart';
 import '../../Ui/toast.dart';
 import '../NotOrderedProduct/AddOrder.dart';
+import '../OnlinePay.dart';
 
 class OrderProdut extends ConsumerStatefulWidget {
   String phone;
@@ -329,13 +330,15 @@ Pandatm.delivery@gmail.com
                             : select.newCol),),
                    InkWell(
                      onTap: (){
-                       // paymant=2;
-                       // setState(() {
-                       //
-                       // });
+                       paymant=2;
+                       setState(() {
+
+                       });
+
                      },
                      child: Padding(padding: const EdgeInsets.only(bottom: 10),child:  type("asset/productIcon/Group 291.svg", widget.lan.online,
-                         1, Colors.white,Colors.black45),)
+                         1, paymant == 2 ? Colors.redAccent : Colors.white, ThemeServices().theme == ThemeMode.dark
+                           ? Colors.white:Colors.black,),)
                    )
 
                   ],
@@ -363,17 +366,17 @@ Pandatm.delivery@gmail.com
                             .toString()+"+15": ref
         .watch(PriceState.pricepro)[widget.index]
         .toString(),
-                        style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black87),
+                        style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+    ? Colors.white:Colors.black,fontSize: 16,
+    fontWeight: FontWeight.w500,
+    )
                       ),
-                      const Text(
+                       Text(
                         " TMT",
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black87),
+                        style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                          ? Colors.white:Colors.black,fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      )
                       ),
                     ],
                   )):Container(),
@@ -430,7 +433,8 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              title: const Text("10:00-12:00"),
+              title:  Text("10:00-12:00" ,style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
             ),
           ),
           Container(
@@ -446,7 +450,8 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              title: const Text("12:00-14:00"),
+              title:  Text("12:00-14:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+    ? Colors.white:Colors.black,)),
             ),
           ),
           Container(
@@ -462,7 +467,8 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              title: const Text("14:00-16:00"),
+              title:  Text("14:00-16:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
             ),
           ),
           Container(
@@ -478,7 +484,8 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              title: const Text("16:00-18:00"),
+              title:  Text("16:00-18:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
             ),
           ),
           Container(
@@ -494,7 +501,8 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              title: const Text("18:00-20:00"),
+              title: Text("18:00-20:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
             ),
           ),
         ],
@@ -516,8 +524,10 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              subtitle: const Text("1 sagadyn dowmynda"),
-              title: const Text("Express"),
+              subtitle:  Text("1 sagadyn dowmynda",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
+              title:  Text("Express",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
             ),
           ),
           Container(
@@ -533,7 +543,8 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              title: const Text("12:00-14:00"),
+              title:  Text("12:00-14:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
             ),
           ),
           Container(
@@ -549,7 +560,8 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              title: const Text("14:00-16:00"),
+              title:  Text("14:00-16:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
             ),
           ),
           Container(
@@ -565,7 +577,8 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              title: const Text("16:00-18:00"),
+              title:  Text("16:00-18:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
             ),
           ),
           Container(
@@ -581,7 +594,8 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              title: const Text("18:00-20:00"),
+              title:  Text("18:00-20:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
             ),
           ),
         ],
@@ -603,8 +617,10 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              subtitle: const Text("1 sagadyn dowmynda"),
-              title: const Text("Express"),
+              subtitle:  Text("1 sagadyn dowmynda",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
+              title:  Text("Express",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+              ? Colors.white:Colors.black,)),
             ),
           ),
           Container(
@@ -620,7 +636,8 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              title: const Text("14:00-16:00"),
+              title:  Text("14:00-16:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
             ),
           ),
           Container(
@@ -636,7 +653,8 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              title: const Text("16:00-18:00"),
+              title:  Text("16:00-18:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
             ),
           ),
           Container(
@@ -652,7 +670,8 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              title: const Text("18:00-20:00"),
+              title:  Text("18:00-20:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
             ),
           ),
         ],
@@ -674,8 +693,10 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              subtitle: const Text("1 sagadyn dowmynda"),
-              title: const Text("Express"),
+              subtitle:  Text("1 sagadyn dowmynda",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
+              title:  Text("Express",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
             ),
           ),
           Container(
@@ -691,7 +712,8 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              title: const Text("16:00-18:00"),
+              title:  Text("16:00-18:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
             ),
           ),
           Container(
@@ -707,7 +729,8 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              title: const Text("18:00-20:00"),
+              title:  Text("18:00-20:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                  ? Colors.white:Colors.black,)),
             ),
           ),
         ],
@@ -723,7 +746,8 @@ Pandatm.delivery@gmail.com
             wagt = deger.toString();
           });
         },
-        title: const Text("18:00-20:00"),
+        title:  Text("18:00-20:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+            ? Colors.white:Colors.black,)),
       );
     } else if (now.hour >= 18) {
       return Container(
@@ -750,7 +774,8 @@ Pandatm.delivery@gmail.com
                 wagt = deger.toString();
               });
             },
-            title: const Text("10:00-12:00"),
+            title:  Text("10:00-12:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                ? Colors.white:Colors.black,)),
           ),
         ),
         Container(
@@ -767,7 +792,8 @@ Pandatm.delivery@gmail.com
                 wagt = deger.toString();
               });
             },
-            title: const Text("12:00-14:00"),
+            title:  Text("12:00-14:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                ? Colors.white:Colors.black,)),
           ),
         ),
         Container(
@@ -783,7 +809,8 @@ Pandatm.delivery@gmail.com
                 wagt = deger.toString();
               });
             },
-            title: const Text("14:00-16:00"),
+            title:  Text("14:00-16:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                ? Colors.white:Colors.black,)),
           ),
         ),
         Container(
@@ -799,7 +826,8 @@ Pandatm.delivery@gmail.com
                 wagt = deger.toString();
               });
             },
-            title: const Text("16:00-18:00"),
+            title:  Text("16:00-18:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                ? Colors.white:Colors.black,)),
           ),
         ),
         Container(
@@ -815,7 +843,8 @@ Pandatm.delivery@gmail.com
                 wagt = deger.toString();
               });
             },
-            title: const Text("18:00-20:00"),
+            title:  Text("18:00-20:00",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                ? Colors.white:Colors.black,)),
           ),
         ),
       ],
@@ -826,7 +855,13 @@ Pandatm.delivery@gmail.com
     if (_formkey.currentState!.validate()) {
       _formkey.currentState!.save();
      wagt.isEmpty?Toast().showToastDelet(context, "Wagty saylamagynyzy sizden haýyş edýärin"): AddOrder()
-          .createUser(widget.adress, paymant==0?"Nagt dal":paymant==1?"Nagt":"Online", wagt, context, _phone, note,_name,widget.sellerId,widget.url);
+          .createUser(widget.adress, paymant==0?"Nagt dal":paymant==1?"Nagt":"Online", wagt, context, _phone, note,_name,widget.sellerId,widget.url,
+         ref
+         .watch(PriceState.pricepro)[widget.index]<150?  ref
+         .watch(PriceState.pricepro)[widget.index]
+         +15: ref
+         .watch(PriceState.pricepro)[widget.index]
+         );
       // Navigator.pop(context, [_name, _phone, note, timeCheck]);
     }
   }
