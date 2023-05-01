@@ -135,7 +135,7 @@ class _AksiyaState extends State<Aksiya> {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: List.generate(
-                                snapshot.data!.actionProducts.rows.length - 1, (
+                                snapshot.data!.actionProducts.rows.length , (
                                 index) =>
                                 InkWell(
                                   onTap: () {
@@ -330,7 +330,7 @@ class _NewProductState extends State<NewProduct> {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: List.generate(
-                                snapshot.data!.newProducts.length - 1, (
+                                snapshot.data!.newProducts.length , (
                                 index) =>
                                 InkWell(
                                   onTap: () {
@@ -339,10 +339,10 @@ class _NewProductState extends State<NewProduct> {
                                             builder: (context) =>
                                                 ProductDetails(
                                                   productId: snapshot.data!
-                                                      .newProducts[index]
+                                                      .newProducts[index-1]
                                                       .productId,
                                                   image: snapshot.data!
-                                                      .newProducts[index]
+                                                      .newProducts[index-1]
                                                       .images,
                                                 )));
                                   },
@@ -355,7 +355,7 @@ class _NewProductState extends State<NewProduct> {
                                           padding: const EdgeInsets.only(
                                               top: 7),
                                           child: snapshot.data!
-                                              .newProducts[index]
+                                              .newProducts[index-1]
                                               .images.length ==
                                               0
                                               ? Image.asset(widget.img)
@@ -368,7 +368,7 @@ class _NewProductState extends State<NewProduct> {
                                               "${IpAddress().ipAddress}/" +
                                                   snapshot
                                                       .data!.
-                                                  newProducts[index]
+                                                  newProducts[index-1]
                                                       .images[0]
                                                       .image,
                                               placeholder: (context, url) =>
@@ -385,9 +385,9 @@ class _NewProductState extends State<NewProduct> {
                                         Text(
                                           url == "ru"
                                               ? snapshot.data!
-                                              .newProducts[index].nameRu
+                                              .newProducts[index-1].nameRu
                                               : snapshot.data!
-                                              .newProducts[index].nameTm,
+                                              .newProducts[index-1].nameTm,
                                           maxLines: 1,
                                           textAlign: TextAlign.center,
                                           style: CustomTextStyle.Skidkapro(

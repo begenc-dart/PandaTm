@@ -174,7 +174,7 @@ debugPrint(widget.time.toString());
                       ),
                       GestureDetector(
                         onTap: () {
-                         widget.time>0? quit(widget.allFreeProduct.freeproductId,context):"";
+                         widget.time>0? FreeProductOwn().fetchAlbum(widget.allFreeProduct.freeproductId,context):"";
                         },
                         child: Container(
                           width: 150,

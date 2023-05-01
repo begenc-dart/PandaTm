@@ -91,12 +91,7 @@ class _ProfileState extends State<Profile> {
                                           : CircleAvatar(
                                               backgroundColor: Color.fromRGBO(
                                                   196, 196, 196, 1),
-                                              child: Icon(
-                                                Icons.person,
-                                                color: Colors.white,
-                                              ),
-                                              radius: 30,
-                                            ),
+                                              backgroundImage: AssetImage("asset/Setting/No_Image_Available.png"),),
                                       Padding(
                                         padding:
                                             const EdgeInsets.only(left: 15),

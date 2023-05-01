@@ -33,8 +33,13 @@ class FreeProductTop extends StatelessWidget {
                     style: CustomTextStyle.topPerson(context),
                   ),
                 ),
+              top[index].image.toString()!="null"?  CircleAvatar(
+                  backgroundColor: Colors.red,
+                  backgroundImage: NetworkImage("${IpAddress().ipAddress}/${top[index].image}"),
+                ):
                 CircleAvatar(
-                  backgroundImage: NetworkImage("${IpAddress().ipAddress}/${top[index].image}")
+backgroundColor: Colors.transparent,
+                  backgroundImage:  AssetImage("asset/Setting/No_Image_Available.png"),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 15),

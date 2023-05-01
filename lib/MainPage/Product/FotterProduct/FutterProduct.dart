@@ -63,84 +63,93 @@ fToast=FToast();
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-              padding: const EdgeInsets.only(left: 15),
-              child: InkWell(
-                onTap: () {
-                  widget.oneProductElement.seller!=null? Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => BannerProduct(
-                                sort: "2",
-                                page: 0,
-                                checkpage: false,
-                                brend: widget.oneProductElement.seller!.sellerId,
-                                nameBrenad:
-                                    widget.oneProductElement.seller!.nameTm, lan: widget.lan,url: widget.url,
-                              ))):Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => OwnProduct(
-                            sort: "2",
-                            page: 0,
-                            checkpage: false,
-                            brend: "",
-                            nameBrenad:
-                           "",
-                          )));
-                },
-                child: productFotter(
-                    "asset/productIcon/home-icon.svg", widget.oneProductElement.seller!=null?widget.oneProductElement.seller!.nameTm.toString():"Serpay", context),
-              )),
-          InkWell(
-            onTap: () {
-              setState(() {
-                // debugPrint(checkLike+"mmmmmmmmmmmmmmmmmmmmmmmmm");
+          Flexible(
+            flex: 1,
+            child: Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: InkWell(
+                  onTap: () {
+                    widget.oneProductElement.seller!=null? Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BannerProduct(
+                                  sort: "2",
+                                  page: 0,
+                                  checkpage: false,
+                                  brend: widget.oneProductElement.seller!.sellerId,
+                                  nameBrenad:
+                                      widget.oneProductElement.seller!.nameTm, lan: widget.lan,url: widget.url,
+                                ))):Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => OwnProduct(
+                              sort: "2",
+                              page: 0,
+                              checkpage: false,
+                              brend: "",
+                              nameBrenad:
+                             "",
+                            )));
+                  },
+                  child: productFotter(
+                      "asset/productIcon/home-icon.svg", widget.oneProductElement.seller!=null?widget.oneProductElement.seller!.nameTm.toString():"Serpay", context),
+                )),
+          ),
+          Flexible(
+            flex: 1,
+            child: InkWell(
+              onTap: () {
+                setState(() {
+                  // debugPrint(checkLike+"mmmmmmmmmmmmmmmmmmmmmmmmm");
 
-                if (checkLike
-                    .toString()
-                    .length == 4) {
-                  debugPrint("checkLike = ${checkLike}");
-                  widget.like == true ? widget.like = false : widget.like = true;
-                  if (widget.like == true) {
-                    debugPrint("like = ${widget.like}");
-                    // debugPrint(widget.randomPro[index].productId!);
-                    postLiked.postLikedProduct(widget.oneProductElement.productId);
+                  if (checkLike
+                      .toString()
+                      .length == 4) {
+                    debugPrint("checkLike = ${checkLike}");
+                    widget.like == true ? widget.like = false : widget.like = true;
+                    if (widget.like == true) {
+                      debugPrint("like = ${widget.like}");
+                      // debugPrint(widget.randomPro[index].productId!);
+                      postLiked.postLikedProduct(widget.oneProductElement.productId);
+                    } else {
+                      postLiked.deleteAlbum(widget.oneProductElement.productId);
+                    }
                   } else {
-                    postLiked.deleteAlbum(widget.oneProductElement.productId);
+                    debugPrint("like basyldy" +
+                        widget.like.toString() +
+                        "\n ${checkLike}barla");
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => LogIn()));
                   }
-                } else {
-                  debugPrint("like basyldy" +
-                      widget.like.toString() +
-                      "\n ${checkLike}barla");
+                });
+              },
+              child: productFotter(
+                 widget.like==false? "asset/productIcon/Like.svg":"asset/icon/Like_on.svg", widget.lan.gosmaca.haladym, context),
+
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: InkWell(
+              onTap: () async{
+                if(checkLike
+                    .toString()
+                    .length == 4){
+                await  PostGetMe().fetchAlbum().then((value) {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => MessagesNot(userid: value.userId!, nickname: value.nickname!, languageModel: widget.lan,url: widget.url,link: 'http://panda.com.tm/product/${widget.oneProductElement.productId}', )));
+                  });
+                }
+                else{
+
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) => LogIn()));
                 }
-              });
-            },
-            child: productFotter(
-               widget.like==false? "asset/productIcon/Like.svg":"asset/icon/Like_on.svg", widget.lan.gosmaca.haladym, context),
 
-          ),
-          InkWell(
-            onTap: () async{
-              if(checkLike
-                  .toString()
-                  .length == 4){
-              await  PostGetMe().fetchAlbum().then((value) {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => MessagesNot(userid: value.userId!, nickname: value.nickname!, languageModel: widget.lan,url: widget.url,link: 'http://panda.com.tm/product/${widget.oneProductElement.productId}', )));
-                });
-              }
-              else{
-
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => LogIn()));
-              }
-
-            },
-            child: productFotter(
-                "asset/productIcon/chat.svg", widget.lan.admin, context),
+              },
+              child: productFotter(
+                  "asset/productIcon/chat.svg", widget.lan.admin, context),
+            ),
           ),
           GestureDetector(
             onTap: () {
@@ -214,6 +223,8 @@ fToast=FToast();
             child: Text(
               con,
               style: CustomTextStyle.proother(context),
+              maxLines: 1,
+              textAlign: TextAlign.center,
             ),
           )
         ],

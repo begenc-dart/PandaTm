@@ -85,7 +85,7 @@ class _ServersState extends State<Servers> {
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                           image: AssetImage(
-                            "asset/ProfileIcon/boldy indi.png",
+                            "asset/Setting/ibermeli hazir.jpg",
                           ),
                           fit: BoxFit.fill)),
                 ),

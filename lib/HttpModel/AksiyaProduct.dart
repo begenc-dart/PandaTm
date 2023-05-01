@@ -25,7 +25,7 @@ class AksiyaProdutModel {
       checkLike = value;
     });
     final response =
-        await http.get(Uri.parse("${ip}/public/products/action?limit=4"), );
+        await http.get(Uri.parse("${ip}/public/products/action?limit=3"), );
 debugPrint("fdasfd"+response.body);
     var decodedJson = json.decode(response.body);
 
@@ -51,7 +51,7 @@ class NewProductsModel {
       checkLike = value;
     });
     final response =
-    await http.get(Uri.parse("${ip}/public/products/new?limit=4"), );
+    await http.get(Uri.parse("${ip}/public/products/new?limit=3"), );
     debugPrint("fdasfd"+response.body);
     var decodedJson = json.decode(response.body);
 

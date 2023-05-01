@@ -2,17 +2,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:serpay/Categorya/Categoriya.dart';
+import 'package:serpay/Categorya/Categoriya/Categoriya.dart';
 
 import 'package:serpay/HttpModel/CaruselGet.dart';
 import 'package:serpay/IpAdress.dart';
+import 'package:serpay/Language/Language.dart';
+import 'package:serpay/Servers/FreeProduct.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../Categorya/SubCategor/SubCategorProduct.dart';
 import '../../../Model/TextColor.dart';
 import '../../MainChangeNoti.dart';
 import '../../Model/BannerProductModel.dart';
 import 'package:http/http.dart' as http;
 // import 'dart:js' as js;
 class BannerMainPage extends StatefulWidget {
+  String url;
+  LanguageModel lan;
+  BannerMainPage({required this.lan,required this.url});
   @override
   State<BannerMainPage> createState() => _BannerMainPageState();
 }
@@ -42,7 +50,7 @@ int a=0;
       throw 'Could not launch $url';
     }
   }
-
+List link=[];
   @override
   Widget build(BuildContext context) {
 
@@ -56,18 +64,25 @@ int a=0;
                 CarouselSlider.builder(
                   itemCount:snapshot.data!.banners.rows.length,
                   itemBuilder: (BuildContext context, int itemIndex,
-                          int pageViewIndex) =>
-                      Container(
+                          int pageViewIndex) {
+                    link=snapshot.data!.banners.rows[itemIndex].link!.split("/");
+                  return    Container(
                           padding: EdgeInsets.only(left: 5, right: 5),
                           child: (snapshot.data!.banners.rows[itemIndex].image != null)
                               ? InkWell(
                                   onTap: () {
-                                    // js.context.callMethod('open', [snapshot.data!.banners.rows[itemIndex].link!]);
-                                    launchLink(snapshot.data!.banners.rows[itemIndex].link!);
-                                    // Navigator.of(context).push(
-                                    //     MaterialPageRoute(
-                                    //         builder: (context) =>
-                                    //            Categoriya()));
+                                    
+
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                            link[3]=="category"? SubCategorProduct(sort: "0",
+                                              subcatId:
+                                              link[4],
+                                              checkpage: false,
+                                              nameSubCat:
+                                              "",
+                                              page: 0, url:widget.url,lan: widget.lan,):link[4]=="share"?FreeProductPerson(ipAddress: link[5], url:widget.url,lan: widget.lan,):Container()));
                                   },
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
@@ -84,7 +99,7 @@ int a=0;
                                     ),
                                   ),
                                 )
-                              : Image.asset("asset/Img/banner-img.jpg")),
+                              : Image.asset("asset/Img/banner-img.jpg"));},
                   options: CarouselOptions(
                     viewportFraction: 1,
                     height: 200,
@@ -110,6 +125,7 @@ int a=0;
                     scrollDirection: Axis.horizontal,
                   ),
                 ),
+                // Positioned(top: 0,child: Text(snapshot.data!.banners.rows[0].link!.split("/").toString(),)),
                 Positioned(
                   bottom: 5,
                   width: MediaQuery.of(context).size.width,

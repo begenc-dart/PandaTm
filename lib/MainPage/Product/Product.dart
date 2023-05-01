@@ -126,7 +126,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                 ),
                                 ProductFotter(
                                   oneProductElement:
-                                      snapshot.data!.product!.oneProduct,
+                                      snapshot.data!.product.oneProduct,
                                   onpress: setSt,
                                   like: snapshot
                                       .data!.product.oneProduct.isLiked, lan: lan.data!, url: url,

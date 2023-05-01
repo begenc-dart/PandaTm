@@ -75,6 +75,7 @@ class _OrderProState extends ConsumerState<OrderPro> {
   Widget build(BuildContext context) {
     // final productIndex = Provider.of<ProductIndex>(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: ThemeServices().theme == ThemeMode.dark
             ? const Color.fromRGBO(39, 39, 39, 1)

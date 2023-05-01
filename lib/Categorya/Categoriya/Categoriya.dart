@@ -86,7 +86,7 @@ class _CateProductState extends State<CateProduct> {
           : {},
     );
 
-    debugPrint(a.toString());
+    debugPrint(widget.subcatId.toString());
     if (response.statusCode == 200) {
       (response.statusCode.toString());
       _subCategoriyaProduct = subCategoriyaProductFromJson(response.body);

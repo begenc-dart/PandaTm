@@ -39,7 +39,7 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     // TODO: implement initState
-
+    checkLan();
     scrollController = ScrollController();
     // scrollController = ScrollController()..addListener(_scrollListener);
     languageModel=Language().fetchAlbum(context);
@@ -47,7 +47,13 @@ class _MainPageState extends State<MainPage> {
   }
 
   late ScrollController scrollController;
+  String url="";
+checkLan()async{
 
+  await LanguageFileRead().then((value) {
+    url = value;
+  });
+}
 
 
   String? _token;
@@ -201,7 +207,7 @@ floating: true,
                                     Column(
                                       children: [
 
-                                        BannerMainPage(),
+                                        BannerMainPage(lan: snapshot.data!, url: '',),
                                       ],
                                     ),
                                   ],

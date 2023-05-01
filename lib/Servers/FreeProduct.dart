@@ -180,7 +180,7 @@ class _TimerChildState extends State<TimerChild> {
         ),
         GestureDetector(
           onTap: () {
-            times.hours>0? quit(widget.id):"";
+            times.hours>0?FreeProductOwn().fetchAlbum(widget.id,context):"";
           },
           child: Container(
             width: MediaQuery.of(context).size.width / 2,

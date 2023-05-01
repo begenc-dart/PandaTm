@@ -76,25 +76,22 @@ class _SettingState extends State<Setting> {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        backgroundColor:
-                            ThemeServices().theme == ThemeMode.dark
-                                ? Color.fromRGBO(39, 39, 39, 1)
-                                : Colors.white,
+                        backgroundColor: ThemeServices().theme == ThemeMode.dark
+                            ? Color.fromRGBO(39, 39, 39, 1)
+                            : Colors.white,
                         contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                         title: Column(
                           children: [
                             RadioListTile(
-                              controlAffinity:
-                                  ListTileControlAffinity.trailing,
+                              controlAffinity: ListTileControlAffinity.trailing,
                               activeColor: Colors.red,
                               groupValue: radioItem,
                               title: Text(
-                               url=="tm"? 'Aşgabat':"Ашгабат",
+                                url == "tm" ? 'Aşgabat' : "Ашгабат",
                                 style: TextStyle(
-                                  color:
-                                      ThemeServices().theme == ThemeMode.dark
-                                          ? Colors.white
-                                          : Colors.black,
+                                  color: ThemeServices().theme == ThemeMode.dark
+                                      ? Colors.white
+                                      : Colors.black,
                                 ),
                               ),
                               value: 'Item 1',
@@ -104,77 +101,82 @@ class _SettingState extends State<Setting> {
                                 });
                               },
                             ),
-                            RadioListTile(activeColor: Colors.red,
+                            RadioListTile(
+                                activeColor: Colors.red,
                                 controlAffinity:
                                     ListTileControlAffinity.trailing,
                                 groupValue: radioItem,
                                 title: Text(
-                                 url=="tm" ?'Ahal':"Ахал",
+                                  url == "tm" ? 'Ahal' : "Ахал",
                                   style: TextStyle(
-                                    color: ThemeServices().theme ==
-                                            ThemeMode.dark
-                                        ? Colors.white
-                                        : Colors.black26,
+                                    color:
+                                        ThemeServices().theme == ThemeMode.dark
+                                            ? Colors.white
+                                            : Colors.black26,
                                   ),
                                 ),
                                 value: 'Item 2',
                                 onChanged: null),
-                            RadioListTile(activeColor: Colors.red,
+                            RadioListTile(
+                                activeColor: Colors.red,
                                 controlAffinity:
                                     ListTileControlAffinity.trailing,
                                 groupValue: radioItem,
                                 title: Text(
-                                  url=="tm"?'Balkan':"Балкан",
+                                  url == "tm" ? 'Balkan' : "Балкан",
                                   style: TextStyle(
-                                    color: ThemeServices().theme ==
-                                            ThemeMode.dark
-                                        ? Colors.white
-                                        : Colors.black26,
+                                    color:
+                                        ThemeServices().theme == ThemeMode.dark
+                                            ? Colors.white
+                                            : Colors.black26,
                                   ),
                                 ),
                                 value: 'Item 3',
                                 onChanged: null),
-                            RadioListTile(activeColor: Colors.red,
+                            RadioListTile(
+                                activeColor: Colors.red,
                                 controlAffinity:
                                     ListTileControlAffinity.trailing,
                                 groupValue: radioItem,
                                 title: Text(
-                                  url=="tm"?'Daşoguz':"Дашогуз",
+                                  url == "tm" ? 'Daşoguz' : "Дашогуз",
                                   style: TextStyle(
-                                    color: ThemeServices().theme ==
-                                            ThemeMode.dark
-                                        ? Colors.white
-                                        : Colors.black26,
+                                    color:
+                                        ThemeServices().theme == ThemeMode.dark
+                                            ? Colors.white
+                                            : Colors.black26,
                                   ),
                                 ),
                                 value: 'Item 4',
                                 onChanged: null),
-                            RadioListTile(activeColor: Colors.red,
+                            RadioListTile(
+                                activeColor: Colors.red,
                                 controlAffinity:
                                     ListTileControlAffinity.trailing,
                                 groupValue: radioItem,
                                 title: Text(
-                                  url=="tm"?'Lebap':"Лебап",
+                                  url == "tm" ? 'Lebap' : "Лебап",
                                   style: TextStyle(
-                                    color: ThemeServices().theme ==
-                                            ThemeMode.dark
-                                        ? Colors.white
-                                        : Colors.black26,
+                                    color:
+                                        ThemeServices().theme == ThemeMode.dark
+                                            ? Colors.white
+                                            : Colors.black26,
                                   ),
                                 ),
                                 value: 'Item 5',
                                 onChanged: null),
-                            RadioListTile(activeColor: Colors.red,
+                            RadioListTile(
+                                activeColor: Colors.red,
                                 controlAffinity:
                                     ListTileControlAffinity.trailing,
                                 groupValue: radioItem,
                                 title: Text(
-                                  url=="tm"?'Mary':"Мары",
+                                  url == "tm" ? 'Mary' : "Мары",
                                   style: TextStyle(
-                                    color: ThemeServices().theme ==
-                                            ThemeMode.dark
-                                        ? Colors.white
-                                        : Colors.black26,
+                                    color:
+                                        ThemeServices().theme == ThemeMode.dark
+                                            ? Colors.white
+                                            : Colors.black26,
                                   ),
                                 ),
                                 value: 'Item 5',
@@ -188,8 +190,7 @@ class _SettingState extends State<Setting> {
                 width: MediaQuery.of(context).size.width,
                 height: 50,
                 padding: EdgeInsets.only(left: 15),
-                margin:
-                    EdgeInsets.only(top: 5, left: 15, right: 15, bottom: 5),
+                margin: EdgeInsets.only(top: 5, left: 15, right: 15, bottom: 5),
                 decoration: BoxDecoration(
                     color: ThemeServices().theme == ThemeMode.dark
                         ? Color.fromRGBO(55, 55, 55, 1)
@@ -199,7 +200,9 @@ class _SettingState extends State<Setting> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(right: 10),
-                      child: Image.asset("asset/profile/map 3.png",width: 20,height: 20,
+                      child: Image.asset("asset/profile/map 3.png",
+                          width: 20,
+                          height: 20,
                           color: ThemeServices().theme == ThemeMode.dark
                               ? Color.fromRGBO(174, 174, 174, 1)
                               : Color.fromRGBO(41, 41, 41, 1)),
@@ -220,17 +223,18 @@ class _SettingState extends State<Setting> {
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => Help(
-                        appbartitle: widget.profi.komek,
-                        contexttitle:
-                            url=="tm"?"""Hormatly müşderi siz biziň PandaTm online platformamyzda islendik kategoriýalardaky harytlary tapyp bilersiňiz.
+                      appbartitle: widget.profi.komek,
+                      contexttitle: url == "tm"
+                          ? """Hormatly müşderi siz biziň PandaTm online platformamyzda islendik kategoriýalardaky harytlary tapyp bilersiňiz.
 PandaTm online platformamyzda siz gijeki ýagdaýa geçirmek, islegiňize görä dil saýlamak we admin bilen dessine habarlaşmak ýaly mümkinçiliklerden peýdalanyp bilersiňiz.
 PandaTm online platformamyzda harydy tapmagyň birnäçe görnüşleri bolup olar gözleg arkaly, ştrih kody arkaly we tötänleýin tapyp bilersiňiz. Siz tapan harydyňyz sargyt etmek üçin ol harydy sebede islän reňkiňize we ölçegiňize görä goşýaňyz. Soňra sebede geçip harytlaryň degişli bolan dükanlarynyň her biri bilen aýratynlykda Sargydy taýýarlaýaňyz hem-de sargyt edýäňiz we operatorymyzyň siziň sargydyňyzy şeýle-de maglumatlaryňyzy deňeşdirmek üçin etjek jaňyna garaşýaňyz! Sargyt tassyklanylandan soňra görkezilen wagtda sargydyňyz kurýerimiz tarapynda siziň bellän salgyňyza öz wagtynda eltip beriler. 
 Hormatly Müşderi biziň PandaTm online platformamyzy saýlanyňyz üçin SAG BOLUŇ!!!
-""" :"""Уважаемый ПОКУПАТЕЛЬ, на нашей онлайн-платформе PandaTm вы можете найти товары любых категории.
+"""
+                          : """Уважаемый ПОКУПАТЕЛЬ, на нашей онлайн-платформе PandaTm вы можете найти товары любых категории.
 На нашей онлайн-платформе PandaTm вы можете воспользоваться такими опциями, как переключение в ночной режим, выбор языка по и прямую связь с администратором.
 Есть несколько способов найти товар на нашей онлайн-платформе PandaTm: поиск, штрих-код и случайный выбор. Чтобы заказать найденный товар, добавьте его в корзину нужного цвета и размера. Затем вы переходите в корзину и оформляете заказ отдельно в каждом из магазинов, где находится товар и ждете пока вам позвонит наш оператор, чтобы сравнить ваш заказ и информацию! После подтверждения заказа ваш заказ будет доставлен по указанному вами адресу вовремя нашим курьером в указанное время.
 Уважаемый покупатель, БЛАГОДАРИМ Вас за выбор нашей онлайн-платформы PandaTm!!!
-"""   )));
+""")));
             },
             child: setin(context, "asset/Setting/Help.svg", widget.profi.komek),
           ),
@@ -249,7 +253,8 @@ Hormatly Müşderi biziň PandaTm online platformamyzy saýlanyňyz üçin SAG B
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => Help(
                       appbartitle: widget.profi.sert,
-                      contexttitle:url=="tm"? """PandaTm online platformamyzda ähli dükanlaryň harytlaryny halka elektron internet üsti bilen görkezmek isleýäris. PandaTm online platformamyzyň şertleri:
+                      contexttitle: url == "tm"
+                          ? """PandaTm online platformamyzda ähli dükanlaryň harytlaryny halka elektron internet üsti bilen görkezmek isleýäris. PandaTm online platformamyzyň şertleri:
 1.Platformany ulanjak islendik müşderi bu ýerde agza bolmagy hökmanydyr.
 2.Agza bolan islendik Müşderi ähli şertler bilen tanyşmaly.
 3.PandaTm online platformamyzy ulanmak üçin agza bolan müşderi düzgünler bilen tanyşan diýip kabul edilýär.
@@ -260,7 +265,8 @@ Hormatly Müşderi biziň PandaTm online platformamyzy saýlanyňyz üçin SAG B
 8. Saýtyň belli bir ýerinde, umumy düzgünler, şeýle hem degişli bölüme laýyk başga şertler-de bellenip biliner. Agzanyň hukuklary we borçlary  Saýt, ähli adamlaryň ulanmagy üçin açykdyr. Agza, Saýtdan peýdalanan döwründe Türkmenistanyň kanunçylygyna laýyklykda hereket etjekdigine borçlanýar. Agza, beýleki agzalaryň we zyýaratçylaryň saýty ulanmagyna päsgel beriji ýa-da agyrlaşdyryjy hereketlerine baş goşmaly däldir. Baş goşan ýagdaýynda sebäpli ýüze çykjak her bir hukuk we jerime jogapkärçiligini öz üstine kabul edilýär. PandaTm içinde, şeýle hem sosial ulgamlarda operator bilen ýazyşmalaryň göçürmesiniň saklanmagy agzalaryň jogapkärçiligindedir. Bu  PandaTm tarapyndan maslahat berilýär. Ýazyşmalaryň göçürmesi saklanmadyk ýagdaýynda, ýitmeginden ýa-da pozmazlygyndan  PandaTm jogapkär däldir. 
 9.Agzalara, PandaTm tarapyndan saýta agza bolmagy bilen berilen ýa-da öz bellän agza ady, açar sözi ýaly maglumatlaryň ulanylmagyny, başga adamlara beren ýagdaýynda, açar sözüniň başga adamlar tarapyndan başga niýete ulanylmagyndan  Agza jogapkärdir. Şeýle-de, Agza, internet äleminde başganyň IP adresini, e-poçta adresini  we ulanyjy adyny ulanyp bilmeýändigi bilen birlikde, Agzalaryň şahsy maglumatlaryny rugsatsyz ulanyp bilmeýär. Ulanylan halatynda, ýüze çykjak ähli hukuk we jerime jogapkärçiliklerini Agza öz üstine alýar. 
 10.Alynan maglumatlar we olaryň ulanylyşy  Saýtyň hyzmatlaryndan ulanýan döwrüňizde ýa-da saýtymyzda agza bolan ýagdaýyňyzda, size ýokary hilli hyzmat bermek üçin adyňyz, familiýaňyz, e-poçta adresiňiz, telefon belgiňiz, jynsyňyz, doglan güniňiz, eltip berme adresiňiz ýaly käbir şahsy maglumatlaryňyza zerurlyk ýüze çykýar. Saýtda alynan maglumatlar aşakdaky maksatlar üçin ulanylýar: Siziň hususy hasabyňyzy döretmek. Sargydy ýerine ýetirmek, tamamlamak we müşderimiz bilen aragatnaşyk saklamak. Sargytlar, hyzmatlar we arzanlaşyklar hakynda maglumat bermek. Müşderilermiziň söwda saýlawyny has gowy bilmek we olara teklip hödürlemek. 
- """:"""На нашей онлайн-платформе PandaTm мы хотим представить товары всех магазинов публике через электронную сеть. Условия нашей онлайн-платформы PandaTm:
+ """
+                          : """На нашей онлайн-платформе PandaTm мы хотим представить товары всех магазинов публике через электронную сеть. Условия нашей онлайн-платформы PandaTm:
 1. Любой клиент, чтобы использовать платформу, должен быть ее участником.
 2. Любой Клиент, который является участником, должен ознакомиться со всеми условиями.
 3. Для использования нашей онлайн-платформы PandaTm считается, что клиент, который становится участником, ознакомился с правилами.
@@ -280,12 +286,14 @@ Hormatly Müşderi biziň PandaTm online platformamyzy saýlanyňyz üçin SAG B
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => Help(
                       appbartitle: widget.profi.barad,
-                      contexttitle: url=="tm"?"""Sizi PandaTm online platformasynda hoş gördük!!! 
+                      contexttitle: url == "tm"
+                          ? """Sizi PandaTm online platformasynda hoş gördük!!! 
 Biz size uzakda bolan dükanlary eliňiziň aýasynda ýaly duýmaklyga kömek  bereris, ýagny islendik islän, halan harytlaryňyzy sargyt edip, islän wagtyňyzda öz gapyňyza çenli getirdip bilersiňiz. Şeýle-de bizde tölegleriň islendik görnüşinden peýdalanmak mümkinçiligiňiz bolar. Biziň esasy aladamyz siziň gymmatly wagtyňyzy tygşytlap, ony öz maşgalaňyz bilen geçirmegiňizdir. 
 Siz PandaTm online platformasyny Google play marketda, IOS story-da we internet torunda (panda.com.tm) tapyp bilersiňiz. 
 PandaTm siziň islegleriňizi we arzuwlaryňyzy gysga wagtda amala aşyrmak üçin döredilendir!!! 
 Habarlaşmak üçin: Pandatm.delivery@gmail.com
-""":"""Добро пожаловать на онлайн-платформе PandaTm!!!
+"""
+                          : """Добро пожаловать на онлайн-платформе PandaTm!!!
 Мы поможем вам почувствовать, что маркеты или рестораны вдали от васб находятся у вас под рукой, а это означает, что вы можете заказать любой товар, который вы хотите, и получить его к вашей двери в любое время. У вас также будет возможность использовать любую форму оплаты. Наша главная задача – сэкономить ваше драгоценное время и провести его с семьей.
 Вы можете найти онлайн-платформу PandaTm на Google Play, IOS story и в Интернете (panda.com.tm).
 PandaTm создана для того, чтобы ваши желания и мечты сбывались в кратчайшие сроки!!!
@@ -328,9 +336,11 @@ PandaTm создана для того, чтобы ваши желания и м
                       "Turkmençe",
                       style: TextStyle(
                           fontSize: 16,
-                          color:url=="tm"?Colors.red: ThemeServices().theme == ThemeMode.dark
-                              ? Color.fromRGBO(250, 250, 250, 1)
-                              : Color.fromRGBO(41, 41, 41, 1)),
+                          color: url == "tm"
+                              ? Colors.red
+                              : ThemeServices().theme == ThemeMode.dark
+                                  ? Color.fromRGBO(250, 250, 250, 1)
+                                  : Color.fromRGBO(41, 41, 41, 1)),
                     )),
                 onPressed: () async {
                   await LanguageFileRead().then((value) {
@@ -354,9 +364,11 @@ PandaTm создана для того, чтобы ваши желания и м
                   "Pусский",
                   style: TextStyle(
                       fontSize: 16,
-                      color:url=="ru"?Colors.red: ThemeServices().theme == ThemeMode.dark
-                          ? Color.fromRGBO(250, 250, 250, 1)
-                          : Color.fromRGBO(41, 41, 41, 1)),
+                      color: url == "ru"
+                          ? Colors.red
+                          : ThemeServices().theme == ThemeMode.dark
+                              ? Color.fromRGBO(250, 250, 250, 1)
+                              : Color.fromRGBO(41, 41, 41, 1)),
                 ),
                 onPressed: () async {
                   await LanguageFileRead().then((value) {

@@ -123,7 +123,7 @@ language();
                                   options: CarouselOptions(
                                     viewportFraction: 1,
                                     aspectRatio: 16 / 9,
-                                    height: 115,
+                                    height: MediaQuery.of(context).size.width*0.3,
                                     onPageChanged: (index, reason) {
                                       _current=index;
                                       setState(() {
