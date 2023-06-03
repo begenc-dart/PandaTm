@@ -4,13 +4,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:serpay/IpAdress.dart';
-import 'package:serpay/LogIn/LogIn/Model/token.dart';
+import 'package:serpay/Database/token.dart';
 import 'package:serpay/Model/TextColor.dart';
-import 'package:serpay/Profile/MyAddress/AddressModel/AddressGet.dart';
-import 'package:serpay/Profile/MyAddress/AddressModel/AddressGetHttp.dart';
+import 'package:serpay/Model/AddressGet.dart';
+import 'package:serpay/Services/AddressGetHttp.dart';
 import 'package:serpay/Profile/MyAddress/MyAddres.dart';
 
-import '../../Language/Language.dart';
+import '../../Model/Language.dart';
 import '../../darkMode/theme_services.dart';
 import 'setAdres.dart';
 import 'package:http/http.dart'as http;

@@ -6,13 +6,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:serpay/IpAdress.dart';
-import 'package:serpay/Liked/get_liked_body.dart';
-import 'package:serpay/Liked/liked.dart';
+import 'package:serpay/Model/get_liked_body.dart';
+import 'package:serpay/Services/liked.dart';
 import 'package:serpay/darkMode/theme_services.dart';
 import 'package:http/http.dart' as http;
-import '../../Language/Language.dart';
-import '../../LogIn/LogIn/Model/token.dart';
-import '../../MainPage/MainPagee/model/HistoryProduct.dart';
+import '../../Model/Language.dart';
+import '../../Database/token.dart';
+import '../../Services/HistoryProduct.dart';
 import '../../MainPage/PhotoIndex.dart';
 import '../../MainPage/Product/Product.dart';
 class WishLike extends StatefulWidget {
@@ -154,12 +154,7 @@ late  LikedBodyGet likedBodyGet;
 
                                                     placeholder: (context, url) =>
                                                         Container(
-                                                            alignment:
-                                                            Alignment.center,
-                                                            child:
-                                                            CircularProgressIndicator(
-                                                              color: Colors.red,
-                                                            )),
+                                                           ),
                                                     errorWidget: (context, url,
                                                         error) =>
                                                         Image.asset(
@@ -352,11 +347,11 @@ late  LikedBodyGet likedBodyGet;
         ):Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("asset/Setting/DrawKit-onlineshopping-Illustration-10.jpg"),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Text("Halanan haryt goşulmady!",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 16),),
-            ),
+            Image.asset(ThemeServices().theme==ThemeMode.dark?"asset/ProfileIcon/like (1).png":"asset/ProfileIcon/like (2).png"),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 10),
+            //   child: Text("Halanan haryt goşulmady!",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 16),),
+            // ),
           ],
         ),
       )

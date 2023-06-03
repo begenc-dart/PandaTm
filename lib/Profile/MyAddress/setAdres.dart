@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:serpay/Profile/MyAddress/AddressModel/AddressAdd.dart';
+import 'package:serpay/Services/AddressAdd.dart';
 import 'package:serpay/Profile/MyAddress/address.dart';
 
-import '../../Language/Language.dart';
+import '../../Model/Language.dart';
 import '../../Model/TextColor.dart';
 import '../../darkMode/theme_services.dart';
-import 'AddressModel/ModelAddress.dart';
+import '../../Model/ModelAddress.dart';
 import 'MyAddres.dart';
 
 class AddAdress extends StatefulWidget {

@@ -1,13 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:serpay/Categorya/Categoriya/CategoriyaModel.dart';
-import 'package:serpay/Language/Language.dart';
+
+import 'package:serpay/Model/Language.dart';
+import 'package:serpay/Model/CategpriyaModel.dart';
 
 import '../../IpAdress.dart';
 import '../../Model/TextColor.dart';
 import '../../darkMode/theme_services.dart';
 import '../Categoriya/Categoriya.dart';
-import '../Model/CategpriyaModel.dart';
+
 import 'SubCategorProduct.dart';
 
 class Subcategoriya extends StatefulWidget {
@@ -70,13 +71,13 @@ class _SubcategoriyaState extends State<Subcategoriya> {
         ),
         Container(
           height: MediaQuery.of(context).size.height*0.73,
-          width: MediaQuery.of(context).size.width - 110,
+          width: MediaQuery.of(context).size.width * 0.75,
 
           child: GridView.extent(
             maxCrossAxisExtent: 100,
-            crossAxisSpacing: 10.0,
-            mainAxisSpacing: 10.0,
-            childAspectRatio: size.height/size.width*0.42,
+            crossAxisSpacing: 5.0,
+            mainAxisSpacing: 5.0,
+            childAspectRatio: size.height/size.width*0.44,
             children: List.generate(
               widget.subCate.length ,
               (index) {

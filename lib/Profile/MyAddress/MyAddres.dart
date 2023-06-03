@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:serpay/Profile/MyAddress/AddressModel/AddressGet.dart';
-import 'package:serpay/Profile/MyAddress/AddressModel/deleteAdress.dart';
+import 'package:serpay/Model/AddressGet.dart';
+import 'package:serpay/Services/deleteAdress.dart';
 import 'package:serpay/Profile/MyAddress/setAdres.dart';
 
-import '../../Language/Language.dart';
+import '../../Model/Language.dart';
 import '../../Model/TextColor.dart';
 import '../../darkMode/theme_services.dart';
 import 'address.dart';

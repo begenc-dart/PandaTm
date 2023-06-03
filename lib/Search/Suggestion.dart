@@ -4,7 +4,7 @@ import 'package:serpay/IpAdress.dart';
 
 import 'package:meta/meta.dart';
 import 'dart:convert';
-import '../LogIn/LogIn/Model/token.dart';
+import '../Database/token.dart';
 import 'SearchRelatedModel.dart';
 import 'package:http/http.dart' as http;
 class SuggestionGet{

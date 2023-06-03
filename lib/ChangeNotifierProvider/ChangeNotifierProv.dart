@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:serpay/MainPage/Model/RandomProduct.dart';
+import 'package:serpay/Model/RandomProduct.dart';
 
 class MainPageProv with ChangeNotifier {
   List _currentPos;

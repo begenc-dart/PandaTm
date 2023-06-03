@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:serpay/MainPage/Model/Product.dart';
-import 'package:serpay/MainPage/Product/Model/AddCart.dart';
+import 'package:serpay/Model/Product.dart';
+import 'package:serpay/Services/AddCart.dart';
 import 'package:serpay/MainPage/Product/ProductChangeNotifier.dart';
 import 'package:serpay/MainPage/Product/SnackBarMessage/SnackbarMessage.dart';
 import 'package:serpay/Profile/ContactUs/Contact.dart';
@@ -13,14 +13,14 @@ import 'package:serpay/Profile/Profile/MessageCenter.dart';
 import 'package:serpay/darkMode/theme_services.dart';
 
 import '../../../HttpModel/BannerGet.dart';
-import '../../../Language/Language.dart';
-import '../../../Liked/liked.dart';
+import '../../../Model/Language.dart';
+import '../../../Services/liked.dart';
 import '../../../LogIn/LogIn/LogIn.dart';
 import '../../../Model/TextColor.dart';
-import '../../../Profile/GetMe/PostGetMe.dart';
+import '../../../Services/PostGetMe.dart';
 import '../../../Ui/MainPage/SkidkaProduct/BrendProduct/BannerProduct.dart';
 import '../../../Ui/MainPage/SkidkaProduct/OwnProduct/OwnProduct.dart';
-import '../Model/Is_Order.dart';
+import '../../../Services/Is_Order.dart';
 import '../Product.dart';
 import 'Sized.dart';
 
@@ -176,7 +176,7 @@ fToast=FToast();
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   widget.oneProductElement.price!=null?  Text(
-                    "${widget.oneProductElement.price.toStringAsFixed(1)} TMT",
+                    "${widget.oneProductElement.price!.toStringAsFixed(1)} TMT",
                     style: CustomTextStyle.productfotterPrice(context),
                   ): Text(
                     "0 TMT",

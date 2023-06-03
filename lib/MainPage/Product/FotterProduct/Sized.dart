@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:serpay/Language/Language.dart';
+import 'package:serpay/Model/Language.dart';
 
 import 'package:serpay/Model/TextColor.dart';
 import 'package:serpay/darkMode/theme_services.dart';
@@ -10,9 +10,9 @@ import '../../../IpAdress.dart';
 import '../../../Sebet/NotOrderedProduct/NotOrderProduct.dart';
 import '../../../Ui/toast.dart';
 import '../../MainChangeNoti.dart';
-import '../../Model/Product.dart';
-import '../Model/AddCart.dart';
-import '../Model/Is_Order.dart';
+import '../../../Model/Product.dart';
+import '../../../Services/AddCart.dart';
+import '../../../Services/Is_Order.dart';
 import '../SnackBarMessage/SnackbarMessage.dart';
 
 class Sized {

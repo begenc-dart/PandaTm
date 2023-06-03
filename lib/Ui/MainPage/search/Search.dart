@@ -6,10 +6,10 @@ import 'package:serpay/darkMode/theme_provider.dart';
 import 'package:serpay/darkMode/theme_services.dart';
 
 import '../../../HttpModel/BannerGet.dart';
-import '../../../Language/Language.dart';
+import '../../../Model/Language.dart';
 import '../../../LogIn/LogIn/LogIn.dart';
 import '../../../Model/TextColor.dart';
-import '../../../Profile/GetMe/PostGetMe.dart';
+import '../../../Services/PostGetMe.dart';
 import '../../../Profile/Profile/MessageCenter.dart';
 import '../../../Search/Search/Search.dart';
 import '../../../Servers/OneProduct.dart';
@@ -50,7 +50,7 @@ class _SearchState extends State<Search> {
               data = value;
             }));
     debugPrint(data);
-    await fetchAlbum(data).then((value) {
+    await fetchAlbum(data)!.then((value) {
       data != "-1"
           ? {
               debugPrint(value.toString()),

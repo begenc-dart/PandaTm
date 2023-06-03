@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:serpay/LogIn/ForgetPassword/Model/Model/ChangePasswordModel.dart';
+import 'package:serpay/Services/ChangePasswordModel.dart';
 import 'package:serpay/Model/TextColor.dart';
-import 'package:serpay/Profile/NewPassword/NewPasswordPath.dart';
+import 'package:serpay/Services/NewPasswordPath.dart';
 
-import 'NewPasswordModel.dart';
+import '../../Model/NewPasswordModel.dart';
 
 
 

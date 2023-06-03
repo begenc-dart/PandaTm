@@ -4,13 +4,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:serpay/Language/Language.dart';
+import 'package:serpay/Model/Language.dart';
+import 'package:serpay/Model/SelersModel.dart';
 
 import '../../IpAdress.dart';
 import '../../Ui/MainPage/SkidkaProduct/BrendProduct/BannerProduct.dart';
 import '../../darkMode/theme_services.dart';
-import '../Model/CategpriyaModel.dart';
-import '../Model/SelersModel.dart';
+
 
 class Dukanlar extends StatefulWidget {
   LanguageModel lan;
@@ -85,7 +85,7 @@ class _DukanlarState extends State<Dukanlar> {
       },
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 150, childAspectRatio: size.height/size.width*0.4),
+            maxCrossAxisExtent: 150, childAspectRatio: size.height/size.width*0.41),
         itemBuilder: (BuildContext context, int index) {
           debugPrint(prod.toString());
           return InkWell(
@@ -123,7 +123,8 @@ class _DukanlarState extends State<Dukanlar> {
                               imageUrl: "$ip/" + prod[index].image!),
                         )
                       : Image.asset(
-                          "asset/Setting/No_Image_Available.png",
+                    ThemeServices().theme == ThemeMode.dark
+                        ?"asset/bann/2121px.png": "asset/Setting/No_Image_Available.png",
                           width: double.infinity,
                           height: 100,
                           fit: BoxFit.fill,

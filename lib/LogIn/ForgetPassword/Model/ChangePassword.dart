@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:serpay/LogIn/ForgetPassword/Model/Model/ChangePasswordModel.dart';
+import 'package:serpay/Services/ChangePasswordModel.dart';
 import 'package:serpay/Model/TextColor.dart';
 
 import '../../../darkMode/theme_services.dart';
-import 'Model/passwordModel.dart';
+import '../../../Model/passwordModel.dart';
 
 class ChangePassword extends StatefulWidget {
 

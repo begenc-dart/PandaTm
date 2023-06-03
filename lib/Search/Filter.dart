@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:serpay/Model/TextColor.dart';
 import 'package:serpay/darkMode/theme_services.dart';
 
-import '../Language/Language.dart';
+import '../Model/Language.dart';
 import '../language.dart';
 
 class Filter extends StatefulWidget {
@@ -107,24 +107,33 @@ languageModel=Language().fetchAlbum(context);
                               autovalidateMode: AutovalidateMode.always,
                               child: Row(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: 80,
                                     height: 30,
                                     child: TextFormField(style: TextStyle(color: ThemeServices().theme == ThemeMode.dark
                                         ? Colors.white
                                         : Color.fromRGBO(41, 41, 41, 1)),
+
                                       textAlign: TextAlign.left,
                                       textAlignVertical: TextAlignVertical.bottom,
                                       controller: min,
                                       // cursorColor: Color.fromRGBO(104, 109, 118, 1),
                                       keyboardType: TextInputType.number,
+                                      autocorrect: false
+                                      ,
+
                                       decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.only(top: 10,bottom: 10,left: 3),
+                                        isCollapsed: true,
+                                        isDense: false,
                                         fillColor:
                                         ThemeServices().theme == ThemeMode.dark
                                             ? Color.fromRGBO(55, 55, 55, 1)
                                             : Colors.white,
                                         hintStyle:
                                         CustomTextStyle.fieldmax(context),
+                                        alignLabelWithHint: false,
+
                                         errorStyle: CustomTextStyle.error(context),
                                         hintText: "min",
                                       ),
@@ -151,7 +160,8 @@ style: TextStyle(color: ThemeServices().theme == ThemeMode.dark
                                       controller: max,
                                       // cursorColor: Color.fromRGBO(104, 109, 118, 1),
                                       keyboardType: TextInputType.number,
-                                      decoration: InputDecoration(
+                                      decoration: InputDecoration(contentPadding: EdgeInsets.only(top: 10,bottom: 10,left: 3),
+                                        isCollapsed: true,
                                         fillColor:
                                         ThemeServices().theme == ThemeMode.dark
                                             ? Color.fromRGBO(55, 55, 55, 1)

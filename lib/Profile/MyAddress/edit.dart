@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:serpay/Profile/MyAddress/setAdres.dart';
 
-import '../../Language/Language.dart';
+import '../../Model/Language.dart';
 import '../../Model/TextColor.dart';
-import 'AddressModel/ModelAddress.dart';
-import 'AddressModel/PacthAddress.dart';
+import '../../Model/ModelAddress.dart';
+import '../../Services/PacthAddress.dart';
 import 'MyAddres.dart';
 import 'address.dart';
 

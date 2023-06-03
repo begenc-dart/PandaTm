@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:serpay/Language/Language.dart';
-import 'package:serpay/Profile/ContactUs/ContactUsModel.dart';
+import 'package:serpay/Model/Language.dart';
+import 'package:serpay/Services/ContactUsModel.dart';
 
 import '../../Model/Colors.dart';
 import '../../Model/TextColor.dart';

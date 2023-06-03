@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:hive/hive.dart';
 
 import '../IpAdress.dart';
-import '../MainPage/Model/BannerProductModel.dart';
+import '../Model/BannerProductModel.dart';
 import 'package:http/http.dart' as http;
 class CaruselGet{
   var box=Hive.box("carusel");

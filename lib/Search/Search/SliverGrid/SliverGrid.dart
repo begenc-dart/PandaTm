@@ -12,8 +12,8 @@ import 'package:serpay/darkMode/theme_services.dart';
 
 import '../../../HttpModel/BannerGet.dart';
 import '../../../IpAdress.dart';
-import '../../../Language/Language.dart';
-import '../../../LogIn/LogIn/Model/token.dart';
+import '../../../Model/Language.dart';
+import '../../../Database/token.dart';
 
 import '../../../MainPage/PhotoIndex.dart';
 

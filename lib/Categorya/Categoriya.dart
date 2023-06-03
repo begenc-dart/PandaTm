@@ -5,13 +5,13 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'package:serpay/Categorya/Model/CategpriyaModel.dart';
 import 'package:serpay/IpAdress.dart';
+import 'package:serpay/Model/CategpriyaModel.dart';
 import 'package:serpay/Model/Colors.dart';
 import 'package:serpay/Model/TextColor.dart';
 import 'package:serpay/darkMode/theme_services.dart';
 
-import '../Language/Language.dart';
+import '../Model/Language.dart';
 import '../MainPage/PhotoIndex.dart';
 import '../Providers.dart';
 import '../Search/Search/Search.dart';
@@ -62,7 +62,7 @@ class _CategoriyaState extends ConsumerState<Categoriya>
   _scan()async{
     await FlutterBarcodeScanner.scanBarcode("#000000", "Yzy çyk", true, ScanMode.DEFAULT).then((value) => setState((){data=value;}));
     debugPrint(data);
-    await fetchAlbum(data).then((value) {
+    await fetchAlbum(data)!.then((value) {
 
       data!="-1"?
       {debugPrint(value.toString()),

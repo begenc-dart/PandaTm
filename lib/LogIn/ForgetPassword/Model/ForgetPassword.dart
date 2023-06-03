@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:serpay/LogIn/ForgetPassword/Model/ChangePassword.dart';
-import 'package:serpay/LogIn/ForgetPassword/Model/Model/PatchModel.dart';
+import 'package:serpay/Model/PatchModel.dart';
 import 'package:serpay/Model/TextColor.dart';
 
 import '../../../darkMode/theme_services.dart';
-import 'Model/patchForget.dart';
+import '../../../Services/patchForget.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({Key? key}) : super(key: key);

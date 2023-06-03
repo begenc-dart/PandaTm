@@ -3,27 +3,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:serpay/Model/AddressGet.dart';
 
 import 'package:serpay/Model/Colors.dart';
+import 'package:serpay/Model/ModelGetMe.dart';
 import 'package:serpay/Model/TextColor.dart';
+import 'package:serpay/Services/PostGetMe.dart';
 import 'package:serpay/darkMode/theme_services.dart';
 
-import '../../Language/Language.dart';
+import '../../Model/Language.dart';
+import '../../Profile/MyAddress/address.dart';
 import '../../Profile/Profile/Help.dart';
 import '../../Providers.dart';
+import '../../Services/AddressGetHttp.dart';
 import '../../Ui/toast.dart';
 import '../NotOrderedProduct/AddOrder.dart';
 import '../OnlinePay.dart';
 
 class OrderProdut extends ConsumerStatefulWidget {
-  String phone;
-  String name;
-String adress;
+
 String sellerId;
 String url;
   LanguageModel lan;
   int index;
-  OrderProdut({required this.name, required this.phone,required this.adress,required this.sellerId,required this.lan,required this.url,required this.index});
+  OrderProdut({required this.sellerId,required this.lan,required this.url,required this.index});
 
   @override
   ConsumerState<OrderProdut> createState() {
@@ -39,13 +42,38 @@ class _OrderProdutState extends ConsumerState<OrderProdut> {
   late String _name, _phone, note;
   String? paymentType;
   int grvalue = 1;
-int paymant=0;
+int paymant=1;
+  String userName = "";
+  String phone = "";
+  late String name="";
 
+getallUser()async{
+ await PostGetMe().fetchAlbum().then((value) {
+   phone = value.userPhone!;
+   name = value.username!;
+  });
+}
+  bool checkAdress = false;
+  addresMethod() async {
+    await AddressGetHttp()
+        .addresGet()
+        .then((value) => address = value.address![0].address);
+  }
+  String address = "";
+  @override
+  void initState() {
+    addresMethod();
+    getallUser();
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    debugPrint(widget.name);
+    addresMethod();
+    // debugPrint(widget.name);
     return Scaffold(
       resizeToAvoidBottomInset: false,
+
       appBar: AppBar(
         backgroundColor: ThemeServices().theme == ThemeMode.dark
             ? const Color.fromRGBO(39, 39, 39, 1)
@@ -62,135 +90,331 @@ int paymant=0;
             height: MediaQuery.of(context).size.height-150,
             child: ListView(
               children: [
-                Form(
-                  key: _formkey,
-                  autovalidateMode: AutovalidateMode.always,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15, top: 5),
-                        child: Text(
-                          widget.lan.ady,
-                          style: CustomTextStyle.drowDown(context),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: TextFormField(
-                          textAlignVertical: TextAlignVertical.top,
-                          initialValue: widget.name,
-                          // cursorColor: Color.fromRGBO(104, 109, 118, 1),
+                FutureBuilder(
+                  future: PostGetMe().fetchAlbum(),
+                  builder: (context,AsyncSnapshot<ModelGetMe> snapshot) {
+                    if(snapshot.hasData){
+                      return  Form(
+                        key: _formkey,
+                        autovalidateMode: AutovalidateMode.always,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15, top: 5),
+                              child: Text(
+                                widget.lan.ady,
+                                style: CustomTextStyle.drowDown(context),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: TextFormField(
+                                textAlignVertical: TextAlignVertical.top,
+                                initialValue: snapshot.data!.username,
+                                // cursorColor: Color.fromRGBO(104, 109, 118, 1),
 
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: ThemeServices().theme == ThemeMode.dark
-                                  ? Colors.white
-                                  : const Color.fromRGBO(55, 55, 55, 1)),
-                          decoration: InputDecoration(
-                            fillColor: ThemeServices().theme == ThemeMode.dark
-                                ? const Color.fromRGBO(55, 55, 55, 1)
-                                : Colors.white,
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: ThemeServices().theme == ThemeMode.dark
+                                        ? Colors.white
+                                        : const Color.fromRGBO(55, 55, 55, 1)),
+                                decoration: InputDecoration(
+                                  fillColor: ThemeServices().theme == ThemeMode.dark
+                                      ? const Color.fromRGBO(55, 55, 55, 1)
+                                      : Colors.white,
 
-                            // hintStyle:CustomTextStyle.fieldmax(context),
-                            errorStyle: CustomTextStyle.error(context),
-                            // hintText: "min",
-                          ),
-                          validator: (jog) {
-                            if (jog!.length == 0) {
-                              return "Adynyzy girizmani hayys edyarin";
-                            } else {
-                              return null;
-                            }
-                          },
-                          onSaved: (deger) => _name = deger!,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15, top: 5),
-                        child: Text(
-                          widget.lan.telef,
-                          style: CustomTextStyle.drowDown(context),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(left: 15, right: 15, top: 15),
-                        child: TextFormField(
-                          initialValue: widget.phone,
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: ThemeServices().theme == ThemeMode.dark
-                                  ? Colors.white
-                                  : const Color.fromRGBO(55, 55, 55, 1)),
-                          textAlign: TextAlign.left,
-                          textAlignVertical: TextAlignVertical.center,
+                                  // hintStyle:CustomTextStyle.fieldmax(context),
+                                  errorStyle: CustomTextStyle.error(context),
+                                  // hintText: "min",
+                                ),
+                                validator: (jog) {
+                                  if (jog!.length == 0) {
+                                    return "Adynyzy girizmani hayys edyarin";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                onSaved: (deger) => _name = deger!,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15, top: 5),
+                              child: Text(
+                                widget.lan.telef,
+                                style: CustomTextStyle.drowDown(context),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                              const EdgeInsets.only(left: 15, right: 15, top: 15),
+                              child: TextFormField(
+                                initialValue: snapshot.data!.userPhone,
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: ThemeServices().theme == ThemeMode.dark
+                                        ? Colors.white
+                                        : const Color.fromRGBO(55, 55, 55, 1)),
+                                textAlign: TextAlign.left,
+                                textAlignVertical: TextAlignVertical.center,
 
-                          // cursorColor: Color.fromRGBO(104, 109, 118, 1),
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            fillColor: ThemeServices().theme == ThemeMode.dark
-                                ? const Color.fromRGBO(55, 55, 55, 1)
-                                : Colors.white,
+                                // cursorColor: Color.fromRGBO(104, 109, 118, 1),
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                  fillColor: ThemeServices().theme == ThemeMode.dark
+                                      ? const Color.fromRGBO(55, 55, 55, 1)
+                                      : Colors.white,
 
-                            // hintStyle: CustomTextStyle.fieldmax(context),
-                            errorStyle: CustomTextStyle.error(context),
-                            // hintText: "max",
-                          ),
-                          validator: (jog) {
-                            if (jog!.length == 0) {
-                              return "Telefon belginizi girizmani hayys edyarin";
-                            } else {
-                              return null;
-                            }
-                          },
-                          onSaved: (deger) => _phone = deger!,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15, top: 5),
-                        child: Text(
-                          widget.lan.note,
-                          style: CustomTextStyle.drowDown(context),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(left: 15, right: 15, top: 15),
-                        child: TextFormField(
-                          minLines: 1,
-                          maxLines: null,
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: ThemeServices().theme == ThemeMode.dark
-                                  ? Colors.white
-                                  : const Color.fromRGBO(55, 55, 55, 1)),
-                          textAlign: TextAlign.left,
-                          textAlignVertical: TextAlignVertical.center,
+                                  // hintStyle: CustomTextStyle.fieldmax(context),
+                                  errorStyle: CustomTextStyle.error(context),
+                                  // hintText: "max",
+                                ),
+                                validator: (jog) {
+                                  if (jog!.length == 0) {
+                                    return "Telefon belginizi girizmani hayys edyarin";
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                onSaved: (deger) => _phone = deger!,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15, top: 10),
+                              child: Text(
+                                "Salgyňyzy:",
+                                style: CustomTextStyle.drowDown(context),
+                              ),
+                            ),
+                            checkAdress == false
+                                ? address.isEmpty
+                                ? FutureBuilder(
+                              future: AddressGetHttp().addresGet(),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<AddressGet> addresssnap) {
+                                if (addresssnap.hasData) {
+                                  if (addresssnap.data!.address!.length !=0) {
+                                    return Container(
+                                      decoration: BoxDecoration(
+                                        color: ThemeServices().theme ==
+                                            ThemeMode.dark
+                                            ? const Color.fromRGBO(
+                                            55, 55, 55, 1)
+                                            : select.dorpDown,
+                                        // borderRadius: BorderRadius.circular(5)
+                                      ),
+                                      margin: const EdgeInsets.all(15),
+                                      padding: const EdgeInsets.all(5),
+                                      child: DropdownButtonHideUnderline(
+                                        child: DropdownButton<String>(
+                                          alignment: Alignment.centerLeft,
+                                          focusColor:
+                                          ThemeServices().theme ==
+                                              ThemeMode.dark
+                                              ? const Color.fromRGBO(
+                                              55, 55, 55, 1)
+                                              : Colors.white,
+                                          value: address,
+                                          //elevation: 5,
+                                          isExpanded: true,
 
-                          // cursorColor: Color.fromRGBO(104, 109, 118, 1),
-                          keyboardType: TextInputType.multiline,
-                          decoration: InputDecoration(
-                            fillColor: ThemeServices().theme == ThemeMode.dark
-                                ? const Color.fromRGBO(55, 55, 55, 1)
-                                : Colors.white,
+                                          dropdownColor:
+                                          ThemeServices().theme ==
+                                              ThemeMode.dark
+                                              ? const Color.fromRGBO(
+                                              55, 55, 55, 1)
+                                              : Colors.white,
+                                          style: TextStyle(
+                                              color: select.dorpDown),
+                                          iconEnabledColor:
+                                          const Color.fromRGBO(
+                                              97, 97, 97, 1),
+                                          items: List.generate(
+                                            addresssnap
+                                                .data!.address!.length ,
+                                                (index) => addresssnap.data!
+                                                .address![index].address,
+                                          ).map<DropdownMenuItem<String>>(
+                                                  (String value) {
+                                                return DropdownMenuItem<String>(
+                                                  value: value,
+                                                  child: Text(
+                                                    value,
+                                                    overflow:
+                                                    TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                        color: ThemeServices()
+                                                            .theme ==
+                                                            ThemeMode.dark
+                                                            ? const Color
+                                                            .fromRGBO(
+                                                            250,
+                                                            250,
+                                                            250,
+                                                            1)
+                                                            : select.recColor,
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                        FontWeight.w400),
+                                                  ),
+                                                );
+                                              }).toList(),
+                                          hint: const Text(
+                                            "Adress gos",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight:
+                                                FontWeight.w500),
+                                          ),
+                                          onChanged: (String? tip) {
+                                            setState(() {
+                                              address = tip.toString();
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    );
+                                  } else {
+                                    return InkWell(
+                                      onTap: (){
+                                        Navigator.of(context).push(MaterialPageRoute(
+                                            builder: (context) => MyAdressClass(
+                                              url: widget.url,
+                                              profi:widget.lan.profileDetails,
+                                            )));
+                                        setState(() {
 
-                            // hintStyle: CustomTextStyle.fieldmax(context),
-                            errorStyle: CustomTextStyle.error(context),
-                            // hintText: "max",
-                          ),
-                          // validator: (jog) {
-                          //   if (jog!.length == 0) {
-                          //     return "full";
-                          //   } else {
-                          //     return null;
-                          //   }
-                          // },
-                          onSaved: (deger) => note = deger!,
+                                        });
+                                      },
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 50,
+                                        margin: const EdgeInsets.all(15),
+                                        padding: const EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                            color: ThemeServices().theme ==
+                                                ThemeMode.dark
+                                                ? const Color.fromRGBO(
+                                                55, 55, 55, 1)
+                                                : select.dorpDown,
+                                            borderRadius: BorderRadius.circular(5)
+                                        ),
+                                        child: Align(child: const Text("Salgyňyzy goşun",style: TextStyle(fontSize: 16),),alignment: Alignment.centerLeft,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                } else {
+                                  return const Center(
+                                      child: CircularProgressIndicator());
+                                }
+                              },
+                            )
+                                : Container()
+                                : Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 15, right: 15, top: 15),
+                              child: TextFormField(
+
+                                minLines: 1,
+                                maxLines: null,
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: ThemeServices().theme ==
+                                        ThemeMode.dark
+                                        ? Colors.white
+                                        : const Color.fromRGBO(55, 55, 55, 1)),
+                                textAlign: TextAlign.left,
+                                textAlignVertical: TextAlignVertical.center,
+
+                                // cursorColor: Color.fromRGBO(104, 109, 118, 1),
+                                keyboardType: TextInputType.multiline,
+                                decoration: InputDecoration(
+                                  fillColor:
+                                  ThemeServices().theme == ThemeMode.dark
+                                      ? const Color.fromRGBO(55, 55, 55, 1)
+                                      : Colors.white,
+
+                                  // hintStyle: CustomTextStyle.fieldmax(context),
+                                  errorStyle: CustomTextStyle.error(context),
+                                  // hintText: "max",
+                                ),
+                                validator: (jog) {
+
+                                  return null;
+
+                                },
+                                onSaved: (deger) {
+                                  address = deger!;
+                                  setState(() {
+
+                                  });
+                                },
+                              ),
+                            ),
+                            CheckboxListTile(
+                              value: checkAdress,
+                              activeColor: Colors.red,
+                              onChanged: (value) {
+                                checkAdress = value!;
+                                setState(() {});
+                              },
+                              title: Text(widget.url=="tm"?"Başka salgy":"Другой адрес",
+                                  style: TextStyle(
+                                      color: ThemeServices().theme == ThemeMode.dark
+                                          ? Colors.white
+                                          : Colors.black)),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15, top: 5),
+                              child: Text(
+                                widget.lan.note,
+                                style: CustomTextStyle.drowDown(context),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                              const EdgeInsets.only(left: 15, right: 15, top: 15),
+                              child: TextFormField(
+                                minLines: 1,
+                                maxLines: null,
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: ThemeServices().theme == ThemeMode.dark
+                                        ? Colors.white
+                                        : const Color.fromRGBO(55, 55, 55, 1)),
+                                textAlign: TextAlign.left,
+                                textAlignVertical: TextAlignVertical.center,
+
+                                // cursorColor: Color.fromRGBO(104, 109, 118, 1),
+                                keyboardType: TextInputType.multiline,
+                                decoration: InputDecoration(
+                                  fillColor: ThemeServices().theme == ThemeMode.dark
+                                      ? const Color.fromRGBO(55, 55, 55, 1)
+                                      : Colors.white,
+
+                                  // hintStyle: CustomTextStyle.fieldmax(context),
+                                  errorStyle: CustomTextStyle.error(context),
+                                  // hintText: "max",
+                                ),
+                                // validator: (jog) {
+                                //   if (jog!.length == 0) {
+                                //     return "full";
+                                //   } else {
+                                //     return null;
+                                //   }
+                                // },
+                                onSaved: (deger) => note = deger!,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
+                      );
+                    }
+                    else{
+                      return Container();
+                    }
+                  }
                 ),
                 CheckboxListTile(
                   value: check,
@@ -243,6 +467,7 @@ Pandatm.delivery@gmail.com
                   ),
                 ),
 
+
                 Padding(
                   padding: const EdgeInsets.only(left: 15, top: 20),
                   child: Text(
@@ -277,7 +502,7 @@ Pandatm.delivery@gmail.com
                               width: MediaQuery.of(context).size.width / 2,
                               height: 36,
                               child: Text(
-                               widget.lan.ertir,
+                                widget.lan.ertir,
                                 style: TextStyle(fontSize: 14,color: ThemeServices().theme == ThemeMode.dark
                                     ?  Colors.white
                                     :  Colors.black),
@@ -285,7 +510,7 @@ Pandatm.delivery@gmail.com
                         },
                         onValueChanged: (int? value) {
                           setState(
-                            () {
+                                () {
                               grvalue = value!;
                             },
                           );
@@ -306,19 +531,6 @@ Pandatm.delivery@gmail.com
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    InkWell(
-
-                      onTap: (){
-                        paymant=0;
-                        setState(() {
-
-                        });
-                      },
-                      child:type("asset/productIcon/Group 291 (1).svg",
-                         widget.lan.nagtDal, 1,paymant == 0 ? Colors.redAccent : Colors.white,ThemeServices().theme == ThemeMode.dark
-                              ? const Color.fromRGBO(250, 250, 250, 1)
-                              : select.newCol)
-                    ),
                     InkWell(onTap: (){
                       paymant=1;
                       setState(() {
@@ -328,24 +540,29 @@ Pandatm.delivery@gmail.com
                         1,paymant == 1 ? Colors.redAccent : Colors.white,ThemeServices().theme == ThemeMode.dark
                             ? const Color.fromRGBO(250, 250, 250, 1)
                             : select.newCol),),
-                   InkWell(
-                     onTap: (){
-                       paymant=2;
-                       setState(() {
+                    InkWell(
 
-                       });
+                        onTap: (){
 
-                     },
-                     child: Padding(padding: const EdgeInsets.only(bottom: 10),child:  type("asset/productIcon/Group 291.svg", widget.lan.online,
-                         1, paymant == 2 ? Colors.redAccent : Colors.white, ThemeServices().theme == ThemeMode.dark
-                           ? Colors.white:Colors.black,),)
-                   )
+                        },
+                        child:type("asset/productIcon/Group 291 (1).svg",
+                            widget.lan.nagtDal, 1,paymant == 0 ? Colors.redAccent : Colors.white,Colors.grey)
+                    ),
+
+                    InkWell(
+                        onTap: (){
+
+
+                        },
+                        child: Padding(padding: const EdgeInsets.only(bottom: 10),child:  type("asset/productIcon/Group 291.svg", widget.lan.online,
+                          1, paymant == 2 ? Colors.redAccent : Colors.white,Colors.grey,),)
+                    )
 
                   ],
                 ),
 
               ],
-            ),
+            )
 
           ),
           Row(
@@ -383,6 +600,7 @@ Pandatm.delivery@gmail.com
               InkWell(
                 onTap: () {
                   check == true ?   checkVal():debugPrint("");
+
                 },
                 child: Container(
                   width:check==true?MediaQuery.of(context).size.width*0.45: MediaQuery.of(context).size.width*0.9,
@@ -524,7 +742,7 @@ Pandatm.delivery@gmail.com
                   wagt = deger.toString();
                 });
               },
-              subtitle:  Text("1 sagadyn dowmynda",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
+              subtitle:  Text("1 sagadyň dowmynda",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
                   ? Colors.white:Colors.black,)),
               title:  Text("Express",style:TextStyle(color: ThemeServices().theme == ThemeMode.dark
                   ? Colors.white:Colors.black,)),
@@ -854,8 +1072,9 @@ Pandatm.delivery@gmail.com
   checkVal() {
     if (_formkey.currentState!.validate()) {
       _formkey.currentState!.save();
-     wagt.isEmpty?Toast().showToastDelet(context, "Wagty saylamagynyzy sizden haýyş edýärin"): AddOrder()
-          .createUser(widget.adress, paymant==0?"Nagt dal":paymant==1?"Nagt":"Online", wagt, context, _phone, note,_name,widget.sellerId,widget.url,
+
+    address.isEmpty?Toast().showToastDelet(context, "Salgyňyzy goşmany haýyş edýärin"):!check?Toast().showToastDelet(context, "Düzgunler bilen tanyşmagynyzy haýýş edýärin"): wagt.isEmpty?Toast().showToastDelet(context, "Wagty saylamagynyzy sizden haýyş edýärin"): AddOrder()
+          .createUser(address, paymant==0?"Nagt dal":paymant==1?"Nagt":"Online", wagt, context, _phone, note,_name,widget.sellerId,widget.url,
          ref
          .watch(PriceState.pricepro)[widget.index]<150?  ref
          .watch(PriceState.pricepro)[widget.index]

@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:serpay/LogIn/ForgetPassword/Model/ForgetPassword.dart';
 
-import 'package:serpay/LogIn/LogIn/Model/SignUp.dart';
-import 'package:serpay/LogIn/LogIn/ModelLogIn/ModelLogIn.dart';
+import 'package:serpay/Model/SignUp.dart';
+import 'package:serpay/Model/ModelLogIn.dart';
 
 import 'package:serpay/Model/Colors.dart';
 import 'package:serpay/Model/TextColor.dart';
 
 import '../../darkMode/theme_services.dart';
-import 'Model/fetchAlbum.dart';
-import 'ModelLogIn/PostLogIn.dart';
+import '../../Services/fetchAlbum.dart';
+import '../../Services/PostLogIn.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);

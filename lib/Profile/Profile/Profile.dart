@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:serpay/Profile/ContactUs/Contact.dart';
 
-import 'package:serpay/Profile/GetMe/ModelGetMe.dart';
-import 'package:serpay/Profile/GetMe/PostGetMe.dart';
+import 'package:serpay/Model/ModelGetMe.dart';
+import 'package:serpay/Services/PostGetMe.dart';
 
 import 'package:serpay/Profile/Profile/Like.dart';
 import 'package:serpay/Profile/Profile/MessageCenter.dart';
-import 'package:serpay/Profile/History/MyHistory.dart';
+import 'package:serpay/Profile/MyHistory.dart';
 
 import 'package:serpay/Profile/ProfileEdit/ProfileSetting.dart';
 import 'package:serpay/Profile/Profile/RadioButton.dart';
@@ -18,15 +18,13 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 import '../../IpAdress.dart';
 
-import '../../Language/Language.dart';
+import '../../Model/Language.dart';
 import '../../language.dart';
 import '../MyAddress/address.dart';
 import '../Order/OrderHistory.dart';
 
 class Profile extends StatefulWidget {
-  final WebSocketChannel channel;
 
-  Profile(this.channel);
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -170,7 +168,7 @@ class _ProfileState extends State<Profile> {
                                           a: "1",
                                           languageModel:
                                               lan.data!.profileDetails.sargyt,
-                                          url: url,
+                                          url: url, imageurl: 'asset/ProfileIcon/sargytlarym.png',
                                         )));
                               },
                               child: profile(
@@ -186,7 +184,7 @@ class _ProfileState extends State<Profile> {
                                           a: "Garashylyar",
                                           languageModel:
                                               lan.data!.profileDetails.garas,
-                                          url: url,
+                                          url: url, imageurl: 'asset/ProfileIcon/4.png',
                                         )));
                               },
                               child: profile(lan.data!.profileDetails.garas,
@@ -201,7 +199,7 @@ class _ProfileState extends State<Profile> {
                                           a: "Yatyryldy",
                                           languageModel:
                                               lan.data!.profileDetails.yatyryl,
-                                          url: url,
+                                          url: url, imageurl: 'asset/ProfileIcon/5.png',
                                         )));
                               },
                               child: profile(lan.data!.profileDetails.yatyryl,
@@ -219,7 +217,9 @@ class _ProfileState extends State<Profile> {
                                 },
                                 child: profile(
                                     lan.data!.profileDetails.taryhym ,
-                                    "asset/profile/footprints.png")),
+                                    ThemeServices().theme ==
+                                        ThemeMode.dark
+                                        ? "asset/ProfileIcon/1.png":"asset/ProfileIcon/3.png")),
                           ),
                         ],
                       ),
@@ -277,10 +277,10 @@ class _ProfileState extends State<Profile> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(top: 10),
-                                    child: SvgPicture.asset(
-                                      "asset/Setting/Address.svg",
-                                      width: 20,
-                                      height: 20,color: ThemeServices().theme == ThemeMode.dark
+                                    child: Image.asset(
+                                       "asset/ProfileIcon/7.png",
+                                        width: MediaQuery.of(context).size.width*0.055,
+                                        height: MediaQuery.of(context).size.width*0.055,color: ThemeServices().theme == ThemeMode.dark
                                         ? Colors.white:Colors.black,
                                     ),
                                   ),
@@ -350,12 +350,11 @@ class _ProfileState extends State<Profile> {
           Padding(
             padding: const EdgeInsets.only(top: 10),
             child: Container(
-              width: 20,
-              height: 20,
+              width: MediaQuery.of(context).size.width*0.055,
+              height: MediaQuery.of(context).size.width*0.055,
               child: Image.asset(
                 asset,
-                width: 20,
-                height: 20,
+
                 fit: BoxFit.fill,
                 color: ThemeServices().theme == ThemeMode.dark
                   ? Colors.white:Colors.black,

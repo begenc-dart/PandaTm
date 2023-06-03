@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:serpay/Model/CategpriyaModel.dart';
 
-import '../Categorya/Model/CategpriyaModel.dart';
+
 
 class ProductIndex with ChangeNotifier {
   int _currentPos;

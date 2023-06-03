@@ -20,8 +20,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import '../../Language/Language.dart';
-import 'AddMessage.dart';
+import '../../Model/Language.dart';
+import '../../Services/AddMessage.dart';
 import 'Userchat.dart';
 
 class MessagesNot extends StatefulWidget {
@@ -232,7 +232,7 @@ class _MessageCenterState extends State<MessageCenter> {
                                           border: Border.all(
                                               color: colrs.photodotOffCol,
                                               width: 1)),
-                                      child: Text(
+                                      child: SelectableText(
                                         widget.message[index].text,
                                         style:
                                             CustomTextStyle.chatwhite(context),
@@ -264,7 +264,7 @@ class _MessageCenterState extends State<MessageCenter> {
                                             : colrs.message,
                                         borderRadius:
                                             BorderRadius.circular(10)),
-                                    child: Text(
+                                    child: SelectableText(
                                       widget.message[index].text,
                                       style: CustomTextStyle.chatred(context),
                                     ),

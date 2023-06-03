@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:serpay/IpAdress.dart';
 import 'package:serpay/MainPage/MainPagee/ProductMainPage/ProductMainPage.dart';
-import 'package:serpay/MainPage/Model/mainModel.dart';
+import 'package:serpay/Model/mainModel.dart';
 
-import '../../../../MainPage/MainPagee/model/HistoryProduct.dart';
+import '../../../../Services/HistoryProduct.dart';
 import '../../../../MainPage/Product/Product.dart';
 import '../../../../Model/TextColor.dart';
 import '../../../../darkMode/theme_services.dart';

@@ -12,7 +12,7 @@ import 'package:serpay/Search/Search/SliverGrid/SliverGrid.dart';
 import 'package:serpay/Search/Search/Suggestion/Suggestion.dart';
 import 'package:serpay/darkMode/theme_services.dart';
 
-import '../../Language/Language.dart';
+import '../../Model/Language.dart';
 import '../../Model/Colors.dart';
 import '../SearchRelated.dart';
 import '../SearchRelatedModel.dart';
@@ -124,7 +124,7 @@ int a=0;
   Widget buildResults(BuildContext context) {
     a+=1;
     check = true;
-    a==1?Hive.box("search").length<6?
+    a==1?Hive.box("search").length<9?
     Hive.box("search").add(query):{Hive.box("search").add(query),Hive.box("search").deleteAt(0)}:"";
     return ProductGrid(
       keys: query,
@@ -177,8 +177,9 @@ setState((){});
                         ],
                       ),
                       Container(
-                        height: 100,
+                        height: MediaQuery.of(context).size.height*0.18,
                         child: GridView.builder(
+                          physics: NeverScrollableScrollPhysics(),
                           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                               maxCrossAxisExtent: 180, childAspectRatio: 3),
                           itemBuilder: (BuildContext context, index) {

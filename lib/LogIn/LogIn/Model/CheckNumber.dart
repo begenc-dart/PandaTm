@@ -10,8 +10,8 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../Model/Colors.dart';
 import '../../../Model/TextColor.dart';
-import 'SignUp.dart';
-import 'fetch.dart';
+import '../../../Model/SignUp.dart';
+import '../../../Services/fetch.dart';
 class CheckNumber extends StatefulWidget {
   String num;
   CheckNumber({required this.num});

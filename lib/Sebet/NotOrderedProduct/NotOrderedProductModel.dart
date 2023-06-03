@@ -81,11 +81,11 @@ class Order {
   bool isSelected;
   String sellerId;
   List<ProductColor>? productColor;
-  String size;
+  String? size;
   double price;
-  int priceOld;
+  int? priceOld;
   double totalPrice;
-  String productSizeId;
+  String? productSizeId;
   List<Productsize>? productsizes;
 
   factory Order.fromJson(Map<String, dynamic> json) => Order(
@@ -313,11 +313,11 @@ class Seller {
   dynamic phoneNumberExtra;
   String nameTm;
   String nameRu;
-  String image;
+  String? image;
   String password;
   dynamic nickname;
-  String addressTm;
-  String addressRu;
+  String? addressTm;
+  String? addressRu;
   bool isActive;
   DateTime createdAt;
   DateTime updatedAt;

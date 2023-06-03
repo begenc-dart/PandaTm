@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:serpay/Sebet/NotOrderedProduct/IsSelectModel.dart';
 
 import '../../../IpAdress.dart';
-import '../../../LogIn/LogIn/Model/token.dart';
+import '../../Database/token.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -42,23 +42,41 @@ class AddOrder {
         }));
     debugPrint(sellerId.toString());
     debugPrint(response.body);
-        Fluttertoast.showToast(
+//         Fluttertoast.showToast(
+//
+//             msg: url=="tm"?"Sargydyňyz kabul edildi":"Ваш заказ принят",
+// // toastLength: Toast().,
+//             // toastLength: Toast.LENGTH_SHORT,
+//             gravity: ToastGravity.CENTER,
+//             timeInSecForIosWeb: 1,
+//             backgroundColor: Colors.red,
+//         textColor: Colors.white,
+//         fontSize: 16.0
+//     );
 
-            msg: url=="tm"?"Sargydyňyz kabul edildi":"Ваш заказ принят",
-
-            // toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 16.0
-    );
     if (response.statusCode == 200) {
-    payment_type!="Online"?  Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => MyApp()),
-              (Route<dynamic> route) => false
-      ): Navigator.push(context, MaterialPageRoute(builder: (context)=>OnlinePay(id: jsonDecode(response.body)["data"]["orders_array"][0]["order_id"], payment: pay,)));
+    payment_type!="Online"? {
+      {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyApp()),
+                    (Route<dynamic> route) => false)
+              },
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height*0.5,left:  MediaQuery.of(context).size.height*0.1,right: MediaQuery.of(context).size.height*0.1),
+    behavior: SnackBarBehavior.floating,
+    elevation: 0,
+    backgroundColor: Colors.transparent,
+    content: Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+    children: [
+    Image.asset("asset/Setting/1.gif",width: 150,height: 150,),
+    Container(child: Center(child: Text( "Sargydyňyz kabul edildi",style: TextStyle(color: Colors.white),)),decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.red),margin: EdgeInsets.only(left: 10,right: 10),width: MediaQuery.of(context).size.width*0.6,height: 30,),
+    ],
+    ),
+    ))
+            }
+          : Navigator.push(context, MaterialPageRoute(builder: (context)=>OnlinePay(id: jsonDecode(response.body)["data"]["orders_array"][0]["order_id"], payment: pay,)));
 
       return IsSelectdModel.fromJson(jsonDecode(response.body));
     } else {

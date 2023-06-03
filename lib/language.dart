@@ -8,7 +8,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:path_provider/path_provider.dart';
 
-import 'package:serpay/Language/Language.dart';
+import 'package:serpay/Model/Language.dart';
 String AssetLan = '';
 Future<String> get LanguageFile async {
   Directory dosyaPath = await getApplicationDocumentsDirectory();

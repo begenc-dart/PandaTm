@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:serpay/Servers/Model/AllFreeProduct.dart';
 import 'package:serpay/Servers/Model/OneFreeProduct.dart';
 import '../../IpAdress.dart';
-import '../../LogIn/LogIn/Model/token.dart';
+import '../../Database/token.dart';
 
 class OneFreeProductServer {
   String token = "";

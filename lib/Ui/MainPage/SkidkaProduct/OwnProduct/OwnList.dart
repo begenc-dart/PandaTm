@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:serpay/IpAdress.dart';
 import 'package:serpay/MainPage/MainPagee/ProductMainPage/ProductMainPage.dart';
-import 'package:serpay/MainPage/Model/BannerProdcutModel.dart';
+import 'package:serpay/Model/BannerProdcutModel.dart';
 import 'package:serpay/MainPage/Product/Product.dart';
 
-import '../../../../MainPage/MainPagee/model/HistoryProduct.dart';
-import '../../../../MainPage/Model/BannerProductModel.dart';
-import '../../../../MainPage/Model/SellerProduct.dart';
+import '../../../../Services/HistoryProduct.dart';
+import '../../../../Model/BannerProductModel.dart';
+import '../../../../Model/SellerProduct.dart';
 import '../../../../Model/TextColor.dart';
 import '../../../../darkMode/theme_services.dart';
 import 'OwnProductModel.dart';

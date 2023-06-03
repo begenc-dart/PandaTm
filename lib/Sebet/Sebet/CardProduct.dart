@@ -130,25 +130,80 @@ class _CardProductState extends ConsumerState<CardProduct> {
                               // maxLines: 1,
                               style: CustomTextStyle.cartproduct(context),
                             ),
-                            InkWell(
-                              onTap: () {
-                                // Sized().addcard(context,widget.prod.productsizes);
-                              },
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 8, bottom: 15),
-                                child: Text(
-                                  widget.order.size != null
-                                      ? widget.order.productColor == null
-                                          ? ""
-                                          : widget.order.productColor![0]
-                                                  .colorNameTm +
-                                              " " +
-                                              widget.order.size.toString()
-                                      : "",
-                                  style: CustomTextStyle.cardName(context),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    // Sized().addcard(context,widget.prod.productsizes);
+                                  },
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.only(top: 8, bottom: 15),
+                                    child: Text(
+                                      widget.order.size != null
+                                          ? widget.order.productColor == null
+                                              ? ""
+                                              : widget.order.productColor![0]
+                                                      .colorNameTm +
+                                                  " " +
+                                                  widget.order.size.toString()
+                                          : "",
+                                      style: CustomTextStyle.cardName(context),
+                                    ),
+                                  ),
                                 ),
-                              ),
+                                InkWell(
+                                    onTap: () {
+                                      // debugPrint(widget.prodList.toString()+"dsfsd");
+                                      DeleteCart().deleteCart(
+                                          widget.order.orderproductId);
+                                      widget.orders
+                                          .removeAt(widget.proindex);
+                                      widget.order.isSelected == true
+                                          ? ref
+                                          .read(PriceState
+                                          .pricepro.notifier)
+                                          .remove(
+                                          widget.index,
+                                          widget.order.price *
+                                              ref.watch(CounterState
+                                                  .provider)[
+                                              widget
+                                                  .index][widget
+                                                  .proindex])
+                                          : "";
+
+//
+                                      widget.orders.length == 0
+                                          ? {
+                                        widget.notOrder.removeAt(
+                                            widget.index),
+                                        ref
+                                            .read(PriceState
+                                            .pricepro
+                                            .notifier)
+                                            .removeprice(
+                                            widget.index)
+                                        // productIndex.removeall(widget.index)
+                                      }
+                                          : "";
+                                      ref
+                                          .read(CounterState
+                                          .provider.notifier)
+                                          .removepro(widget.index,
+                                          widget.proindex);
+                                      widget.refres();
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Icon(
+                                        Icons.delete,
+                                        color: Color.fromRGBO(
+                                            255, 20, 29, 1),
+                                      ),
+                                    ))
+                              ],
                             ),
                             Container(
                               alignment: Alignment.centerLeft,
@@ -251,7 +306,7 @@ class _CardProductState extends ConsumerState<CardProduct> {
                                                                   1),
                                                           width: 0.8)),
                                                   margin: EdgeInsets.only(
-                                                      right: 10),
+                                                      right: 10,left: 10),
                                                   child: Icon(
                                                     Icons.remove,
                                                     color: ThemeServices()
@@ -368,7 +423,7 @@ class _CardProductState extends ConsumerState<CardProduct> {
                                                                             1),
                                                                 width: 0.8)),
                                                         margin: EdgeInsets.only(
-                                                            left: 10),
+                                                            left: 10,right: 10),
                                                         child: new Icon(
                                                           Icons.add,
                                                           color: ThemeServices()
@@ -395,57 +450,7 @@ class _CardProductState extends ConsumerState<CardProduct> {
                                                     ),
                                             ],
                                           )),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 15),
-                                        child: InkWell(
-                                            onTap: () {
-                                              // debugPrint(widget.prodList.toString()+"dsfsd");
-                                              DeleteCart().deleteCart(
-                                                  widget.order.orderproductId);
-                                              widget.orders
-                                                  .removeAt(widget.proindex);
-                                              widget.order.isSelected == true
-                                                  ? ref
-                                                      .read(PriceState
-                                                          .pricepro.notifier)
-                                                      .remove(
-                                                          widget.index,
-                                                          widget.order.price *
-                                                              ref.watch(CounterState
-                                                                      .provider)[
-                                                                  widget
-                                                                      .index][widget
-                                                                  .proindex])
-                                                  : "";
 
-//
-                                              widget.orders.length == 0
-                                                  ? {
-                                                      widget.notOrder.removeAt(
-                                                          widget.index),
-                                                      ref
-                                                          .read(PriceState
-                                                              .pricepro
-                                                              .notifier)
-                                                          .removeprice(
-                                                              widget.index)
-                                                      // productIndex.removeall(widget.index)
-                                                    }
-                                                  : "";
-                                              ref
-                                                  .read(CounterState
-                                                      .provider.notifier)
-                                                  .removepro(widget.index,
-                                                      widget.proindex);
-                                              widget.refres();
-                                            },
-                                            child: Icon(
-                                              Icons.delete,
-                                              color: Color.fromRGBO(
-                                                  255, 20, 29, 1),
-                                            )),
-                                      )
                                     ],
                                   )
                                 ],

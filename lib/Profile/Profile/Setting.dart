@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:serpay/Language/Language.dart';
+import 'package:serpay/Model/Language.dart';
 
 import 'package:serpay/Profile/MyAddress/MyAddres.dart';
 import 'package:serpay/Profile/ContactUs/Contact.dart';

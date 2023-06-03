@@ -72,10 +72,10 @@ class TopRow {
   String bodyTm;
   String bodyRu;
   String productCode;
-  double price;
-  double priceOld;
-  double priceTm;
-  double priceTmOld;
+  double? price;
+  double? priceOld;
+  double? priceTm;
+  double? priceTmOld;
   dynamic priceUsd;
   dynamic priceUsdOld;
   int discount;
@@ -185,7 +185,7 @@ class Images {
   String imageId;
   int productId;
   String image;
-  int productcolorId;
+  int? productcolorId;
   DateTime createdAt;
   DateTime updatedAt;
   dynamic freeproductId;

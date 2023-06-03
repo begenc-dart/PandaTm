@@ -6,11 +6,11 @@ import 'package:hive/hive.dart';
 import 'package:serpay/ChangeNotifierProvider/ChangeNotifierProv.dart';
 
 import '../IpAdress.dart';
-import '../LogIn/LogIn/Model/checkSignUp.dart';
-import '../LogIn/LogIn/Model/token.dart';
+import '../Database/checkSignUp.dart';
+import '../Database/token.dart';
 import 'package:http/http.dart' as http;
 
-import '../MainPage/Model/RandomProduct.dart';
+import '../Model/RandomProduct.dart';
 
 CheckSignUp checkSignUp = new CheckSignUp();
 int current_page = 10;

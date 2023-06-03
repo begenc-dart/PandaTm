@@ -8,10 +8,10 @@ import 'package:serpay/IpAdress.dart';
 import 'package:serpay/Servers/Model/AllFreeProduct.dart';
 import 'package:serpay/darkMode/theme_services.dart';
 
-import '../../Language/Language.dart';
+import '../../Model/Language.dart';
 import '../../MainPage/PhotoIndex.dart';
 import '../../Model/TextColor.dart';
-import '../../Profile/GetMe/PostGetMe.dart';
+import '../../Services/PostGetMe.dart';
 import '../FreeProduct.dart';
 
 class FreeListProduct extends StatefulWidget {
@@ -38,7 +38,7 @@ debugPrint(widget.time.toString());
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) =>  FreeProductPerson(ipAddress: widget.allFreeProduct.freeproductId, url: widget.url,lan: widget.lan,)));
+                builder: (context) =>  FreeProductPerson(ipAddress: widget.allFreeProduct.freeproductId!, url: widget.url,lan: widget.lan,)));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -125,34 +125,32 @@ debugPrint(widget.time.toString());
                     padding:
                     const EdgeInsets.only(left: 15, top: 15),
                     child: Text(
-                    widget.url=="ru"?widget.allFreeProduct.nameRu:  widget.allFreeProduct.nameTm,
+                    widget.url=="ru"?widget.allFreeProduct.nameRu!:  widget.allFreeProduct.nameTm!,
                       style: CustomTextStyle.priceRange(context),
                     ),
                   ),
-                  widget.allFreeProduct.max!=null?Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child:  LinearPercentIndicator(
-                      width: 130,
-                      animation: true,
-                      lineHeight: 10.0,
-                      animationDuration: 2000,
-                      percent: (widget.allFreeProduct.max.toInt()*100/widget.allFreeProduct.goal.toInt())/100,
-                      center: Text(
-                        (widget.allFreeProduct.max.toInt()*100/widget.allFreeProduct.goal).toStringAsFixed(1),
-                        style: CustomTextStyle.proset(context),
-                      ),
-                      linearStrokeCap: LinearStrokeCap.roundAll,
-                      // progressColor: Colors.greenAccent,
-                      linearGradient: LinearGradient(colors: [
-                        select.freeProd,
-                        select.mainColo,
-                      ]),
-                    ),
-                  ):Container(),
-                  Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceEvenly,
+                  widget.allFreeProduct.max!=null?Row(
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15,top: 15,bottom: 15),
+                        child:  LinearPercentIndicator(
+                          width: 130,
+                          animation: true,
+                          lineHeight: 10.0,
+                          animationDuration: 2000,
+                          percent: (widget.allFreeProduct.max!.toInt()*100/widget.allFreeProduct.goal!.toInt())/100,
+                          center: Text(
+                            (widget.allFreeProduct.max!.toInt()*100/widget.allFreeProduct.goal!).toStringAsFixed(1),
+                            style: CustomTextStyle.proset(context),
+                          ),
+                          linearStrokeCap: LinearStrokeCap.roundAll,
+                          // progressColor: Colors.greenAccent,
+                          linearGradient: LinearGradient(colors: [
+                            select.freeProd,
+                            select.mainColo,
+                          ]),
+                        ),
+                      ),
                       Row(
                         children: [
                           SvgPicture.asset(
@@ -172,9 +170,16 @@ debugPrint(widget.time.toString());
                           )
                         ],
                       ),
+                    ],
+                  ):Container(),
+                  Row(
+                    mainAxisAlignment:
+                    MainAxisAlignment.center,
+                    children: [
+
                       GestureDetector(
                         onTap: () {
-                         widget.time>0? FreeProductOwn().fetchAlbum(widget.allFreeProduct.freeproductId,context):"";
+                         widget.time>0? FreeProductOwn().fetchAlbum(widget.allFreeProduct.freeproductId!,context):"";
                         },
                         child: Container(
                           width: 150,

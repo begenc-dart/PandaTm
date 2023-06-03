@@ -7,7 +7,7 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import 'package:serpay/MainPage/Model/Action.dart';
+import 'package:serpay/Model/Action.dart';
 
 import 'package:serpay/MainPage/PhotoIndex.dart';
 import 'package:serpay/Model/TextColor.dart';
@@ -15,9 +15,9 @@ import 'package:serpay/Model/TextColor.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../IpAdress.dart';
-import '../../../../Language/Language.dart';
-import '../../../../LogIn/LogIn/Model/checkSignUp.dart';
-import '../../../../LogIn/LogIn/Model/token.dart';
+import '../../../../Model/Language.dart';
+import '../../../../Database/checkSignUp.dart';
+import '../../../../Database/token.dart';
 import '../../../../MainPage/MainPagee/ProductMainPage/ProductMainPage.dart';
 import '../../../../Search/Filter.dart';
 import '../../../../darkMode/theme_services.dart';

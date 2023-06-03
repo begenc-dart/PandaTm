@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:serpay/MainPage/Model/Product.dart';
+import 'package:serpay/Model/Product.dart';
 
-import '../../../Language/Language.dart';
+import '../../../Model/Language.dart';
 import '../../../Model/TextColor.dart';
 
 class ProductText extends StatelessWidget {
@@ -29,7 +29,7 @@ class ProductText extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-            oneProductElement.price!=null? oneProductElement.price.toStringAsFixed(1):"0",
+            oneProductElement.price!=null? oneProductElement.price!.toStringAsFixed(1):"0",
                   style: CustomTextStyle.despro(context),
                 ),
                 Container(

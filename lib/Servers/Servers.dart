@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:serpay/Model/TextColor.dart';
 
 
-import '../Language/Language.dart';
+import '../Model/Language.dart';
 import '../Model/Colors.dart';
 import '../language.dart';
 import 'AllFreeProduct/AllFreeProduct.dart';
@@ -39,7 +39,7 @@ class _ServersState extends State<Servers> {
       body: FutureBuilder(
       future: languageModel,
       builder: (BuildContext context, AsyncSnapshot<LanguageModel> snapshot) {
-    // debugPrint(snapshot.data.profile.toString());
+    debugPrint(snapshot.data.toString());
     if (snapshot.hasData) {
       return  ListView(
         children: [
@@ -82,6 +82,7 @@ class _ServersState extends State<Servers> {
                         ),
 
                       ],
+
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
                           image: AssetImage(

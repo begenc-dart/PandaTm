@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:serpay/IpAdress.dart';
 import 'package:serpay/MainPage/MainPagee/ProductMainPage/ProductMainPage.dart';
-import 'package:serpay/MainPage/Model/Product.dart';
+import 'package:serpay/Model/Product.dart';
 import 'package:serpay/darkMode/theme_services.dart';
 
 import '../../../Model/TextColor.dart';
@@ -135,7 +135,7 @@ String url;
                           Row(
                             children: [
                               Text(
-                      recommenendations[index].price!=null? recommenendations[index].price
+                      recommenendations[index].price!=null? recommenendations[index].price!
                                     .toStringAsFixed(1):"0",
                                 style: CustomTextStyle.priceColor(context),
                               ),

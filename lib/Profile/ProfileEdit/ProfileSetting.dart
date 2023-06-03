@@ -4,18 +4,18 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:serpay/Language/Language.dart';
+import 'package:serpay/Model/Language.dart';
 import 'package:serpay/Model/Colors.dart';
 import 'package:serpay/Model/TextColor.dart';
 import 'package:serpay/Profile/ProfileEdit/UpdateInfo.dart';
 import 'package:serpay/darkMode/theme_services.dart';
 
 import '../../IpAdress.dart';
-import '../../LogIn/LogIn/Model/checkSignUp.dart';
+import '../../Database/checkSignUp.dart';
 import '../../language.dart';
 import '../../main.dart';
-import '../GetMe/ModelGetMe.dart';
-import '../GetMe/PostGetMe.dart';
+import '../../Model/ModelGetMe.dart';
+import '../../Services/PostGetMe.dart';
 
 class ProfileSetting extends StatefulWidget {
   LanguageModel languageModel;

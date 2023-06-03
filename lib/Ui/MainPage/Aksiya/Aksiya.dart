@@ -6,9 +6,9 @@ import 'package:serpay/darkMode/theme_services.dart';
 import '../../../../IpAdress.dart';
 import '../../../../Model/TextColor.dart';
 
-import '../../../MainPage/Model/Action.dart';
+import '../../../Model/Action.dart';
 import '../../../HttpModel/AksiyaProduct.dart';
-import '../../../MainPage/Model/mainModel.dart';
+import '../../../Model/mainModel.dart';
 import '../../../MainPage/Product/Product.dart';
 import '../../../language.dart';
 import '../SkidkaProduct/ActionProduct/Action.dart';
@@ -56,7 +56,7 @@ class _AksiyaState extends State<Aksiya> {
             .size
             .width,
         height: 80,
-        padding: EdgeInsets.only(left: 10, right: 10),
+        padding: EdgeInsets.only( right: 10),
         margin: EdgeInsets.only(left: 15, right: 15, top: 5),
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
@@ -88,9 +88,9 @@ class _AksiyaState extends State<Aksiya> {
               },
               child: Container(
                 width: 70,
-                height: 75,
+                height: 80,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
+                  borderRadius: BorderRadius.circular(10),
                   // border: Border.all(
                   //     color: select.mainColo, width: 0.5),
                   gradient: LinearGradient(
@@ -251,7 +251,7 @@ class _NewProductState extends State<NewProduct> {
             .size
             .width,
         height: 80,
-        padding: EdgeInsets.only(left: 10, right: 10),
+        padding: EdgeInsets.only( right: 10),
         margin: EdgeInsets.only(left: 15, right: 15, top: 5),
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
@@ -283,9 +283,9 @@ class _NewProductState extends State<NewProduct> {
               },
               child: Container(
                 width: 70,
-                height: 75,
+                height: 80,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
+                  borderRadius: BorderRadius.circular(10),
                   // border: Border.all(
                   //     color: select.mainColo, width: 0.5),
                   gradient: LinearGradient(
@@ -339,10 +339,10 @@ class _NewProductState extends State<NewProduct> {
                                             builder: (context) =>
                                                 ProductDetails(
                                                   productId: snapshot.data!
-                                                      .newProducts[index-1]
+                                                      .newProducts[index]
                                                       .productId,
                                                   image: snapshot.data!
-                                                      .newProducts[index-1]
+                                                      .newProducts[index]
                                                       .images,
                                                 )));
                                   },
@@ -355,7 +355,7 @@ class _NewProductState extends State<NewProduct> {
                                           padding: const EdgeInsets.only(
                                               top: 7),
                                           child: snapshot.data!
-                                              .newProducts[index-1]
+                                              .newProducts[index]
                                               .images.length ==
                                               0
                                               ? Image.asset(widget.img)
@@ -368,7 +368,7 @@ class _NewProductState extends State<NewProduct> {
                                               "${IpAddress().ipAddress}/" +
                                                   snapshot
                                                       .data!.
-                                                  newProducts[index-1]
+                                                  newProducts[index]
                                                       .images[0]
                                                       .image,
                                               placeholder: (context, url) =>
@@ -385,9 +385,9 @@ class _NewProductState extends State<NewProduct> {
                                         Text(
                                           url == "ru"
                                               ? snapshot.data!
-                                              .newProducts[index-1].nameRu
+                                              .newProducts[index].nameRu
                                               : snapshot.data!
-                                              .newProducts[index-1].nameTm,
+                                              .newProducts[index].nameTm,
                                           maxLines: 1,
                                           textAlign: TextAlign.center,
                                           style: CustomTextStyle.Skidkapro(

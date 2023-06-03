@@ -44,31 +44,69 @@ socket.on("link", (data) {
     super.initState();
   }
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(children: [
-         InkWell(
-           onTap: (){
-             socket = IO.io(
-                 '${IpAddress().ipAddress}',
-                 IO.OptionBuilder().setTransports(["websocket"]).setQuery({}
-                 ).build());
-             // debugPrint(widget.id + "sdfasd");
-             socket.emit("kart-halk", {"orderId": widget.id,"amount":widget.payment});
-             //Initializing the message list
+    return Scaffold(
+      appBar: AppBar(title: Text("Online töleg"),),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+       InkWell(
+         onTap: (){
+           socket = IO.io(
+               '${IpAddress().ipAddress}',
+               IO.OptionBuilder().setTransports(["websocket"]).setQuery({}
+               ).build());
+           // debugPrint(widget.id + "sdfasd");
+           socket.emit("kart-halk", {"orderId": widget.id,"amount":widget.payment});
+           //Initializing the message list
 
 
-             _connectSocket();
-           },
-           child:  paymantType(),
-         )
-        ],),
-      ),
+           _connectSocket();
+         },
+         child:  paymantType("Halkbank","https://halkbank.gov.tm/storage/app/uploads/public/613/5a1/3c5/6135a13c5348c249294197.png"),
+       ),
+        InkWell(
+          onTap: (){
+            socket = IO.io(
+                '${IpAddress().ipAddress}',
+                IO.OptionBuilder().setTransports(["websocket"]).setQuery({}
+                ).build());
+            // debugPrint(widget.id + "sdfasd");
+            socket.emit("kart-senagat", {"orderId": widget.id,"amount":widget.payment});
+            //Initializing the message list
+
+
+            _connectSocket();
+          },
+          child:  paymantType("Senagat bank","https://www.rysgalbank.com.tm/storage/images/PlasticCard_image/8b022dd5c7cdabff9ebae02bb6d78bac.jpg"),
+        ),
+        InkWell(
+          onTap: (){
+            socket = IO.io(
+                '${IpAddress().ipAddress}',
+                IO.OptionBuilder().setTransports(["websocket"]).setQuery({}
+                ).build());
+            // debugPrint(widget.id + "sdfasd");
+            socket.emit("kart-rysgal", {"orderId": widget.id,"amount":widget.payment});
+            //Initializing the message list
+
+
+            _connectSocket();
+          },
+          child:  paymantType("Rysgal bank","https://www.senagatbank.com.tm/img/cards/kartlar/altyn_asyr_kart.webp"),
+        ),
+      ],),
     );
   }
-  paymantType(){
-    return ListTile(
-      title: Text("Halkbank"),
+  paymantType(String a,String b){
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        child: ListTile(
+          leading:  Image.network(b),
+          title: Text(a),
+          subtitle: Text("Goyum kart,altyn asyr kart"),
+        ),
+      ),
     );
   }
 }

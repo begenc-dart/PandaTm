@@ -4,12 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'package:serpay/Liked/liked.dart';
+import 'package:serpay/Services/liked.dart';
 import 'package:serpay/LogIn/LogIn/LogIn.dart';
-import 'package:serpay/LogIn/LogIn/Model/checkSignUp.dart';
+import 'package:serpay/Database/checkSignUp.dart';
 
-import 'package:serpay/MainPage/MainPagee/model/HistoryProduct.dart';
-import 'package:serpay/MainPage/Model/RandomProduct.dart';
+import 'package:serpay/Services/HistoryProduct.dart';
+import 'package:serpay/Model/RandomProduct.dart';
 
 import '../../../HttpModel/BannerGet.dart';
 import '../../../IpAdress.dart';

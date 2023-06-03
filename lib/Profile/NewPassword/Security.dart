@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../Language/Language.dart';
+import '../../Model/Language.dart';
 import '../../darkMode/theme_services.dart';
 import 'NewPassword.dart';
 

@@ -3,7 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:serpay/IpAdress.dart';
-import 'package:serpay/MainPage/Model/Product.dart';
+import 'package:serpay/Model/Product.dart';
 import 'package:share/share.dart';
 
 import '../../../Model/TextColor.dart';
@@ -31,6 +31,7 @@ int a=0;
     return SliverAppBar(
       expandedHeight: 300.0,
       leadingWidth: 50,
+
       leading: InkWell(
           onTap: () {
             Navigator.pop(context);
@@ -54,12 +55,13 @@ int a=0;
           child: Container(
               margin:
               EdgeInsets.only(right: 10,top: 15),
+              padding: EdgeInsets.all(10),
               width: 40,
               height: 40,
               decoration: BoxDecoration(
                   color: Colors.white70,
                   borderRadius: BorderRadius.circular(5)),
-              child: Image.asset("asset/icon/Vector.png")),
+              child: Image.asset("asset/icon/Vector.png",fit: BoxFit.cover,width: 30,height: 30,)),
         ),
       ],
       flexibleSpace: FlexibleSpaceBar(
@@ -135,8 +137,8 @@ int a=0;
               width: MediaQuery.of(context).size.width,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: widget.oneProduct.images!.map((url) {
-                  int index = widget.oneProduct.images!.indexOf(url);
+                children: widget.oneProduct.images.map((url) {
+                  int index = widget.oneProduct.images.indexOf(url);
                   return Container(
                     width: 3.0,
                     height: 3.0,

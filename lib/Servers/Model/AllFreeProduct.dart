@@ -48,18 +48,18 @@ class Datum {
     required this.images,
   });
 
-  int id;
-  String freeproductId;
-  String nameTm;
-  String nameRu;
-  String bodyTm;
-  String bodyRu;
-  String link;
-  String expireDate;
-  int goal;
-  int max;
-  int contestants;
-  bool isActive;
+  int? id;
+  String? freeproductId;
+  String? nameTm;
+  String? nameRu;
+  String? bodyTm;
+  String? bodyRu;
+  String? link;
+  String? expireDate;
+  int? goal;
+  int? max;
+  int? contestants;
+  bool? isActive;
   DateTime createdAt;
   DateTime updatedAt;
   List<Images> images;

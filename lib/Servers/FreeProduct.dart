@@ -8,7 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:serpay/Model/TextColor.dart';
-import 'package:serpay/Profile/GetMe/PostGetMe.dart';
+import 'package:serpay/Services/PostGetMe.dart';
 import 'package:serpay/Servers/FreeProductPerson/FreeProductTop.dart';
 import 'package:serpay/Servers/Model/OneFreeProduct.dart';
 import 'package:serpay/Servers/ProductAppBar/ProductAppBar.dart';
@@ -16,7 +16,7 @@ import 'package:serpay/Servers/ProductDescpiton/ProductDes.dart';
 import 'package:serpay/darkMode/theme_services.dart';
 import 'package:share/share.dart';
 
-import '../Language/Language.dart';
+import '../Model/Language.dart';
 import '../Model/Colors.dart';
 import 'AllFreeProduct/AllFreeProduct.dart';
 import 'Server/AllFreeProduct.dart';

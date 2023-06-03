@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../../IpAdress.dart';
-import '../../LogIn/LogIn/Model/checkSignUp.dart';
-import '../../LogIn/LogIn/Model/token.dart';
-import '../MainPage/Model/Action.dart';
-import '../MainPage/Model/mainModel.dart';
+import '../Database/checkSignUp.dart';
+import '../Database/token.dart';
+import '../Model/Action.dart';
+import '../Model/mainModel.dart';
 
 
 class AksiyaProdutModel {

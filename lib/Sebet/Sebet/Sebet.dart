@@ -1,15 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:serpay/Sebet/Order/OrderProduct.dart';
 
 import 'package:serpay/Sebet/Sebet/CardProduct.dart';
 
 import '../../IpAdress.dart';
-import '../../Language/Language.dart';
+import '../../Model/Language.dart';
 import '../../MainPage/MainChangeNoti.dart';
 import '../../Model/Colors.dart';
 import '../../Model/TextColor.dart';
-import '../../Profile/MyAddress/AddressModel/AddressGetHttp.dart';
+import '../../Services/AddressGetHttp.dart';
 import '../../Providers.dart';
 import '../../darkMode/theme_services.dart';
 import '../../language.dart';
@@ -183,19 +184,19 @@ class _CartState extends ConsumerState<Cart> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  ref.watch(PriceState.pricepro)[index]>=50?   Navigator.push(
+                                  ref.watch(PriceState.pricepro)[index]>=49?   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => OrderPro(
+                                          builder: (context) => OrderProdut(
                                             index: index,
-                                            proindex: indexproduct, sellerID: snapshot.data!.notOrderedProducts[index].sellerId==null?"null": snapshot.data!.notOrderedProducts[index].sellerId, url: url,lan: lan.data!,
+                                            url: url,lan: lan.data!, sellerId: snapshot.data!.notOrderedProducts[index].sellerId==null?"null": snapshot.data!.notOrderedProducts[index].sellerId,
                                           ))):"";
                                 },
                                 child: Container(
                                   height: 30,
                                   width: MediaQuery.of(context).size.width / 2 - 10,
                                   decoration: BoxDecoration(
-                                      color:   ref.watch(PriceState.pricepro)[index]>50?select.mainColo:Colors.black12,
+                                      color:   ref.watch(PriceState.pricepro)[index]>=50?select.mainColo:Colors.black12,
                                       boxShadow: [
                                         BoxShadow(
                                             color: select.shadowCol, blurRadius: 6)
@@ -222,12 +223,13 @@ class _CartState extends ConsumerState<Cart> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset("asset/Setting/1.png"),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Text("Sebede haryt goşulmady!",style: TextStyle(color: ThemeServices().theme == ThemeMode.dark
-                            ? Colors.white:Colors.black),),
-                      )
+                      Image.asset(ThemeServices().theme != ThemeMode.dark
+                          ?"asset/ProfileIcon/2.png":"asset/ProfileIcon/VECTORT.png",fit: BoxFit.fill,width: MediaQuery.of(context).size.width*0.7,),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(top: 20),
+                      //   child: Text("Sebede haryt goşulmady!",style: TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                      //       ? Colors.white:Colors.black),),
+                      // )
                     ],
                   ),
                 );

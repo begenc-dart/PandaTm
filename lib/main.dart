@@ -1,4 +1,4 @@
-// @dart=2.9
+
 import 'dart:io';
 import 'dart:async';
 import 'package:flutter/foundation.dart';
@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 
 import 'package:get_storage/get_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -14,11 +14,12 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:serpay/Categorya/Categoriya.dart';
 
 import 'package:serpay/LogIn/LogIn/LogIn.dart';
-import 'package:serpay/LogIn/LogIn/Model/checkSignUp.dart';
+import 'package:serpay/Database/checkSignUp.dart';
+import 'package:serpay/MainPage/Product/Product.dart';
 
 
 import 'package:serpay/Model/Colors.dart';
-import 'package:serpay/Profile/GetMe/PostGetMe.dart';
+import 'package:serpay/Services/PostGetMe.dart';
 import 'package:serpay/Profile/Profile/Profile.dart';
 import 'package:serpay/Providers.dart';
 
@@ -26,19 +27,19 @@ import 'package:serpay/Sebet/Sebet/Sebet.dart';
 import 'package:serpay/Servers/Servers.dart';
 import 'package:serpay/darkMode/theme_services.dart';
 import 'package:uni_links/uni_links.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
 
-import 'Language/Language.dart';
 
-import 'MainPage/Model/RandomProduct.dart';
+import 'Model/Language.dart';
+
+import 'Model/RandomProduct.dart';
 
 import 'Model/TextColor.dart';
 import 'Ui/MainPage/MainPage.dart';
 
 import 'Ui/MainPage/SkidkaProduct/Discount/DiscountProduct.dart';
 import 'darkMode/theme_provider.dart';
-import 'package:web_socket_channel/io.dart';
 
+import 'package:upgrader/upgrader.dart';
 import 'language.dart';
 
 setupHive() async {
@@ -88,27 +89,27 @@ class _MaterialPageMainState extends ConsumerState<MaterialPageMain> {
 
 
 
-    Colrs select = Colrs();
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'PandaTM',
       theme: MyThemes.lightTheme,
 
       darkTheme: MyThemes.darkTheme,
       themeMode: ThemeServices().theme,
       //themeMode: ThemeMode.system,
 
-      home: MyApp(
+      home: UpgradeAlert(
+        child: MyApp(
 
+        ),
       ),
     );
   }
 }
 
 class MyApp extends ConsumerStatefulWidget {
-  final WebSocketChannel channel;
 
-  MyApp({this.channel});
 
   @override
   ConsumerState<MyApp> createState() => _MyAppState();
@@ -129,9 +130,9 @@ String url="";
       url = value;
     });
   }
-  Uri _initialURI;
-  Uri _currentURI;
-  Object _err;
+  Uri? _initialURI;
+   Uri? _currentURI;
+   Object? _err;
   bool _initialURILinkHandled = false;
   quit(String free,BuildContext context) {
     showDialog(
@@ -173,7 +174,7 @@ String url="";
           );
         });
   }
-  StreamSubscription _streamSubscription;
+  late StreamSubscription _streamSubscription;
   Future<void> _initURIHandler() async {
     // 1
     if (!_initialURILinkHandled) {
@@ -186,14 +187,23 @@ String url="";
         // 4
         if (initialURI != null) {
           debugPrint("Initial URI received $initialURI");
-        await  CheckSignUp().dosyaOku().then((value) {
-            if (value.toString().length == 4) {
-              quit(initialURI.toString().split("sharinguser_id=")[1], context);
-            }
-          else{
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>LogIn()));
-            }
-          });
+          debugPrint(initialURI.toString().split("/product/").toString()+"sbegenc");
+
+          if(initialURI.toString().split("/product/").length==2){
+
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>ProductDetails(productId: initialURI.toString().split("product")[1])));
+          }
+        else{
+            await  CheckSignUp().dosyaOku().then((value) {
+
+              if (value.toString().length == 4) {
+                quit(initialURI.toString().split("sharinguser_id=")[1], context);
+              }
+              else{
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>LogIn()));
+              }
+            });
+          }
           if (!mounted) {
             return;
           }
@@ -218,13 +228,13 @@ String url="";
     // 1
     if (!kIsWeb) {
       // 2
-      _streamSubscription = uriLinkStream.listen((Uri uri) {
+      _streamSubscription = uriLinkStream.listen((Uri? uri) {
         if (!mounted) {
           return;
         }
         debugPrint('Received URI: $uri');
         setState(() {
-          _currentURI = uri;
+          _currentURI = uri!;
           _err = null;
         });
         // 3
@@ -246,10 +256,10 @@ String url="";
   }
   // This widget is the root of your application.
 
-Future<LanguageModel> languageModel;
+late Future<LanguageModel> languageModel;
   @override
   void initState() {
-
+    ref.read(CategoriyaPro.catPor.notifier).add();
     languageModel=Language().fetchAlbum(context);
     ref.read(CategoriyaPro.catPor.notifier).add();
     language();
@@ -263,7 +273,7 @@ Future<LanguageModel> languageModel;
 
   }
 checekpage()async{
-  Profile profile = Profile(widget.channel);
+  Profile profile = Profile();
   MainPage sayfa1 = MainPage();
   Servers servers =  const Servers();
   Categoriya categoriya = const Categoriya();
@@ -310,26 +320,31 @@ debugPrint('${_currentURI?.host}'+"dsfdsfsdf");
             return
               Scaffold(
                   resizeToAvoidBottomInset: true,
-                  body: hemmeSah[saylanan],
+                  body: hemmeSah[saylanan]
+                  ,
                   bottomNavigationBar: BottomNavigationBar(
 
                     selectedLabelStyle: TextStyle(
-                        fontWeight: FontWeight.w800, fontSize: 12, color: Colors.black),
+                        fontWeight: FontWeight.w800, fontSize: 12,color: ThemeServices().theme == ThemeMode.dark
+                        ? Colors.white:Colors.black),
+                    unselectedLabelStyle: TextStyle(color: ThemeServices().theme == ThemeMode.dark
+                        ? Colors.white:Colors.black),
                     // showSelectedLabels: saylanan != 0 ? true : false,
                     showUnselectedLabels: true,
                     items: [
-                      bottomNavBarMethod(saylanan != 0 ? snapshot.data.home.toString():"PandaTm", activeIconBottomNavBar[0],
+                      bottomNavBarMethod(saylanan != 0 ? snapshot.data!.home.toString():"PandaTm", activeIconBottomNavBar[0],
                           iconBottomNavBar[0], false),
-                      bottomNavBarMethod(snapshot.data.hyzmat.toString(), activeIconBottomNavBar[1],
+                      bottomNavBarMethod(snapshot.data!.hyzmat.toString(), activeIconBottomNavBar[1],
                           iconBottomNavBar[1], true),
-                      bottomNavBarMethod(snapshot.data.kategoriya.toString(), activeIconBottomNavBar[2],
+                      bottomNavBarMethod(snapshot.data!.kategoriya.toString(), activeIconBottomNavBar[2],
                           iconBottomNavBar[2], true),
-                      bottomNavBarMethod(snapshot.data.sebet.toString(), activeIconBottomNavBar[3],
+                      bottomNavBarMethod(snapshot.data!.sebet.toString(), activeIconBottomNavBar[3],
                           iconBottomNavBar[3], true),
-                      bottomNavBarMethod(snapshot.data.profile.toString(), activeIconBottomNavBar[4],
+                      bottomNavBarMethod(snapshot.data!.profile.toString(), activeIconBottomNavBar[4],
                           iconBottomNavBar[4], true)
                     ],
-                    fixedColor: const Color.fromRGBO(55, 58, 64, 1),
+                    fixedColor: ThemeServices().theme == ThemeMode.dark
+                      ? Colors.red: Color.fromRGBO(55, 58, 64, 1),
                     type: BottomNavigationBarType.fixed,
                     currentIndex: saylanan,
                     onTap: ((index) {
@@ -353,6 +368,7 @@ debugPrint('${_currentURI?.host}'+"dsfdsfsdf");
   BottomNavigationBarItem bottomNavBarMethod(
       String label, String activeicon, String iconBottom, bool chekc) {
     return BottomNavigationBarItem(
+
         activeIcon: chekc == true
             ? SvgPicture.asset(
                 activeicon,

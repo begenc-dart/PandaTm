@@ -7,14 +7,14 @@ import 'package:serpay/Categorya/Categoriya/Categoriya.dart';
 
 import 'package:serpay/HttpModel/CaruselGet.dart';
 import 'package:serpay/IpAdress.dart';
-import 'package:serpay/Language/Language.dart';
+import 'package:serpay/Model/Language.dart';
 import 'package:serpay/Servers/FreeProduct.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../Categorya/SubCategor/SubCategorProduct.dart';
 import '../../../Model/TextColor.dart';
 import '../../MainChangeNoti.dart';
-import '../../Model/BannerProductModel.dart';
+import '../../../Model/BannerProductModel.dart';
 import 'package:http/http.dart' as http;
 // import 'dart:js' as js;
 class BannerMainPage extends StatefulWidget {
@@ -61,68 +61,73 @@ List link=[];
 
             return Stack(
               children: [
-                CarouselSlider.builder(
-                  itemCount:snapshot.data!.banners.rows.length,
-                  itemBuilder: (BuildContext context, int itemIndex,
-                          int pageViewIndex) {
-                    link=snapshot.data!.banners.rows[itemIndex].link!.split("/");
-                  return    Container(
-                          padding: EdgeInsets.only(left: 5, right: 5),
-                          child: (snapshot.data!.banners.rows[itemIndex].image != null)
-                              ? InkWell(
-                                  onTap: () {
-                                    
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: CarouselSlider.builder(
+                    itemCount:snapshot.data!.banners.rows.length,
+                    itemBuilder: (BuildContext context, int itemIndex,
+                            int pageViewIndex) {
+                      link=snapshot.data!.banners.rows[itemIndex].link!.split("/");
+                    return    Container(
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),),
+                            padding: EdgeInsets.only(left: 5, right: 5),
+                            child: (snapshot.data!.banners.rows[itemIndex].image != null)
+                                ? InkWell(
+                                    onTap: () {
+                                      
 
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                            link[3]=="category"? SubCategorProduct(sort: "0",
-                                              subcatId:
-                                              link[4],
-                                              checkpage: false,
-                                              nameSubCat:
-                                              "",
-                                              page: 0, url:widget.url,lan: widget.lan,):link[4]=="share"?FreeProductPerson(ipAddress: link[5], url:widget.url,lan: widget.lan,):Container()));
-                                  },
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: CachedNetworkImage(
-                                      imageUrl: "${IpAddress().ipAddress}/"+snapshot.data!.banners.rows[itemIndex].image!,
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                              link[3]=="category"? SubCategorProduct(sort: "0",
+                                                subcatId:
+                                                link[4],
+                                                checkpage: false,
+                                                nameSubCat:
+                                                "",
+                                                page: 0, url:widget.url,lan: widget.lan,):link[4]=="share"?FreeProductPerson(ipAddress: link[5], url:widget.url,lan: widget.lan,):Container()));
+                                    },
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: CachedNetworkImage(
+                                        imageUrl: "${IpAddress().ipAddress}/"+snapshot.data!.banners.rows[itemIndex].image!,
 
-                                      placeholder: (context, url) => Container(
-                                          alignment: Alignment.center,
-                                          child: Container()),
-                                      errorWidget: (context, url, error) =>
-                                          Image.asset(
-                                              "asset/Img/banner-img.jpg"),
-                                      fit: BoxFit.fill,
+                                        placeholder: (context, url) => Container(
+                                            alignment: Alignment.center,
+                                            child: Container()),
+                                        errorWidget: (context, url, error) =>
+                                            Image.asset(
+                                                "asset/Img/banner-img.jpg"),
+                                        fit: BoxFit.fill,
+                                      ),
                                     ),
-                                  ),
-                                )
-                              : Image.asset("asset/Img/banner-img.jpg"));},
-                  options: CarouselOptions(
-                    viewportFraction: 1,
-                    height: 200,
-                    aspectRatio: 16 / 9,
-                    onPageChanged: (index, reason) {
+                                  )
+                                : Image.asset("asset/Img/banner-img.jpg"));},
+                    options: CarouselOptions(
+                      viewportFraction: 1,
+                      height: 200,
+                      aspectRatio: 16 / 9,
 
-                     a=index;
-                     setState(() {
+                      onPageChanged: (index, reason) {
 
-                     });
-                      // setState(() {
-                      //   currentPos = index;
-                      // });
-                    },
-                    initialPage: 0,
-                    enableInfiniteScroll: true,
-                    reverse: false,
-                    autoPlay: true,
-                    autoPlayInterval: Duration(seconds: 5),
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    enlargeCenterPage: true,
-                    scrollDirection: Axis.horizontal,
+                       a=index;
+                       setState(() {
+
+                       });
+                        // setState(() {
+                        //   currentPos = index;
+                        // });
+                      },
+                      initialPage: 0,
+                      enableInfiniteScroll: true,
+                      reverse: false,
+                      autoPlay: true,
+                      autoPlayInterval: Duration(seconds: 5),
+                      autoPlayAnimationDuration: Duration(milliseconds: 800),
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      enlargeCenterPage: true,
+                      scrollDirection: Axis.horizontal,
+                    ),
                   ),
                 ),
                 // Positioned(top: 0,child: Text(snapshot.data!.banners.rows[0].link!.split("/").toString(),)),

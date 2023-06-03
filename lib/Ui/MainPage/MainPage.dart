@@ -6,7 +6,7 @@ import 'package:hive/hive.dart';
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:serpay/HttpModel/BannerGet.dart';
-import 'package:serpay/Language/Language.dart';
+import 'package:serpay/Model/Language.dart';
 
 import 'package:serpay/Ui/MainPage/Aksiya/Aksiya.dart';
 import 'package:serpay/Ui/MainPage/SkidkaProduct/RefrestMainPage.dart';
@@ -16,11 +16,11 @@ import '../../../Model/Colors.dart';
 import '../../../darkMode/theme_services.dart';
 import '../../ChangeNotifierProvider/ChangeNotifierProv.dart';
 import '../../IpAdress.dart';
-import '../../LogIn/LogIn/Model/token.dart';
+import '../../Database/token.dart';
 import '../../MainPage/MainPagee/Banner/banner.dart';
 import '../../MainPage/MainPagee/ProductMainPage/ProductMainPage.dart';
 import '../../MainPage/MainPagee/Skidka/Skidka.dart';
-import '../../MainPage/Model/RandomProduct.dart';
+import '../../Model/RandomProduct.dart';
 import 'SkidkaProduct/Discount/DiscountProduct.dart';
 import 'SkidkaProduct/TopProduct/TopProduct.dart';
 import 'package:http/http.dart' as http;
@@ -298,7 +298,7 @@ floating: true,
                                                       },
                                                       child: Skidka(
                                                         imgUrl:
-                                                            "asset/Img/top.jpg",
+                                                            "asset/ProfileIcon/tio.png",
                                                         name: snapshot.data!.top,
                                                       ),
                                                     ),
